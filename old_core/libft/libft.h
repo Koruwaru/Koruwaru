@@ -6,7 +6,7 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 13:59:30 by jyim              #+#    #+#             */
-/*   Updated: 2014/02/02 22:58:25 by jyim             ###   ########.fr       */
+/*   Updated: 2015/07/26 18:37:25 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_memcpy(void *s1, const void *s2, size_t n);
-void		*memccpy(void *s1, const void *s2, int c, size_t n);
+void		*ft_memccpy(void *s1, const void *s2, int c, size_t n);
 int			ft_isdigit(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);

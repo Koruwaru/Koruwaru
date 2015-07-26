@@ -6,7 +6,7 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/29 17:13:33 by jyim              #+#    #+#             */
-/*   Updated: 2014/02/02 23:23:27 by jyim             ###   ########.fr       */
+/*   Updated: 2015/07/26 18:38:06 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char		*ft_strndup(char *line, int n)
 {
 	char	*str;
-	int		i;
+	int		i = 0;
 
 	str = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
 	while (n && line[i])
