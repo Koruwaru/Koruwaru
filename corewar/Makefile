@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/26 17:14:06 by crenault         ###   ########.fr        #
+#    Updated: 2015/07/27 01:21:13 by crenault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ NAME = corewar
 #SRC += src/genv.c
 
 # header files
-#HDR = include/helpers.h
+HDR = include/vm.h
 #HDR += include/genv.h
 
 # objects files
