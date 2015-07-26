@@ -1,0 +1,3 @@
+[submodule "common/libft"]
+	path = common/libft
+	url = https://github.com/Kerosene2000/libft.git
