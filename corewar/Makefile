@@ -5,47 +5,58 @@
 #                                                     +:+ +:+         +:+      #
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/07/26 17:11:10 by crenault          #+#    #+#              #
-#    Updated: 2015/07/26 17:11:13 by crenault         ###   ########.fr        #
+#    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
+#    Updated: 2015/07/26 17:14:06 by crenault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# libft
-FT_FOLD = common/libft
-FT_CHECK = $(FT_FOLD)/.git
-FT_LIB = $(FT_FOLD)/libft.a
-FT_FLAGS = -L$(FT_FOLD) -lft
-
 # submodules
-SUBMODULES = $(FT_CHECK)
+SUBMODULES =
 
 # libraries
-LIBRARIES = $(FT_LIB)
+LIBRARIES =
 
-# sub makefile
-FOLDER_ASM = asm
-FOLDER_COREWAR = corewar
+# compiler
+CC = clang
+# file type
+FT = c
+# flags
+FLAGS = -Wall -Wextra -Werror
+FLAGS += -O3
+FLAGS += -g
+# binary flags (add libraries)
+BIN_FLAGS = $(FLAGS)
+# executable
+NAME = corewar
 
-# all sub makefile
-COREWAR_FOLDER = corewar
-ASM_FOLDER = asm
+# to compile files
+#SRC = src/main.c
+#SRC += src/genv.c
+
+# header files
+#HDR = include/helpers.h
+#HDR += include/genv.h
+
+# objects files
+OBJS = $(SRC:.$(FT)=.o)
 
 # main rule
-all: $(COREWAR_FOLDER) $(ASM_FOLDER) $(SUBMODULES) $(LIBRARIES)
+all: $(NAME)
 
 # rebuild your bin
-re: fclean all
+re: fclean $(NAME)
 
 # reclone submodule and rebuild
-rere: ffclean all
+rere: ffclean $(NAME)
 
-$(COREWAR_FOLDER):
-	@make -C $@
+$(NAME): $(SUBMODULES) $(LIBRARIES) $(OBJS)
+	@$(CC) -o $@ $(OBJS) $(BIN_FLAGS)
 	@echo $@ "updated!"
 
-$(ASM_FOLDER):
-	@make -C $@
-	@echo $@ "updated!"
+# making o files
+%.o: %.$(FT) $(HDR)
+	@$(CC) -o $@ -c $< $(FLAGS)
+	@echo $< "updated!"
 
 # submodules
 $(SUBMODULES):
@@ -53,28 +64,20 @@ $(SUBMODULES):
 	@git submodule update
 	@echo $@ "updated!"
 
-# lib libft
-$(FT_LIB):
-	@make -C $(FT_FOLD)
-	@echo $@ "updated!"
-
-# ignore if file, force command name
+#
 .PHONY: all re rere clean fclean ffclean cleansubs
 
 # clean o files
 clean:
-	@make clean -C $(COREWAR_FOLDER)
-	@make clean -C $(ASM_FOLDER)
+	@rm -rf $(OBJS)
 
 # clean submodules
 cleansubs:
-	@make clean -C $(FT_FOLD)
+	@rm -rf $(PI_RESS_LOCAL_DIR)
 
 # clean exec file and library
 fclean: clean
-	@make fclean -C $(COREWAR_FOLDER)
-	@make fclean -C $(ASM_FOLDER)
-	@make fclean -C $(FT_FOLD)
+	@rm -rf $(NAME)
 
 # get empty and clean repo (without libs)
 ffclean: fclean cleansubs
