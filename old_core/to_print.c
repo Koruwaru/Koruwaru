@@ -107,7 +107,7 @@ int					to_param(char **tab, int fd)
 	}
 	return (param);
 }
-
+#include <stdio.h>
 void				print_header(int fd, t_header *head)
 {
 	int				i;
@@ -120,6 +120,7 @@ void				print_header(int fd, t_header *head)
 	put_unsigned_char_fd(fd, head->magic >> 16);
 	put_unsigned_char_fd(fd, head->magic >> 8);
 	put_unsigned_char_fd(fd, head->magic);
+	printf("%x\n", head->magic);
 	i = ft_putstr_fd(head->prog_name, fd);
 	while (i < PROG_NAME_LENGTH)
 	{
