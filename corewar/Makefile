@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/27 01:21:13 by crenault         ###   ########.fr        #
+#    Updated: 2015/07/27 15:42:02 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,8 @@ NAME = corewar
 #SRC += src/genv.c
 
 # header files
-HDR = include/vm.h
-#HDR += include/genv.h
+HDR = include/vm_types.h
+HDR += include/vm_protos.h
 
 # objects files
 OBJS = $(SRC:.$(FT)=.o)
@@ -44,10 +44,10 @@ OBJS = $(SRC:.$(FT)=.o)
 all: $(NAME)
 
 # rebuild your bin
-re: fclean $(NAME)
+re: fclean all
 
 # reclone submodule and rebuild
-rere: ffclean $(NAME)
+rere: ffclean all
 
 $(NAME): $(SUBMODULES) $(LIBRARIES) $(OBJS)
 	@$(CC) -o $@ $(OBJS) $(BIN_FLAGS)
