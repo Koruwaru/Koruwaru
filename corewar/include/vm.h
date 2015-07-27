@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/27 01:39:26 by crenault         ###   ########.fr       */
+/*   Updated: 2015/07/27 03:04:44 by crenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include "op.h"
 # include "list.h"
 
+// http://www.cs.utexas.edu/users/djimenez/utsa/cs3343/lecture20.html
 typedef enum	e_bool
 {
-	true = 0,
+	true = 0, // error: expected identifier
 	false
 
 }				t_bool;
