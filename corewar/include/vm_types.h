@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/27 15:36:57 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/27 18:49:44 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_process
 
 typedef struct	s_player
 {
-	char		*name;
+	char const	*name;
 	size_t		id;
 
 }				t_player;
@@ -66,12 +66,11 @@ typedef struct	s_arena
 
 typedef struct	s_vm
 {
-	size_t		nb_players;
-	t_player	players[MAX_PLAYERS];
-	t_player	*last_living_player;
-	t_list		*processes;
-	t_arena		arena;
-	size_t		cycles;
+	size_t			nb_players;
+	t_player		players[MAX_PLAYERS];
+	t_player const	*last_living_player;
+	t_list			*processes;
+	t_arena			arena;
 
 }				t_vm;
 

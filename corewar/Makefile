@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/27 15:42:02 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/27 17:22:12 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ BIN_FLAGS = $(FLAGS)
 NAME = corewar
 
 # to compile files
-#SRC = src/main.c
-#SRC += src/genv.c
+SRC = src/main.c
 
 # header files
 HDR = include/vm_types.h
