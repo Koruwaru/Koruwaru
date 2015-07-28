@@ -6,72 +6,38 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 18:50:26 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/27 20:21:30 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/28 16:21:39 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "vm_protos.h"
 #include "libft.h"
 
-t_bool		fill_program_infos(void *data, size_t fsize, size_t *size,
-							   t_player *player)
+void		*get_program(char const *data, size_t data_s, size_t *size)
 {
+	void	*program;
 	header_t	*hdr;
 
-	hdr = (header_t *)data;
-	*size = hdr->prog_size;
-	if (hdr->magic != COREWAR_EXEC_MAGIC || *size != fsize - sizeof(header_t))
-	{
-		ft_putendl_fd("Bad header", 2);
-		return (false);
-	}
-	// Fuck it
-	return (true);
-}
-
-void		*get_program(int fd, size_t *size, t_player *player)
-{
-	char		*buff;
-	size_t		fsize;
-	size_t		pos;
-	int			read_ret;
-	void		*program;
-
-	pos = 0;
-	fsize = lseek(fd, 0, SEEK_END);
-	lseek(fd, 0, SEEK_SET);
-	if (fsize < sizeof(header_t))
+	if (data_s < sizeof(header_t))
 	{
 		ft_putendl_fd("You call that a file ? xD", 2);
 		return (NULL);
 	}
-	buff = (char *)malloc(fsize);
-	if (buff == NULL)
+	hdr = (header_t *)data;
+	*size = hdr->prog_size;
+	if (hdr->magic != COREWAR_EXEC_MAGIC || *size != data_s - sizeof(header_t))
 	{
-		perror("Malloc error");
+		ft_putendl_fd("Bad header", 2);
 		return (NULL);
-	}
-	while (pos != fsize)
-	{
-		read_ret = read(fd, buff + pos, fsize);
-		if (read_ret < 0)
-		{
-			free(buff);
-			perror("Naughty file");
-			return (NULL);
-		}
 	}
 	program = (void *)malloc(*size);
 	if (program == NULL)
 	{
-		free(buff);
 		perror("Malloc error");
 		return (NULL);
 	}
-	ft_memcpy(program, buff + sizeof(header_t), *size);
-	free(buff);
+	ft_memcpy(program, data + sizeof(header_t), *size);
 	return (program);
 }

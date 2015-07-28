@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_player.c                                    :+:      :+:    :+:   */
+/*   create_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/28 16:59:17 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/28 16:59:25 by tmielcza         ###   ########.fr       */
+/*   Created: 2015/07/28 15:47:50 by tmielcza          #+#    #+#             */
+/*   Updated: 2015/07/28 16:25:21 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
-#include "vm_protos.h"
+#include <stdlib.h>
 #include "libft.h"
+#include "vm_protos.h"
 
-t_player	*create_player(size_t id, char const *name)
+t_process	*create_process(size_t id, size_t pc, t_arena const *arena)
 {
-	t_player	*tmp;
+	t_process	*proc;
 
-	tmp = (t_player *)malloc(sizeof(t_player));
-	tmp->name = ft_strdup(name);
-	if (tmp->name == NULL)
+	proc = (t_process *)malloc(sizeof(t_process));
+	if (proc == NULL)
 	{
 		perror("Malloc error");
-		exit(1);
+		return (NULL);
 	}
-	tmp->id = id;
-	return (tmp);
+	ft_bzero(proc->registers, sizeof(proc->registers));
+	storeg(&proc->registers[0], &id);
+	proc->pc = pc;
+	proc->carry = 0;
+	proc->nb_lives = 0;
+	proc->remaining_cycles = 0;
+	init_instr(&proc->instruction, arena, pc);
+	return (proc);
 }
