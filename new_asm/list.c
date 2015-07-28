@@ -29,12 +29,12 @@ void find_value(char *s, t_inst *maillon)
   if (s[0] == 'r')
   {
     s++;
-    maillon->type = REG_CODE;
+    maillon->type = T_REG;
     maillon->value = atoi(s);
   }
   else if (s[0] == DIRECT_CHAR)
   {
-    maillon->type = DIR_CODE;
+    maillon->type = T_DIR;
     if (s[1] == LABEL_CHAR)
     {
       maillon->is_label = 1;
@@ -48,8 +48,14 @@ void find_value(char *s, t_inst *maillon)
   }
   else
   {
-    maillon->type = IND_CODE;
-    maillon->value = atoi(s);
+    maillon->type = T_IND;
+    if (s[0] == LABEL_CHAR)
+    {
+      maillon->is_label = 1;
+      maillon->value = -1;
+    }
+    else
+      maillon->value = atoi(s);
   }
 }
 
@@ -88,4 +94,21 @@ t_inst *add_inst(t_inst *head, t_inst *maillon)
     tmp = tmp->next;
   tmp->next = maillon;
   return head;
+}
+
+int   count_inst(t_inst *h)
+{
+  t_inst *tmp;
+  int i;
+
+  i = 0;
+  tmp = h;
+  if (!h)
+    return 0;
+  while (tmp)
+  {
+    i++;
+    tmp = tmp->next;
+  }
+  return i;
 }

@@ -15,7 +15,7 @@
 
 static int			ft_is_white(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n' || c == ',')
+	if (c == ' ' || c == '\t' || c == '\n')
 		return (1);
 	else if (c == '\r' || c == '\f' || c == '\v')
 		return (1);

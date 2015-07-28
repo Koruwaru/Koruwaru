@@ -51,6 +51,7 @@ t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head)
     instruction = add_inst(instruction, create_inst(tab[i], -1, 0));
     i++;
   }
+  check_grammar(instruction);
   b = create_bytecode(instruction);
   if (!head)
     return b;
@@ -99,7 +100,7 @@ void print_i(t_inst *l)
   t = l;
   while (t)
   {
-    printf("STRING = %s\n", t->s);
+    printf("STRING = %s CODE = %d LABEL = %d VALUE = %d\n", t->s, t->type, t->is_label, t->value);
     t = t->next;
   }
 }

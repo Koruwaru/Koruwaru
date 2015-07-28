@@ -45,4 +45,6 @@ t_label *add_label(t_label *head, t_label *maillon);
 t_inst *add_inst(t_inst *head, t_inst *maillon);
 t_inst  *create_inst(char *s, int where, int is_head);
 char *colle_tab(char **tab);
+int   count_inst(t_inst *h);
+void check_grammar(t_inst *instruction);
 #endif
