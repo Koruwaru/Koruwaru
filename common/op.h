@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2015/07/28 16:49:30 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/28 18:59:50 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef char	t_arg_type;
 #define T_REG					1
 #define T_DIR					2
 #define T_IND					4
-#define T_LAB					8
+#define T_ANY					(T_REG | T_DIR | T_IND)
 
 /*
 ** 
@@ -92,9 +92,11 @@ typedef struct		s_op
 	size_t			op_code;
 	size_t			cycles;
 	char const		*desc;
-	int				carry;
-	int				mod;
+	int				ocp;
+	int				ind_size;
 
 }					t_op;
+
+t_op				g_op_tab[17];
 
 #endif

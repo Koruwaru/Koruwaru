@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/28 16:25:26 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/28 18:23:42 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ t_process	*dup_process(t_process const *src);
 
 void		dump_arena(t_arena const *a);
 
-void		init_instr(t_instruction *instr, t_arena const *arena, size_t pc);
+t_op const	*get_op(char op_code);
+
+void		load_instr(t_process *proc, t_arena const *arena, size_t pc);
 
 void		storeg(t_register *reg, void const *data);
 

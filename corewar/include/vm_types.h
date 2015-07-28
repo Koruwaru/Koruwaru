@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/27 18:49:44 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/28 19:09:10 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_instruction
 {
 	char		opcode;
 	size_t		nb_params;
-	t_arg_type	params_types[MAX_ARGS_NUMBER];
+	t_arg_type	params_types;
 	size_t		params[MAX_ARGS_NUMBER];
 
 }				t_instruction;
