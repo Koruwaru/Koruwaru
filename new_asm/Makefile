@@ -12,7 +12,7 @@
 
 NAME = asm
 
-SRC = main.c get_next_line.c op.c
+SRC = main.c get_next_line.c op.c ft_sp_strsplit.c utils.c list.c
 
 OBJ = $(SRC:.c=.o)
 

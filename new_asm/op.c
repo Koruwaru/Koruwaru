@@ -38,12 +38,16 @@ t_op    op_tab[17] =
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
 
-void essai()
+int		find_opcode(char *s)
 {
-	printf("%d\n", op_tab[5].arg[0]);
-}
+	int i;
 
-void gram()
-{
-	if ()
+	i = 0;
+	while (op_tab[i].name)
+	{
+		if (!ft_strcmp(op_tab[i].name, s))
+			return (op_tab[i].bin);
+		i++;
+	}
+	return (-1);
 }
