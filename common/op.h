@@ -6,9 +6,14 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2015/07/27 17:59:52 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/28 16:49:30 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef OP_H
+# define OP_H
+
+# include <stddef.h>
 
 /*
 ** Toutes les tailles sont en octets.
@@ -60,7 +65,7 @@ typedef char	t_arg_type;
 #define T_LAB					8
 
 /*
-**
+** 
 */
 
 # define PROG_NAME_LENGTH		(128)
@@ -74,3 +79,22 @@ typedef struct		header_s
   unsigned int		prog_size;
   char				comment[COMMENT_LENGTH + 1];
 }					header_t;
+
+/*
+**
+*/
+
+typedef struct		s_op
+{
+	char const		*name;
+	size_t			nb_params;
+	t_arg_type		args_types[MAX_ARGS_NUMBER];
+	size_t			op_code;
+	size_t			cycles;
+	char const		*desc;
+	int				carry;
+	int				mod;
+
+}					t_op;
+
+#endif
