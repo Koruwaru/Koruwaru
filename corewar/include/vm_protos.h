@@ -35,4 +35,5 @@ void		storeg(t_register *reg, void const *data, size_t size, size_t pc);
 void		ltob(void *data, size_t size);
 
 void		*get_file_data(char const *name, size_t *size);
+
 #endif
