@@ -53,7 +53,7 @@ void RemoveSpaces(char* source)
   while(*j != 0)
   {
     *i = *j++;
-    if(*i != ' ')
+    if(*i != ' ' || *i == '\t')
       i++;
   }
   *i = 0;
@@ -120,10 +120,13 @@ t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head, int *count)
   RemoveSpaces(line);
   RemoveSpaces(h);
   tab = ft_strsplit(line, SEPARATOR_CHAR);
+  ft_putendl("PUTINNNN");
+  ft_putendl(line);
   instruction = create_inst(h, -1,NULL);
   i = 0;
   while (tab[i])
   {
+    printf("COUCOU %s\n", tab[i]);
     instruction = add_inst(instruction, create_inst(tab[i], -1, instruction));
     i++;
   }
@@ -160,6 +163,7 @@ void parse_file(char *l, t_asm *assembleur)
   }
   if (count_tab(tab) < 2)
     return;
+  printf("BORDELLLLL = %s\n", tab[count_tab(tab) - 1]);
   assembleur->bytecode = add_bytecode(tab[i], colle_tab(tab + (i+1)),assembleur->bytecode, &(assembleur->count));
   printf("FILE = %d\n", assembleur->count);
 }
@@ -346,8 +350,13 @@ void put_to_file(char *name, t_bytecode * list, t_asm assembleur)
 
 char *epur_space(char *l)
 {
+  int i;
+
+  i = ft_strlen(l) - 1;
   while (*l && (*l == ' ' || *l == '\t'))
     l++;
+  while (i && (l[i] == ' ' || l[i] == '\t'))
+    l[i] = 0;
   return l;
 }
 
@@ -399,8 +408,8 @@ int main(int ac, char **av)
       assembleur.comment = ft_get_head(line);
   }
   fill_label(&assembleur);
-  //print_inst(assembleur.bytecode);
-//  print_label(assembleur.label);
+  print_inst(assembleur.bytecode);
+  print_label(assembleur.label);
   put_to_file(av[1], assembleur.bytecode, assembleur);
   return (0);
 }

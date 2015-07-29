@@ -29,28 +29,17 @@ int count_all_tab(char **tab)
 
 char *colle_tab(char **tab)
 {
-  char *s;
+  char *ret;
   int i;
-  int i2;
-  int i3;
 
   i = 0;
-  i2 = 0;
-  i3 = 0;
-  s = (char *)malloc(sizeof(count_all_tab(tab)) + 1);
+  ret = NULL;
   while (tab[i])
   {
-    while (tab[i][i2])
-    {
-      s[i3] = tab[i][i2];
-      i2++;
-      i3++;
-    }
-    i2 = 0;
+    ret = ft_strjoin(ret, tab[i]);
     i++;
   }
-  s[i3] = '\0';
-  return s;
+  return ret;
 }
 
 char *erase_char(char *s)
