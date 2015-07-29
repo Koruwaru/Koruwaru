@@ -86,3 +86,17 @@ char		*ft_strndup(char *line, int n)
 	str[i] = '\0';
 	return (str);
 }
+
+void str_digit(char *s)
+{
+  while (*s)
+  {
+    if (!ft_isdigit(*s) && *s != '+' && *s != '-')
+    {
+      ft_putendl("Lexical error");
+      ft_putendl(s);
+      exit(0);
+    }
+    s++;
+  }
+}

@@ -57,4 +57,5 @@ int find_dir(int opcode);
 char *erase_char(char *s);
 char		*ft_strndup(char *line, int n);
 char		*ft_get_head(char *line);
+void str_digit(char *s);
 #endif

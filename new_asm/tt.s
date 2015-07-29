@@ -3,4 +3,3 @@
 
 live: 
 	zjmp %:live
-live:

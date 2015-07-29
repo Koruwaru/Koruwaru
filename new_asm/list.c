@@ -47,6 +47,7 @@ void find_value(char *s, t_inst *maillon, t_inst *head)
   if (s[0] == 'r')
   {
     s++;
+    str_digit(s);
     maillon->type = T_REG;
     maillon->value = atoi(s);
     maillon->size = 1;
@@ -64,6 +65,7 @@ void find_value(char *s, t_inst *maillon, t_inst *head)
     else
     {
       s++;
+      str_digit(s);
       maillon->value = atoi(s);
     }
   }
@@ -77,7 +79,10 @@ void find_value(char *s, t_inst *maillon, t_inst *head)
       maillon->value = -1;
     }
     else
+    {
+      str_digit(s);
       maillon->value = atoi(s);
+    }
   }
 }
 
