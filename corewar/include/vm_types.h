@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/28 19:09:10 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/29 17:33:34 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "op.h"
 # include "list.h"
 
-// http://www.cs.utexas.edu/users/djimenez/utsa/cs3343/lecture20.html
 typedef enum	e_bool
 {
 	true = 0,
@@ -31,10 +30,12 @@ typedef struct	s_register
 
 }				t_register;
 
+typedef unsigned int	t_uint;
+
 typedef struct	s_instruction
 {
 	char		opcode;
-	size_t		nb_params;
+	t_uint		nb_params;
 	t_arg_type	params_types;
 	size_t		params[MAX_ARGS_NUMBER];
 

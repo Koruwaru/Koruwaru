@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/29 15:46:05 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/29 17:23:41 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC += create_process.c
 SRC += dump_arena.c
 SRC += dup_process.c
 SRC += get_file_data.c
+SRC += op.c
 SRC += get_op.c
 SRC += get_program.c
 SRC += init_instr.c
@@ -51,7 +52,7 @@ SRC += storeg.c
 SRC += ltob.c
 
 #VPATH=src/
-vpath %.c src/
+vpath %.c src/ ../common/
 
 # header files
 HDR = include/vm_types.h

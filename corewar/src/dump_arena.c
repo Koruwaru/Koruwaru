@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/29 13:40:17 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/29 16:22:31 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/29 16:58:08 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,16 @@ void		dump_data(void const *d, size_t size, size_t line_s)
 	end = tmp + size;
 	while (tmp != end)
 	{
-		ctoah(*tmp, buff);
-		write(1, buff, sizeof(buff));
-		if (i >= line_s)
+		if (i > line_s)
 		{
 			ft_putstr("\n");
 			i = 0;
 		}
-		else
-		{
-			ft_putstr(" ");
-			i++;
-		}
+		ctoah(*tmp, buff);
+		write(1, buff, sizeof(buff));
+		ft_putstr(" ");
+		i++;
 		tmp++;
 	}
+	ft_putstr("\n");
 }
