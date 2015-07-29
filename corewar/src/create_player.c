@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:59:17 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/28 16:59:25 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/29 14:37:53 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_player	*create_player(size_t id, char const *name)
 	t_player	*tmp;
 
 	tmp = (t_player *)malloc(sizeof(t_player));
-	tmp->name = ft_strdup(name);
+	tmp->name = ft_strdup(name); //TODO: ATTANSION
 	if (tmp->name == NULL)
 	{
 		perror("Malloc error");

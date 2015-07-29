@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:30:20 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/27 18:49:53 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/29 16:51:59 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,26 @@ static size_t	min(size_t a, size_t b)
 void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 					t_list const *progs)
 {
-	size_t	i;
-	size_t	offset;
-	size_t	size;
+	size_t		i;
+	size_t		offset;
+	size_t		size;
+	t_process	*proc;
 
 	offset = MEM_SIZE / nb_players;
 	vm->nb_players = nb_players;
+	vm->processes = NULL;
 	i = 0;
-	while (players != NULL)
+	ft_bzero(vm->arena.mem, MEM_SIZE);
+	while (players != NULL && progs != NULL)
 	{
 		vm->players[i] = *(t_player *)players->content;
+		size = min(progs->content_size, offset);
+		ft_memcpy(vm->arena.mem + offset * i, progs->content, size);
+		proc = create_process(vm->players[i].id, offset * i, &vm->arena);
+		ft_lstadd(&vm->processes, ft_lstcreate(proc, sizeof(t_process)));
 		players = players->next;
+		progs = progs->next;
 		i++;
 	}
 	vm->last_living_player = NULL;
-	ft_bzero(vm->arena.mem, MEM_SIZE);
-	vm->processes = NULL;
-	i = 0;
-	while (progs != NULL)
-	{
-		size = min(progs->content_size, offset);
-		ft_memcpy(vm->arena.mem + offset * i, progs->content, size);
-		ft_lstadd(&vm->processes, ft_lstcreate(
-					create_process(NULL, offset * i, 0), sizeof(t_process)));
-		i++;
-	}
 }

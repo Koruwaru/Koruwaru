@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/28 19:50:24 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/29 14:02:02 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void			load_instr(t_process *proc, t_arena const *a, size_t pc)
 		instr->opcode = op_tmp->op_code;
 		instr->nb_params = op_tmp->nb_params;
 		proc->remaining_cycles = op_tmp->cycles;
+		get_params(instr, op_tmp, a, pc);
 	}
 }

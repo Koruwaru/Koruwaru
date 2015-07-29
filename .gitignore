@@ -1,3 +1,12 @@
+# Exectutables'n'Shit
+corewar
+asm
+*.txt
+
+# Asm files
+*.s
+*.cor
+
 # Object files
 *.o
 *.ko
