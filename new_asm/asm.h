@@ -38,6 +38,8 @@ typedef struct    s_asm
   t_bytecode          *bytecode;
   t_label         *label;
   int             count;
+  char            *name;
+  char            *comment;
 }                 t_asm;
 
 int		find_opcode(char *s);
@@ -53,4 +55,6 @@ void check_grammar(t_inst *instruction);
 int is_op(int opcode);
 int find_dir(int opcode);
 char *erase_char(char *s);
+char		*ft_strndup(char *line, int n);
+char		*ft_get_head(char *line);
 #endif

@@ -221,7 +221,7 @@ void fill_label(t_asm *assembleur)
           if (!ft_strcmp(tmp2->name, inst->s))
           {
             if (tmp2->place < tmp->inst->where)
-              inst->value = (tmp2->place - tmp->inst->where) + 1;
+              inst->value = (tmp2->place - tmp->inst->where);
             else
               inst->value = (tmp2->place - tmp->inst->where);
             break ;
@@ -285,11 +285,52 @@ void put_octet(int value, int size, int fd)
   return ;
 }
 
-void put_to_file(char *name, t_bytecode * list)
+int ft_putstr_fd2(char *s, int fd)
+{
+  int i;
+
+  i = write(fd, s, ft_strlen(s));
+  return (i);
+}
+
+void put_head(char *s, int len, int fd)
+{
+  int i;
+  int c;
+
+  i = 0;
+  c = 0;
+  i = ft_putstr_fd2(s, fd) - 1;
+  while (i <= (len + 1))
+  {
+    write(fd, &c, 1);
+    i++;
+  }
+}
+
+void put_magic(int magic, int fd)
+{
+  ft_put_fd(fd, magic >> 24);
+  ft_put_fd(fd, magic >> 16);
+  ft_put_fd(fd, magic >> 8);
+  ft_put_fd(fd, magic);
+}
+
+void put_count(int magic, int fd)
+{
+  ft_put_fd(fd, magic);
+}
+
+void put_to_file(char *name, t_bytecode * list, t_asm assembleur)
 {
   int fd;
   t_inst *tmp;
   fd = ft_create(name);
+  put_magic(COREWAR_EXEC_MAGIC, fd);
+  put_head(assembleur.name, PROG_NAME_LENGTH + 1, fd);
+  put_magic(assembleur.count, fd);
+  printf("FUUUU %d\n", assembleur.count);
+  put_head(assembleur.comment, COMMENT_LENGTH + 1, fd);
   while (list)
   {
     tmp = list->inst;
@@ -301,6 +342,33 @@ void put_to_file(char *name, t_bytecode * list)
     list = list->next;
   }
   close(fd);
+}
+
+char *epur_space(char *l)
+{
+  while (*l && (*l == ' ' || *l == '\t'))
+    l++;
+  return l;
+}
+
+char		*suppr_comment(char *line)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+  line = epur_space(line);
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(line) + 2));
+	while (line[i])
+	{
+		if (line[i] == ';' || line[i] == '#')
+			break ;
+		tmp[i] = line[i];
+		i++;
+	}
+	tmp[i] = ' ';
+	tmp[i + 1] = '\0';
+	return (tmp);
 }
 
 int main(int ac, char **av)
@@ -316,17 +384,23 @@ int main(int ac, char **av)
     return (-1);
   assembleur.bytecode = NULL;
   assembleur.label = NULL;
+  assembleur.count = 0;
   while (get_next_line(fd, &line))
   {
+    line = suppr_comment(line);
     if (line && line[0] != '.' && line[0] != COMMENT_CHAR)
     {
       tab = ft_strsplit(line, ';');
       parse_file(tab[0], &assembleur);
     }
+    else if (!ft_strncmp(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+      assembleur.name = ft_get_head(line);
+    else if (!ft_strncmp(line, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+      assembleur.comment = ft_get_head(line);
   }
   fill_label(&assembleur);
-  print_inst(assembleur.bytecode);
-  print_label(assembleur.label);
-  put_to_file(av[1], assembleur.bytecode);
+  //print_inst(assembleur.bytecode);
+//  print_label(assembleur.label);
+  put_to_file(av[1], assembleur.bytecode, assembleur);
   return (0);
 }

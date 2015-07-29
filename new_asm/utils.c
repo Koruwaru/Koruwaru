@@ -59,3 +59,41 @@ char *erase_char(char *s)
     s++;
   return s;
 }
+
+char		*ft_get_head(char *line)
+{
+	char	*str;
+  int i;
+
+  i = 0;
+	while (*line && *line != '"')
+		line++;
+	line++;
+  while (line[i])
+  {
+    if (line[i] == '"')
+    {
+      line[i] = 0;
+      break ;
+    }
+    i++;
+  }
+	str = ft_strndup(line, ft_strlen(line));
+	return (str);
+}
+
+char		*ft_strndup(char *line, int n)
+{
+	char	*str;
+	int		i = 0;
+
+	str = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+	while (n && line[i])
+	{
+		str[i] = line[i];
+		i++;
+		n--;
+	}
+	str[i] = '\0';
+	return (str);
+}
