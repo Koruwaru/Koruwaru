@@ -87,6 +87,6 @@ typedef struct			s_op
 	int					nb_cyc;
 	char				*msg;
 	int					oct;
-	int					lbl_size;
+	int					dir_size;
 }						t_op;
 #endif

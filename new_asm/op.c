@@ -83,3 +83,40 @@ void check_grammar(t_inst *instruction)
 		nb++;
 	}
 }
+
+int is_op(int opcode)
+{
+	int i;
+	int i2;
+
+	i = 0;
+	i2 = opcode - 1;
+	while (op_tab[i].name)
+	{
+		if (op_tab[i].bin == opcode)
+			return op_tab[i].oct;
+		i++;
+	}
+	return 0;
+}
+
+int find_dir(int opcode)
+{
+	int i;
+	int i2;
+
+	i = 0;
+	i2 = opcode - 1;
+	while (op_tab[i].name)
+	{
+		if (op_tab[i].bin == opcode)
+		{
+			if (op_tab[i].dir_size == 0)
+				return 4;
+			else
+				return 2;
+		}
+		i++;
+	}
+	return 0;
+}

@@ -20,6 +20,32 @@ t_bytecode *create_bytecode(t_inst *i)
   return b;
 }
 
+int to_opcode(int *tab)
+{
+	int ret;
+	int i;
+	int i2;
+
+	i = 7;
+	ret = 0;
+	i2 = 0;
+	while (tab[i2])
+	{
+		if (tab[i2] == T_REG)
+			ret = ret | (1 << (i - 1));
+		else if (tab[i2] == T_IND)
+		{
+			ret = ret | (1 << (i));
+			ret = ret | (1 << (i - 1));
+		}
+		else if (tab[i2] == T_DIR)
+			ret = ret | (1 << (i));
+		i -= 2;
+		i2++;
+	}
+	return ret;
+}
+
 void RemoveSpaces(char* source)
 {
   char* i = source;
@@ -33,7 +59,57 @@ void RemoveSpaces(char* source)
   *i = 0;
 }
 
-t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head)
+t_inst *create_inst_op(int opcode)
+{
+  t_inst *ret;
+
+  ret = (t_inst *)malloc(sizeof(t_inst));
+  ret->value = opcode;
+  ret->next = NULL;
+  ret->size = 1;
+  return ret;
+}
+
+t_inst *create_op(t_inst *head)
+{
+  t_inst *tmp;
+  t_inst *tmp2;
+  int *tab;
+  int i;
+
+  i = 0;
+  tmp = head->next;
+  tab = (int *)malloc(sizeof(10));
+  ft_bzero(tab, 10);
+  while (tmp)
+  {
+    tab[i] = tmp->type;
+    tmp = tmp->next;
+    i++;
+  }
+  tmp = head->next;
+  tmp2 = create_inst_op(to_opcode(tab));
+  head->next = tmp2;
+  tmp2->next = tmp;
+  return head;
+}
+
+int   len_list(t_inst *inst)
+{
+  t_inst *tmp;
+  int i;
+
+  i = 0;
+  tmp = inst;
+  while (tmp)
+  {
+    i += tmp->size;
+    tmp = tmp->next;
+  }
+  return i;
+}
+
+t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head, int *count)
 {
   int i;
   char **tab;
@@ -44,15 +120,19 @@ t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head)
   RemoveSpaces(line);
   RemoveSpaces(h);
   tab = ft_strsplit(line, SEPARATOR_CHAR);
-  instruction = create_inst(h, -1,1);
+  instruction = create_inst(h, -1,NULL);
   i = 0;
   while (tab[i])
   {
-    instruction = add_inst(instruction, create_inst(tab[i], -1, 0));
+    instruction = add_inst(instruction, create_inst(tab[i], -1, instruction));
     i++;
   }
   check_grammar(instruction);
+  if (instruction->opcode == 1)
+    instruction = create_op(instruction);
   b = create_bytecode(instruction);
+  instruction->where = *count;
+  *count += len_list(instruction);
   if (!head)
     return b;
   tmp = head;
@@ -68,17 +148,20 @@ void parse_file(char *l, t_asm *assembleur)
   int i;
 
   i = 0;
+
   tab = ft_sp_strsplit(l);
   if (count_tab(tab) < 1)
     return ;
   if (tab[i][ft_strlen(tab[i]) - 1] == LABEL_CHAR)
   {
+    tab[i][ft_strlen(tab[i]) - 1] = 0;
     i++;
-    assembleur->label = add_label(assembleur->label, create_label(tab[0]));
+    assembleur->label = add_label(assembleur->label, create_label(tab[0], assembleur->count));
   }
   if (count_tab(tab) < 2)
     return;
-  assembleur->bytecode = add_bytecode(tab[i], colle_tab(tab + (i+1)),assembleur->bytecode);
+  assembleur->bytecode = add_bytecode(tab[i], colle_tab(tab + (i+1)),assembleur->bytecode, &(assembleur->count));
+  printf("FILE = %d\n", assembleur->count);
 }
 
 void print_label(t_label *l)
@@ -88,7 +171,7 @@ void print_label(t_label *l)
   t = l;
   while (t)
   {
-    printf("LABEL = %s\n", t->name);
+    printf("LABEL = %s PLACE=%d\n", t->name, t->place);
     t = t->next;
   }
 }
@@ -100,7 +183,7 @@ void print_i(t_inst *l)
   t = l;
   while (t)
   {
-    printf("STRING = %s CODE = %d LABEL = %d VALUE = %d\n", t->s, t->type, t->is_label, t->value);
+    printf("STRING = %s WHERE = %d CODE = %d LABEL = %d VALUE = %d SIZE = %d\n", t->s, t->where, t->type, t->is_label, t->value, t->size);
     t = t->next;
   }
 }
@@ -116,6 +199,108 @@ void print_inst(t_bytecode *l)
     print_i(t->inst);
     t = t->next;
   }
+}
+
+void fill_label(t_asm *assembleur)
+{
+  t_bytecode *tmp;
+  t_label *tmp2;
+  t_inst *inst;
+
+  tmp = assembleur->bytecode;
+  while (tmp)
+  {
+    inst = tmp->inst;
+    while (inst)
+    {
+      if (inst->is_label == 1)
+      {
+        tmp2 = assembleur->label;
+        while (tmp2)
+        {
+          if (!ft_strcmp(tmp2->name, inst->s))
+          {
+            if (tmp2->place < tmp->inst->where)
+              inst->value = (tmp2->place - tmp->inst->where) + 1;
+            else
+              inst->value = (tmp2->place - tmp->inst->where);
+            break ;
+          }
+          tmp2 = tmp2->next;
+        }
+      }
+      inst = inst->next;
+    }
+    tmp = tmp->next;
+  }
+}
+
+int		ft_create(char *str)
+{
+	int		i;
+	int		fd;
+
+	i = 0;
+	while (str[i] != 0)
+		i++;
+	str[i - 2] = 0;
+	str = ft_strjoin(str, ".cor");
+  printf("%s\n", str);
+	fd = open(str, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
+	return (fd);
+}
+
+void ft_put_fd(int fd, int t)
+{
+  write(fd, &t, 1);
+}
+
+void put_one(int value, int fd)
+{
+  ft_put_fd(fd, value);
+}
+
+void put_two(int value, int fd)
+{
+  ft_put_fd(fd, value >> 8);
+  ft_put_fd(fd, value);
+}
+
+void put_four(int value, int fd)
+{
+  ft_put_fd(fd, value >> 24);
+  ft_put_fd(fd, value >> 16);
+  ft_put_fd(fd, value >> 8);
+  ft_put_fd(fd, value);
+}
+
+void put_octet(int value, int size, int fd)
+{
+  if (size == 1)
+    put_one(value, fd);
+  else if (size == 2)
+    put_two(value, fd);
+  else if (size == 4)
+    put_four(value, fd);
+  return ;
+}
+
+void put_to_file(char *name, t_bytecode * list)
+{
+  int fd;
+  t_inst *tmp;
+  fd = ft_create(name);
+  while (list)
+  {
+    tmp = list->inst;
+    while (tmp)
+    {
+      put_octet(tmp->value, tmp->size, fd);
+      tmp = tmp->next;
+    }
+    list = list->next;
+  }
+  close(fd);
 }
 
 int main(int ac, char **av)
@@ -139,6 +324,9 @@ int main(int ac, char **av)
       parse_file(tab[0], &assembleur);
     }
   }
+  fill_label(&assembleur);
   print_inst(assembleur.bytecode);
+  print_label(assembleur.label);
+  put_to_file(av[1], assembleur.bytecode);
   return (0);
 }

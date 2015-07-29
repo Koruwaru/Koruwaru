@@ -52,3 +52,10 @@ char *colle_tab(char **tab)
   s[i3] = '\0';
   return s;
 }
+
+char *erase_char(char *s)
+{
+  while (*s && (*s == ':' || *s == '%'))
+    s++;
+  return s;
+}

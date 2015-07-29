@@ -1,12 +1,13 @@
 #include "asm.h"
 
-t_label *create_label(char *s)
+t_label *create_label(char *s, int place)
 {
   t_label *label;
 
   label = (t_label *)malloc(sizeof(t_label));
   label->name = ft_strdup(s);
-  label->place = -1; //// POUR l'instant
+  if (place)
+    label->place = place;
   label->next = NULL;
   return label;
 }
@@ -24,19 +25,22 @@ t_label *add_label(t_label *head, t_label *maillon)
   return head;
 }
 
-void find_value(char *s, t_inst *maillon)
+void find_value(char *s, t_inst *maillon, t_inst *head)
 {
   if (s[0] == 'r')
   {
     s++;
     maillon->type = T_REG;
     maillon->value = atoi(s);
+    maillon->size = 1;
   }
   else if (s[0] == DIRECT_CHAR)
   {
     maillon->type = T_DIR;
+    maillon->size = find_dir(head->value);
     if (s[1] == LABEL_CHAR)
     {
+      s++;
       maillon->is_label = 1;
       maillon->value = -1;
     }
@@ -49,6 +53,7 @@ void find_value(char *s, t_inst *maillon)
   else
   {
     maillon->type = T_IND;
+    maillon->size = 2;
     if (s[0] == LABEL_CHAR)
     {
       maillon->is_label = 1;
@@ -59,25 +64,28 @@ void find_value(char *s, t_inst *maillon)
   }
 }
 
-t_inst  *create_inst(char *s, int where, int is_head)
+t_inst  *create_inst(char *s, int where, t_inst *head)
 {
   t_inst *maillon;
 
   maillon = (t_inst *)malloc(sizeof(t_inst));
   maillon->is_label = 0;
   maillon->where = -1;
-  maillon->s = ft_strdup(s);
-  if (is_head)
+  maillon->s = ft_strdup(erase_char(s));
+  maillon->opcode = 0;
+  if (!head)
   {
     maillon->value = find_opcode(s);
+    maillon->size = 1;
     if (maillon->value == -1)
     {
       printf("POURQUOI ??? %s\n", s);
       exit(0);
     }
+    maillon->opcode = is_op(maillon->value);
   }
   else
-    find_value(s, maillon);
+    find_value(s, maillon, head);
   maillon->where = where;
   maillon->next = NULL;
   return maillon;
