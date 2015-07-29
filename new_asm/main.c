@@ -120,6 +120,11 @@ t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head, int *count)
   RemoveSpaces(line);
   RemoveSpaces(h);
   tab = ft_strsplit(line, SEPARATOR_CHAR);
+  if (count_tab(tab) < 1)
+  {
+    ft_putendl("No arg");
+    exit(0);
+  }
   ft_putendl("PUTINNNN");
   ft_putendl(line);
   instruction = create_inst(h, -1,NULL);
@@ -148,10 +153,11 @@ t_bytecode  *add_bytecode(char *h, char *line, t_bytecode *head, int *count)
 void parse_file(char *l, t_asm *assembleur)
 {
   char **tab;
+  int bol;
   int i;
 
   i = 0;
-
+  bol = 0;
   tab = ft_sp_strsplit(l);
   if (count_tab(tab) < 1)
     return ;
@@ -159,10 +165,16 @@ void parse_file(char *l, t_asm *assembleur)
   {
     tab[i][ft_strlen(tab[i]) - 1] = 0;
     i++;
+    bol = 1;
     assembleur->label = add_label(assembleur->label, create_label(tab[0], assembleur->count));
   }
-  if (count_tab(tab) < 2)
+  if (count_tab(tab) < 2 && bol == 1)
     return;
+  else if (count_tab(tab) < 2 && bol == 0)
+  {
+    ft_putendl("No arg");
+    exit(0);
+  }
   printf("BORDELLLLL = %s\n", tab[count_tab(tab) - 1]);
   assembleur->bytecode = add_bytecode(tab[i], colle_tab(tab + (i+1)),assembleur->bytecode, &(assembleur->count));
   printf("FILE = %d\n", assembleur->count);

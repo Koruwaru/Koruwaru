@@ -12,6 +12,22 @@ t_label *create_label(char *s, int place)
   return label;
 }
 
+void check_label(t_label *h, t_label *m)
+{
+  t_label *tmp;
+
+  tmp = h;
+  while (tmp)
+  {
+    if (!ft_strcmp(h->name, m->name))
+    {
+      ft_putendl("Redefinition of label");
+      exit(0);
+    }
+    tmp = tmp->next;
+  }
+}
+
 t_label *add_label(t_label *head, t_label *maillon)
 {
   t_label *tmp;
@@ -19,6 +35,7 @@ t_label *add_label(t_label *head, t_label *maillon)
   if (!head)
     return maillon;
   tmp = head;
+  check_label(head, maillon);
   while (tmp->next)
     tmp = tmp->next;
   tmp->next = maillon;
