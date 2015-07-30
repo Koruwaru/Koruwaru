@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/26 17:14:06 by crenault         ###   ########.fr        #
+#    Updated: 2015/07/29 17:23:41 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,26 +16,47 @@ SUBMODULES =
 # libraries
 LIBRARIES =
 
+INCLUDE_DIR = include/ ../common/libft/includes/ ../common/
+INCLUDE = $(addprefix -I, $(INCLUDE_DIR))
+
+LIB_DIR = ../common/libft
+LIB_NAME = ft
+LIB = $(addprefix -L, $(LIB_DIR)) $(addprefix -l, $(LIB_NAME))
+
 # compiler
 CC = clang
 # file type
 FT = c
 # flags
-FLAGS = -Wall -Wextra -Werror
-FLAGS += -O3
-FLAGS += -g
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -O3
+CFLAGS += -g
 # binary flags (add libraries)
-BIN_FLAGS = $(FLAGS)
+BIN_FLAGS = $(CFLAGS) $(LIB)
 # executable
 NAME = corewar
 
 # to compile files
-#SRC = src/main.c
-#SRC += src/genv.c
+SRC = main.c
+SRC += create_player.c
+SRC += create_process.c
+SRC += dump_arena.c
+SRC += dup_process.c
+SRC += get_file_data.c
+SRC += op.c
+SRC += get_op.c
+SRC += get_program.c
+SRC += init_instr.c
+SRC += init_vm.c
+SRC += storeg.c
+SRC += ltob.c
+
+#VPATH=src/
+vpath %.c src/ ../common/
 
 # header files
-#HDR = include/helpers.h
-#HDR += include/genv.h
+HDR = include/vm_types.h
+HDR += include/vm_protos.h
 
 # objects files
 OBJS = $(SRC:.$(FT)=.o)
@@ -44,10 +65,10 @@ OBJS = $(SRC:.$(FT)=.o)
 all: $(NAME)
 
 # rebuild your bin
-re: fclean $(NAME)
+re: fclean all
 
 # reclone submodule and rebuild
-rere: ffclean $(NAME)
+rere: ffclean all
 
 $(NAME): $(SUBMODULES) $(LIBRARIES) $(OBJS)
 	@$(CC) -o $@ $(OBJS) $(BIN_FLAGS)
@@ -55,7 +76,7 @@ $(NAME): $(SUBMODULES) $(LIBRARIES) $(OBJS)
 
 # making o files
 %.o: %.$(FT) $(HDR)
-	@$(CC) -o $@ -c $< $(FLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDE)
 	@echo $< "updated!"
 
 # submodules
