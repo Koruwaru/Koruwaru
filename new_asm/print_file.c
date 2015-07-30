@@ -43,6 +43,9 @@ void put_to_file(char *name, t_bytecode * list, t_asm assembleur)
 {
   int fd;
   t_inst *tmp;
+
+  if (!list)
+    err_msg("No instructions", assembleur.line);
   fd = ft_create(name);
   put_magic(COREWAR_EXEC_MAGIC, fd);
   put_head(assembleur.name, PROG_NAME_LENGTH + 1, fd);
