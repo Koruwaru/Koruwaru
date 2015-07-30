@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/29 17:37:52 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 16:59:02 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ typedef struct	s_vm
 	t_arena			arena;
 
 }				t_vm;
+
+typedef void	t_instrf(t_vm *vm, t_process *process);
 
 #endif

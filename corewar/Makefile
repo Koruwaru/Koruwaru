@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/30 16:17:51 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/30 17:10:49 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRC += storeg.c
 SRC += ltob.c
 
 #VPATH=src/
-vpath %.c src/ ../common/
+vpath %.c src/ ../common/ src/instructs
 
 # header files
 HDR = include/vm_types.h
