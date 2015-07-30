@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 17:59:11 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 18:40:57 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ t_player	*create_player(size_t id, char const *name);
 
 void		*get_program(char const *data, size_t data_s, size_t *size);
 
-t_process	*create_process(size_t id, size_t pc, t_arena const *arena);
+t_process	*create_process(size_t id, size_t pc);
 t_process	*dup_process(t_process const *src);
 
 void		dump_data(void const *a, size_t size, size_t line_s);
 
 t_op const	*get_op(char op_code);
 
-void		load_instr(t_process *proc, t_arena const *arena, size_t pc);
+void		load_instr(t_process *proc, t_arena const *arena);
 
 void		storeg(t_register *reg, void const *data, size_t size, size_t pc);
 void		ltob(void *data, size_t size);

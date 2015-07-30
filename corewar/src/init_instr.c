@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 17:48:46 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 18:40:48 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ t_bool			verif_ocp(t_op const *op, char ocp)
 	return (true);
 }
 
-void			load_instr(t_process *proc, t_arena const *a, size_t pc)
+void			load_instr(t_process *proc, t_arena const *a)
 {
 	t_instruction	*instr;
 	t_op const		*op_tmp;
 
 	instr = &proc->instruction;
-	instr->opcode = a->mem[pc];
+	instr->opcode = a->mem[proc->pc];
 	op_tmp = get_op(instr->opcode);
 	if (op_tmp == NULL || verif_ocp(op_tmp, instr->opcode))
 	{
@@ -118,6 +118,6 @@ void			load_instr(t_process *proc, t_arena const *a, size_t pc)
 	{
 		instr->nb_params = op_tmp->nb_params;
 		proc->remaining_cycles = op_tmp->cycles;
-		init_params(instr, op_tmp, a, pc);
+		init_params(instr, op_tmp, a, proc->pc);
 	}
 }

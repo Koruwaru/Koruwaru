@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:30:20 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 16:32:25 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 18:48:16 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 	size_t		size;
 	t_process	*proc;
 
-	offset = MEM_SIZE / nb_players;
+	offset = nb_players ? MEM_SIZE / nb_players : 0;
 	vm->nb_players = nb_players;
 	vm->processes = NULL;
 	i = 0;
@@ -36,7 +36,8 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 		vm->players[i] = *(t_player *)players->content;
 		size = min(progs->content_size, offset);
 		ft_memcpy(vm->arena.mem + offset * i, progs->content, size);
-		proc = create_process(vm->players[i].id, offset * i, &vm->arena);
+		proc = create_process(vm->players[i].id, offset * i);
+		load_instr(proc, &vm->arena);
 		dump_data(&proc->instruction, sizeof(t_instruction), 16);
 		ft_lstadd(&vm->processes, ft_lstcreate(proc, sizeof(t_process)));
 		players = players->next;

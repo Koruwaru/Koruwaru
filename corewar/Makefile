@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/30 17:10:49 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/30 18:15:09 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ $(OBJ_DIR)%.o: %.$(FT) $(HDR) | $(OBJ_DIR)
 	@echo $< "updated!"
 
 $(OBJ_DIR):
-	mkdir -p obj
+	mkdir -p $(OBJ_DIR)
 
 # submodules
 $(SUBMODULES):

@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 15:47:50 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 16:19:44 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 18:27:47 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "vm_protos.h"
 
-t_process	*create_process(size_t id, size_t pc, t_arena const *arena)
+t_process	*create_process(size_t id, size_t pc)
 {
 	t_process	*proc;
 
@@ -32,6 +32,5 @@ t_process	*create_process(size_t id, size_t pc, t_arena const *arena)
 	proc->carry = 0;
 	proc->nb_lives = 0;
 	proc->remaining_cycles = 0;
-	load_instr(proc, arena, pc);
 	return (proc);
 }
