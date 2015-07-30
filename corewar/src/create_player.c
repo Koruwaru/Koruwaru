@@ -15,12 +15,25 @@
 #include "vm_protos.h"
 #include "libft.h"
 
-t_player	*create_player(size_t id, char const *name)
+static size_t	ft_strlen_limit(char const *str, size_t limit)
+{
+	size_t	i;
+
+	i = 0;
+	while (*str && i < limit)
+	{
+		str++;
+		i++;
+	}
+	return (i);
+}
+
+t_player		*create_player(size_t id, char const *name)
 {
 	t_player	*tmp;
 
 	tmp = (t_player *)malloc(sizeof(t_player));
-	tmp->name = ft_strdup(name); //TODO: ATTANSION
+	ft_memcpy((char *)tmp->name, name, ft_strlen_limit(name, PROG_NAME_LENGTH));
 	if (tmp->name == NULL)
 	{
 		perror("Malloc error");
