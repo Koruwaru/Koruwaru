@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 14:36:42 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 17:48:46 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ static size_t	get_param_size(char ocp, t_op const *op, int param_nb)
 	size_t		param_s;
 
 	param_s = 0;
+	if (op->ocp == 0)
+	{
+		param_s = op->args_types[param_nb];
+	}
 	param_type = ocp & (0x03 << (param_nb * 2));
 	if (param_type & T_REG)
 		param_s = 1;
@@ -79,6 +83,10 @@ t_bool			verif_ocp(t_op const *op, char ocp)
 	t_arg_type	param_type;
 	size_t		params_nb;
 
+	if (op->ocp != 1)
+	{
+		return (true);
+	}
 	params_nb = op->nb_params;
 	i = 0;
 	while (i < params_nb)
