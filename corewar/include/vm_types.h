@@ -38,6 +38,7 @@ typedef struct	s_instruction
 	t_uint		nb_params;
 	t_arg_type	params_types;
 	t_uint		params[MAX_ARGS_NUMBER];
+	t_uint		size;
 
 }				t_instruction;
 
