@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movefw_pc.c                                        :+:      :+:    :+:   */
+/*   get_param_type.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/30 17:52:39 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 17:53:29 by tmielcza         ###   ########.fr       */
+/*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
+/*   Updated: 2015/07/30 17:48:46 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_protos.h"
+#include "vm_types.h"
 
-void		movefw_pc(size_t *pc, size_t steps)
+t_arg_type	get_param_type(char ocp, size_t param_id)
 {
-	*pc = (*pc + steps) % MEM_SIZE;
+	return (ocp & (0x03 << (param_id * 2)));
 }

@@ -27,6 +27,8 @@ t_process	*dup_process(t_process const *src);
 
 void		dump_data(void const *a, size_t size, size_t line_s);
 
+t_arg_type	get_param_type(char ocp, size_t param_id);
+
 t_op const	*get_op(char op_code);
 
 void		load_instr(t_process *proc, t_arena const *arena, size_t pc);
@@ -36,7 +38,8 @@ void		ltob(void *data, size_t size);
 
 void		*get_file_data(char const *name, size_t *size);
 
-void		movefw_pc(size_t *pc, size_t steps);
+void		set_pc(size_t *pc, size_t new_pc);
+void		move_pc(size_t *pc, int steps);
 
 void		null(t_vm *vm, t_process *process);
 void		live(t_vm *vm, t_process *process);

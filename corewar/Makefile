@@ -52,6 +52,11 @@ SRC += init_instr.c
 SRC += init_vm.c
 SRC += storeg.c
 SRC += ltob.c
+SRC += move_pc.c
+SRC += set_pc.c
+SRC += get_param_type.c
+SRC += zjmp.c
+SRC += ldi.c
 
 #VPATH=src/
 vpath %.c src/ ../common/ src/instructs

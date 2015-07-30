@@ -27,7 +27,7 @@ static size_t	read_param(size_t size, t_arena const *a, size_t pc)
 	return (*(size_t *)data);
 }
 
-static size_t	get_param_size(char ocp, t_op const *op, int param_nb)
+static size_t	get_param_size(char ocp, t_op const *op, int param_id)
 {
 	t_arg_type	param_type;
 	size_t		param_s;
@@ -35,9 +35,9 @@ static size_t	get_param_size(char ocp, t_op const *op, int param_nb)
 	param_s = 0;
 	if (op->ocp == 0)
 	{
-		param_s = op->args_types[param_nb];
+		param_s = op->args_types[param_id];
 	}
-	param_type = ocp & (0x03 << (param_nb * 2));
+	param_type = ocp & (0x03 << (param_id * 2));
 	if (param_type & T_REG)
 		param_s = 1;
 	else if (param_type & T_DIR)
@@ -77,7 +77,7 @@ static void		init_params(t_instruction *instr, t_op const *op,
 	}
 }
 
-t_bool			verif_ocp(t_op const *op, char ocp)
+static t_bool	verif_ocp(t_op const *op, char ocp)
 {
 	size_t		i;
 	t_arg_type	param_type;
@@ -91,7 +91,7 @@ t_bool			verif_ocp(t_op const *op, char ocp)
 	i = 0;
 	while (i < params_nb)
 	{
-		param_type = ocp & (0x03 << (params_nb * 2));
+		param_type = get_param_type(ocp, params_nb);
 		if ((param_type & op->args_types[i]) == 0)
 		{
 			return (false);
