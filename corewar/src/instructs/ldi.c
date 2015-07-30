@@ -21,7 +21,7 @@ static int	get_value(t_arg_type type, t_uint value, t_arena const *a,
 	}
 	else if (type == T_IND) // indirect is a number
 	{
-		ltob(&value, sizeof(value)); // is value big or little ?
+		ltob(&value, sizeof(value)); // is value big or little endian ?
 		return (value);
 	}
 	else // T_REG, it's a register number
@@ -32,13 +32,16 @@ static int	get_value(t_arg_type type, t_uint value, t_arena const *a,
 }
 
 // TODO check if value is little or big endiant ^^^^^^^
+// ca prend 2 index
+// et 1 registre, additionne les 2 premiers, traite ca comme une adresse,
+// y lit une valeur de la taille d’un registre et la met dans le 3eme.
 void		ldi(t_vm *vm, t_process *process)
 {
 	t_arg_type	type;
 	int			a;
 	int			b;
 	int			data;
-	int			reg;
+	size_t		reg;
 
 	// first test if the register exist
 	reg = process->instruction.params[2];
