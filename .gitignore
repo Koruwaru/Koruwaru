@@ -1,6 +1,6 @@
 # Exectutables'n'Shit
-corewar
-asm
+common/corewar
+common/asm
 *.txt
 
 # Asm files
