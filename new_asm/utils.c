@@ -50,12 +50,14 @@ char *erase_char(char *s)
   return s;
 }
 
-char		*ft_get_head(char *line)
+char		*ft_get_head(char *line, int fd)
 {
 	char	*str;
   int i;
+  int flag;
 
   i = 0;
+  flag = 0;
 	while (*line && *line != '"')
 		line++;
 	line++;
@@ -64,9 +66,15 @@ char		*ft_get_head(char *line)
     if (line[i] == '"')
     {
       line[i] = 0;
+      flag = 1;
       break ;
     }
     i++;
+  }
+  if (!flag)
+  {
+    line = ft_strjoin(line, lets_read(fd));
+    line = remove_quote(line);
   }
 	str = ft_strndup(line, ft_strlen(line));
 	return (str);

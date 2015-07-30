@@ -30,10 +30,10 @@ int main(int ac, char **av)
       parse_file(tab[0], &assembleur);
     }
     else if (!ft_strncmp(line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
-      assembleur.name = give_name(line, assembleur);
+      assembleur.name = give_name(line, assembleur, fd);
     else if (!ft_strncmp(line, COMMENT_CMD_STRING,\
        ft_strlen(COMMENT_CMD_STRING)))
-      assembleur.comment = give_comment(line, assembleur);
+      assembleur.comment = give_comment(line, assembleur, fd);
   }
   fill_label(&assembleur);
   put_to_file(av[1], assembleur.bytecode, assembleur);
