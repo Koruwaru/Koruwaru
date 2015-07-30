@@ -1,4 +1,5 @@
 #include "asm.h"
+
 int count_tab(char **tab)
 {
   int i;
@@ -87,16 +88,12 @@ char		*ft_strndup(char *line, int n)
 	return (str);
 }
 
-void str_digit(char *s)
+void str_digit(char *s, int c)
 {
   while (*s)
   {
     if (!ft_isdigit(*s) && *s != '+' && *s != '-')
-    {
-      ft_putendl("Lexical error");
-      ft_putendl(s);
-      exit(0);
-    }
+      err_msg("Lexical error", c);
     s++;
   }
 }

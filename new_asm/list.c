@@ -1,92 +1,6 @@
 #include "asm.h"
 
-t_label *create_label(char *s, int place)
-{
-  t_label *label;
-
-  label = (t_label *)malloc(sizeof(t_label));
-  label->name = ft_strdup(s);
-  if (place)
-    label->place = place;
-  label->next = NULL;
-  return label;
-}
-
-void check_label(t_label *h, t_label *m)
-{
-  t_label *tmp;
-
-  tmp = h;
-  while (tmp)
-  {
-    if (!ft_strcmp(h->name, m->name))
-    {
-      ft_putendl("Redefinition of label");
-      exit(0);
-    }
-    tmp = tmp->next;
-  }
-}
-
-t_label *add_label(t_label *head, t_label *maillon)
-{
-  t_label *tmp;
-
-  if (!head)
-    return maillon;
-  tmp = head;
-  check_label(head, maillon);
-  while (tmp->next)
-    tmp = tmp->next;
-  tmp->next = maillon;
-  return head;
-}
-
-void find_value(char *s, t_inst *maillon, t_inst *head)
-{
-  if (s[0] == 'r')
-  {
-    s++;
-    str_digit(s);
-    maillon->type = T_REG;
-    maillon->value = atoi(s);
-    maillon->size = 1;
-  }
-  else if (s[0] == DIRECT_CHAR)
-  {
-    maillon->type = T_DIR;
-    maillon->size = find_dir(head->value);
-    if (s[1] == LABEL_CHAR)
-    {
-      s++;
-      maillon->is_label = 1;
-      maillon->value = -1;
-    }
-    else
-    {
-      s++;
-      str_digit(s);
-      maillon->value = atoi(s);
-    }
-  }
-  else
-  {
-    maillon->type = T_IND;
-    maillon->size = 2;
-    if (s[0] == LABEL_CHAR)
-    {
-      maillon->is_label = 1;
-      maillon->value = -1;
-    }
-    else
-    {
-      str_digit(s);
-      maillon->value = atoi(s);
-    }
-  }
-}
-
-t_inst  *create_inst(char *s, int where, t_inst *head)
+t_inst  *create_inst(char *s, int where, t_inst *head, int c)
 {
   t_inst *maillon;
 
@@ -100,14 +14,11 @@ t_inst  *create_inst(char *s, int where, t_inst *head)
     maillon->value = find_opcode(s);
     maillon->size = 1;
     if (maillon->value == -1)
-    {
-      printf("POURQUOI ??? %s\n", s);
-      exit(0);
-    }
+      bad_instruction(c);
     maillon->opcode = is_op(maillon->value);
   }
   else
-    find_value(s, maillon, head);
+    find_value(s, maillon, head, c);
   maillon->where = where;
   maillon->next = NULL;
   return maillon;

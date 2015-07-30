@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "asm.h"
+
 t_op    op_tab[17] =
 {
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
@@ -52,33 +53,22 @@ int		find_opcode(char *s)
 	return (-1);
 }
 
-void check_grammar(t_inst *instruction)
+void check_grammar(t_inst *instruction, int c)
 {
-	if (!instruction)
-		exit(0);
 	t_inst *tmp;
 	int nb;
 
+	if (!instruction)
+		error_parse(c);
 	nb = count_inst(instruction) - 1;
-	printf("INSTRUCTION = %s\n", instruction->s);
 	if (nb != op_tab[instruction->value - 1].param)
-	{
-		printf("PROBLEME SUR %s ET %d ENFIN %d EUH... %d\n"\
-		, instruction->s, nb, op_tab[instruction->value].bin, instruction->value);
-
-		ft_putendl("Bad parameter number");
-		exit(0);
-	}
+		bad_parameter_nb(c);
 	nb = 0;
 	tmp = instruction->next;
 	while (tmp && nb < op_tab[instruction->value - 1].param)
 	{
 		if ((tmp->type & op_tab[instruction->value - 1].arg[nb]) == 0)
-		{
-			printf("PROBLEME SUR %s ET %d ET %d\n", tmp->s, tmp->type, op_tab[instruction->value - 1].arg[nb]);
-			ft_putendl("Bad parameter");
-			exit(0);
-		}
+			bad_parameter(c);
 		tmp = tmp->next;
 		nb++;
 	}
