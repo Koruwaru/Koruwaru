@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/29 16:05:39 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 17:59:11 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,26 @@ void		storeg(t_register *reg, void const *data, size_t size, size_t pc);
 void		ltob(void *data, size_t size);
 
 void		*get_file_data(char const *name, size_t *size);
+
+void		movefw_pc(size_t *pc, size_t steps);
+
+void		null(t_vm *vm, t_process *process);
+void		live(t_vm *vm, t_process *process);
+void		ld(t_vm *vm, t_process *process);
+void		st(t_vm *vm, t_process *process);
+void		add(t_vm *vm, t_process *process);
+void		sub(t_vm *vm, t_process *process);
+void		and(t_vm *vm, t_process *process);
+void		or(t_vm *vm, t_process *process);
+void		xor(t_vm *vm, t_process *process);
+
+void		zjmp(t_vm *vm, t_process *process);
+void		ldi(t_vm *vm, t_process *process);
+void		sti(t_vm *vm, t_process *process);
+void		fork_(t_vm *vm, t_process *process);
+void		lld(t_vm *vm, t_process *process);
+void		lldi(t_vm *vm, t_process *process);
+void		lfork(t_vm *vm, t_process *process);
+void		aff(t_vm *vm, t_process *process);
 
 #endif
