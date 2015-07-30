@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vm_protos.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 20:32:53 by tmielcza         ###   ########.fr       */
+/*   Created: 2015/07/30 23:11:27 by crenault          #+#    #+#             */
+/*   Updated: 2015/07/30 23:11:27 by crenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void		ld(t_vm *vm, t_process *process);
 void		st(t_vm *vm, t_process *process);
 void		add(t_vm *vm, t_process *process);
 void		sub(t_vm *vm, t_process *process);
-void		and(t_vm *vm, t_process *process);
-void		or(t_vm *vm, t_process *process);
-void		xor(t_vm *vm, t_process *process);
+void		and_(t_vm *vm, t_process *process);
+void		or_(t_vm *vm, t_process *process);
+void		xor_(t_vm *vm, t_process *process);
 
 void		zjmp(t_vm *vm, t_process *process);
 void		ldi(t_vm *vm, t_process *process);
