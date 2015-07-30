@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 18:40:57 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 20:32:53 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,24 @@ t_process	*dup_process(t_process const *src);
 
 void		dump_data(void const *a, size_t size, size_t line_s);
 
+t_arg_type	get_param_type(char ocp, size_t param_id);
+
 t_op const	*get_op(char op_code);
 
 void		load_instr(t_process *proc, t_arena const *arena);
 
-void		storeg(t_register *reg, void const *data, size_t size, size_t pc);
+void		storeg(t_register *reg, void const *data, size_t data_s, size_t pc);
+int			loadreg(t_register const *reg);
+
+void		stomem(t_arena *a, void const *data, size_t data_s, size_t pc);
+int			loadmem(t_arena const *a, size_t size, size_t pc);
+
 void		ltob(void *data, size_t size);
 
 void		*get_file_data(char const *name, size_t *size);
 
-void		movefw_pc(size_t *pc, size_t steps);
+void		set_pc(size_t *pc, size_t new_pc);
+void		move_pc(size_t *pc, int steps);
 
 void		null(t_vm *vm, t_process *process);
 void		live(t_vm *vm, t_process *process);

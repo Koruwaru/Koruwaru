@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   storeg.c                                           :+:      :+:    :+:   */
+/*   ldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/29 14:02:56 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/29 14:26:34 by tmielcza         ###   ########.fr       */
+/*   Created: 2015/07/30 18:06:30 by crenault          #+#    #+#             */
+/*   Updated: 2015/07/30 18:07:14 by crenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
-#include "libft.h"
 
-void		storeg(t_register *reg, void const *data, size_t size, size_t pc)
+// Au lieu de ça, ca prend 2 index
+// et 1 registre, additionne les 2 premiers, traite ca comme une adresse,
+// y lit une valeur de la taille d’un registre et la met dans le 3eme
+void	ldi(t_vm *vm, t_process *process)
 {
-	pc = (pc + size - 1) % MEM_SIZE;
-	ft_bzero(reg->data, REG_SIZE);
-	while (size)
-	{
-		reg->data[size - 1] = ((char *)data)[pc];
-		size--;
-		pc = ((pc - 1) + MEM_SIZE) % MEM_SIZE;
-	}
+	(void)vm;
+	(void)process;
 }

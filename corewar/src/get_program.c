@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 18:50:26 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/29 16:51:20 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/30 20:43:57 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 void		*get_program(char const *data, size_t data_s, size_t *size)
 {
-	void		*program;
-	header_t	*hdr;
+	void			*program;
+	header_t		*hdr;
 	unsigned int	tmpsize;
 
 	if (data_s < sizeof(header_t))

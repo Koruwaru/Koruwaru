@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/30 18:15:09 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/30 20:13:58 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,14 @@ SRC += get_op.c
 SRC += get_program.c
 SRC += init_instr.c
 SRC += init_vm.c
-SRC += storeg.c
+SRC += reg.c
+SRC += mem.c
 SRC += ltob.c
+SRC += move_pc.c
+SRC += set_pc.c
+SRC += get_param_type.c
+SRC += zjmp.c
+SRC += ldi.c
 
 #VPATH=src/
 vpath %.c src/ ../common/ src/instructs

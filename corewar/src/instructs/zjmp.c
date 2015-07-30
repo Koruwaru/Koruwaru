@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movefw_pc.c                                        :+:      :+:    :+:   */
+/*   zjmp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/30 17:52:39 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 17:53:29 by tmielcza         ###   ########.fr       */
+/*   Created: 2015/07/30 18:06:30 by crenault          #+#    #+#             */
+/*   Updated: 2015/07/30 18:07:14 by crenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
 
-void		movefw_pc(size_t *pc, size_t steps)
+void	zjmp(t_vm *vm, t_process *process)
 {
-	*pc = (*pc + steps) % MEM_SIZE;
+	(void)vm;
+	if (process->carry == true)
+	{
+		set_pc(&process->pc, process->instruction.params[0]);
+	}
 }
