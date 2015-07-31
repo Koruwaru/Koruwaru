@@ -25,11 +25,10 @@ void		sti(t_vm *vm, t_process *proc)
 
 	instr = &proc->instruction;
 	reg = instr->params[0];
-	// TODO check if get_param_type works like this
 	// get last params types to check them
-	type[0] = get_param_type(instr->args_types[1], 1);
-	type[1] = get_param_type(instr->args_types[2], 2);
-	if (check_param(get_param_type(instr->args_types[0], 0), reg) == false
+	type[0] = instr->args_types[1];
+	type[1] = instr->args_types[2];
+	if (check_param(instr->args_types[0], reg) == false
 		|| check_param(type[0], instr->params[1]) == false
 		|| check_param(type[1], instr->params[2]) == false)
 	{

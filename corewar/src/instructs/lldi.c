@@ -25,10 +25,9 @@ void			lldi(t_vm *vm, t_process *proc)
 
 	instr = &proc->instruction;
 	reg = instr->params[2];
-	// TODO check if get_param_type works like this
-	type[0] = get_param_type(instr->args_types[0], 0);
-	type[1] = get_param_type(instr->args_types[1], 1);
-	if (check_param(get_param_type(instr->args_types[2], 2), reg) == false
+	type[0] = instr->args_types[0];
+	type[1] = instr->args_types[1];
+	if (check_param(instr->args_types[2], reg) == false
 		|| check_param(type[0], instr->params[0]) == false
 		|| check_param(type[1], instr->params[1]) == false)
 	{

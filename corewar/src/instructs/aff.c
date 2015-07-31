@@ -23,7 +23,7 @@ void		aff(t_vm *vm, t_process *process)
 	int			param;
 	int			value;
 
-	type = get_param_type(process->instruction.args_types[0], 0);
+	type = process->instruction.args_types[0];
 	param = process->instruction.params[0];
 	if (check_param(type, param) == false)
 	{
