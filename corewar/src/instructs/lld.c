@@ -16,37 +16,39 @@
 // que ld, mais sans % IDX_MOD. Modifie le carry.
 void		lld(t_vm *vm, t_process *process)
 {
-	t_arg_type	type;
-	int			a;
-	int			b;
-	int			data;
-	size_t		reg;
+	t_instruction	*instr;
+	t_arg_type		type;
+	int				a;
+	int				b;
+	int				data;
+	size_t			reg;
 
+	instr = &process->instruction;
 	// first test if the result register exist
-	reg = process->instruction.params[2];
-	if (!check_param(get_param_type(process->instruction.params_types, 2), reg))
+	reg = instr->params[2];
+	if (!check_param(get_param_type(instr->args_types[2], 2), reg))
 	{
-		move_pc(&process->pc, process->instruction.size);
+		move_pc(&process->pc, instr->size);
 		return ; // if not then abort after moving forward
 	}
 
 	// get all data: a and b
-	type = get_param_type(process->instruction.params_types, 0);
-	if (check_param(type, process->instruction.params[0]) == false)
+	type = get_param_type(instr->args_types[0], 0);
+	if (check_param(type, instr->params[0]) == false)
 	{
-		move_pc(&process->pc, process->instruction.size);
+		move_pc(&process->pc, instr->size);
 		return ; // if not then abort after moving forward
 	}
-	a = get_value(type, process->instruction.params[0], &vm->arena,
+	a = get_value(type, instr->params[0], &vm->arena,
 					process->registers);
 
-	type = get_param_type(process->instruction.params_types, 1);
-	if (check_param(type, process->instruction.params[1]) == false)
+	type = get_param_type(instr->args_types[1], 1);
+	if (check_param(type, instr->params[1]) == false)
 	{
-		move_pc(&process->pc, process->instruction.size);
+		move_pc(&process->pc, instr->size);
 		return ; // if not then abort after moving forward
 	}
-	b = get_value(type, process->instruction.params[1], &vm->arena,
+	b = get_value(type, instr->params[1], &vm->arena,
 					process->registers);
 
 	// read data from 0xb(a + b) addr
@@ -57,5 +59,5 @@ void		lld(t_vm *vm, t_process *process)
 	storeg(&process->registers[reg], &data, REG_SIZE);
 
 	// move after execution
-	move_pc(&process->pc, process->instruction.size);
+	move_pc(&process->pc, instr->size);
 }

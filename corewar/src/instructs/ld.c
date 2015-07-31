@@ -12,8 +12,6 @@
 
 #include "vm_protos.h"
 
-#include <stdio.h> // VIRER
-
 void		ld(t_vm *vm, t_process *p)
 {
 	t_instruction	*instr;
