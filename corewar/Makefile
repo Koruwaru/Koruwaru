@@ -66,6 +66,7 @@ SRC += sti.c
 SRC += zjmp.c
 SRC += lfork.c
 SRC += lldi.c
+SRC += aff.c
 
 #VPATH=src/
 vpath %.c src/ ../common/ src/instructs
