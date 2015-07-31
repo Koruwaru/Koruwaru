@@ -52,7 +52,7 @@ void		lldi(t_vm *vm, t_process *process)
 
 	// read data from 0xb(a + b) addr)
 	addr = a + b;
-	if (addr >= MEM_SIZE)
+	if (check_param(T_REG, addr) == true)
 	{
 		process->carry = false;
 		move_pc(&process->pc, process->instruction.size);

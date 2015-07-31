@@ -17,7 +17,8 @@
 // y lit une valeur de la taille d’un registre et la met dans le 3eme.
 void			ldi(t_vm *vm, t_process *process)
 {
-	t_arg_type	type;
+	t_arg_type	type_a;
+	t_arg_type	type_b;
 	int			a;
 	int			b;
 	int			data;
@@ -25,29 +26,20 @@ void			ldi(t_vm *vm, t_process *process)
 
 	// first test if the result register exist
 	reg = process->instruction.params[2];
-	if (!check_param(get_param_type(process->instruction.params_types, 2), reg))
+	type_a = get_param_type(process->instruction.params_types, 0);
+	type_b = get_param_type(process->instruction.params_types, 1);
+	if (!check_param(get_param_type(process->instruction.params_types, 2), reg)
+		|| check_param(type_a, process->instruction.params[0]) == false
+		|| check_param(type_b, process->instruction.params[1]) == false)
 	{
 		move_pc(&process->pc, process->instruction.size);
-		return ; // if not then abort after moving forward
+		return ;
 	}
 
 	// get all data: a and b
-	type = get_param_type(process->instruction.params_types, 0);
-	if (check_param(type, process->instruction.params[0]) == false)
-	{
-		move_pc(&process->pc, process->instruction.size);
-		return ; // if not then abort after moving forward
-	}
-	a = get_value(type, process->instruction.params[0], &vm->arena,
+	a = get_value(type_a, process->instruction.params[0], &vm->arena,
 					process->registers);
-
-	type = get_param_type(process->instruction.params_types, 1);
-	if (check_param(type, process->instruction.params[1]) == false)
-	{
-		move_pc(&process->pc, process->instruction.size);
-		return ; // if not then abort after moving forward
-	}
-	b = get_value(type, process->instruction.params[1], &vm->arena,
+	b = get_value(type_b, process->instruction.params[1], &vm->arena,
 					process->registers);
 
 	// read data from 0xb(a + b) addr

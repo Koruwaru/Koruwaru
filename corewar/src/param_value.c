@@ -24,9 +24,9 @@ t_bool		check_param(t_arg_type type, t_uint value)
 int			get_value(t_arg_type type, t_uint value, t_arena const *a,
 						t_register const *regs)
 {
-	if (type == T_DIR)
-		return (loadmem(a, REG_SIZE, value));
 	if (type == T_IND)
+		return (loadmem(a, REG_SIZE, value));
+	if (type == T_DIR)
 		return (value);
 	return (loadreg(&regs[value]));
 }
