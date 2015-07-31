@@ -55,15 +55,26 @@ SRC += init_vm.c
 SRC += reg.c
 SRC += mem.c
 SRC += ltob.c
-SRC += get_param_type.c
+SRC += set_pc.c
 SRC += move_pc.c
+SRC += get_param_type.c
+SRC += param_value.c
 
 SRC += set_instr.c
 SRC += get_player.c
 SRC += null.c
 SRC += live.c
+SRC += fork.c
+SRC += ldi.c
+SRC += lld.c
+SRC += sti.c
+SRC += zjmp.c
+SRC += lfork.c
+SRC += lldi.c
+SRC += aff.c
 
 SRC += live_tests.c
+SRC += zjmp_tests.c
 
 #VPATH=src/
 vpath %.c ../src/ ../../common/ ../src/instructs

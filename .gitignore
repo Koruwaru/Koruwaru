@@ -3,6 +3,7 @@ common/corewar
 common/asm
 corewar/corewar
 asm/asm
+corewar/obj
 *.txt
 
 # Asm files

@@ -20,5 +20,13 @@ void	and_tests(t_vm *vm, t_process *proc);
 void	or_tests(t_vm *vm, t_process *proc);
 void	xor_tests(t_vm *vm, t_process *proc);
 
-#endif
+void	zjmp_tests(t_vm *vm, t_process *process);
+void	ldi_tests(t_vm *vm, t_process *process);
+void	sti_tests(t_vm *vm, t_process *process);
+void	fork__tests(t_vm *vm, t_process *process);
+void	lld_tests(t_vm *vm, t_process *process);
+void	lldi_tests(t_vm *vm, t_process *process);
+void	lfork_tests(t_vm *vm, t_process *process);
+void	aff_tests(t_vm *vm, t_process *process);
 
+#endif

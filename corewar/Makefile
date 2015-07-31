@@ -68,7 +68,7 @@ SRC += lfork.c
 SRC += lldi.c
 SRC += aff.c
 
-#VPATH=src/
+# check in these directories for c files
 vpath %.c src/ ../common/ src/instructs
 
 # header files

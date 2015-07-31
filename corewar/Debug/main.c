@@ -24,13 +24,14 @@ t_uint	create_ocp(t_arg_type a, t_arg_type b, t_arg_type c)
 
 int main()
 {
-	t_vm	vm;
-	t_process *proc;
+	t_vm		vm;
+	t_process	*proc;
 
 	proc = create_process(2, 400);
 	init_vm(&vm, 0, NULL, NULL);
 
 	live_tests(&vm, proc);
+	zjmp_tests(&vm, proc);
 
 	return (0);
 }
