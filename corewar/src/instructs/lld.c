@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ldi.c                                              :+:      :+:    :+:   */
+/*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/30 23:48:10 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:48:10 by crenault         ###   ########.fr       */
+/*   Created: 2015/07/31 00:32:08 by crenault          #+#    #+#             */
+/*   Updated: 2015/07/31 00:32:08 by crenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
 
-// ca prend 2 index
-// et 1 registre, additionne les 2 premiers, traite ca comme une adresse,
-// y lit une valeur de la taille d’un registre et la met dans le 3eme.
-void		ldi(t_vm *vm, t_process *process)
+// Signifie long-load, donc son opcode est évidemment 13. C’est la même chose
+// que ld, mais sans % IDX_MOD. Modifie le carry.
+void		lld(t_vm *vm, t_process *process)
 {
 	t_arg_type	type;
 	int			a;
@@ -52,7 +51,7 @@ void		ldi(t_vm *vm, t_process *process)
 					process->registers);
 
 	// read data from 0xb(a + b) addr
-	data = loadmem(&vm->arena, REG_SIZE, (a + b) % IDX_MOD); // big endian
+	data = loadmem(&vm->arena, REG_SIZE, a + b); // big endian
 	ltob(&data, REG_SIZE); // register are little endian
 
 	// store the data in the appropriate register

@@ -36,7 +36,7 @@ typedef struct	s_instruction
 {
 	char		opcode;
 	t_uint		nb_params;
-	t_arg_type	params_types;
+	t_arg_type	params_types; // TODO rename ocp
 	t_uint		params[MAX_ARGS_NUMBER];
 	t_uint		size;
 

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/30 20:13:58 by tmielcza         ###   ########.fr        #
+#    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
+#    Updated: 2015/07/31 00:30:49 by crenault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,17 @@ SRC += ltob.c
 SRC += move_pc.c
 SRC += set_pc.c
 SRC += get_param_type.c
-SRC += zjmp.c
+SRC += param_value.c
+
+SRC += fork.c
 SRC += ldi.c
+SRC += lld.c
+SRC += null.c
+SRC += sti.c
+SRC += zjmp.c
+SRC += lfork.c
+SRC += lldi.c
+SRC += aff.c
 
 #VPATH=src/
 vpath %.c src/ ../common/ src/instructs

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   vm_protos.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
 /*   Updated: 2015/07/31 11:22:08 by tmielcza         ###   ########.fr       */
@@ -31,6 +31,10 @@ t_arg_type	get_param_type(char ocp, size_t param_id);
 
 t_op const	*get_op(char op_code);
 
+t_bool		check_param(t_arg_type type, t_uint value);
+int			get_value(t_arg_type type, t_uint value, t_arena const *a,
+						t_register const *regs);
+
 void		load_instr(t_process *proc, t_arena const *arena);
 
 void		storeg(t_register *reg, void const *data, size_t data_s, size_t pc);
@@ -54,9 +58,9 @@ void		ld(t_vm *vm, t_process *process);
 void		st(t_vm *vm, t_process *process);
 void		add(t_vm *vm, t_process *process);
 void		sub(t_vm *vm, t_process *process);
-void		and(t_vm *vm, t_process *process);
-void		or(t_vm *vm, t_process *process);
-void		xor(t_vm *vm, t_process *process);
+void		and_(t_vm *vm, t_process *process);
+void		or_(t_vm *vm, t_process *process);
+void		xor_(t_vm *vm, t_process *process);
 
 void		zjmp(t_vm *vm, t_process *process);
 void		ldi(t_vm *vm, t_process *process);
