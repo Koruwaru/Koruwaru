@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:31:38 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:31:38 by crenault         ###   ########.fr       */
+/*   Updated: 2015/07/31 19:55:12 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		storeg(t_register *reg, void const *data, size_t size)
 	char		*end_reg;
 
 	tmp_reg = reg->data;
-	end_reg = tmp_reg + size;
+	end_reg = tmp_reg + (size < REG_SIZE ? size : REG_SIZE);
 	tmp_data = (char const *)data;
 	ft_bzero(reg->data, REG_SIZE);
 	while (tmp_reg != end_reg)

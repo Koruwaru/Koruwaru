@@ -35,7 +35,7 @@ void		ld_tests(t_vm *vm, t_process *proc)
 			mem, pos, reg, nreg, dir);
 
 	ltob(&mem, sizeof(mem));
-	ltob(&reg, sizeof(reg));
+//	ltob(&reg, sizeof(reg));
 	ltob(&dir, sizeof(dir));
 	stomem(&vm->arena, &mem, sizeof(mem), pos);
 	storeg(proc->registers + 1, &reg, sizeof(reg));

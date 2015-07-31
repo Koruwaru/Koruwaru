@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 15:47:50 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 18:27:47 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 19:53:48 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_process	*create_process(size_t id, size_t pc)
 		return (NULL);
 	}
 	ft_bzero(proc->registers, sizeof(proc->registers));
-	ltob(&id, sizeof(id));
 	storeg(&proc->registers[0], &id, sizeof(id));
 	proc->pc = pc;
 	proc->carry = 0;

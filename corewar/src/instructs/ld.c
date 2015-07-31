@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 15:19:03 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 19:07:01 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 19:21:45 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void		ld(t_vm *vm, t_process *p)
 			   get_param_type(instr->params_types, 1),
 			   get_param_type(instr->params_types, 2));
 		val = get_value(a1t, p0, &vm->arena, p->registers);
+		ltob(&val, sizeof(val));
 		storeg(p->registers + instr->params[1], &val, sizeof(val));
 		p->carry = true;
 	}
