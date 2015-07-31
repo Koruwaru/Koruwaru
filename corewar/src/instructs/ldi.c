@@ -17,8 +17,7 @@
 // y lit une valeur de la taille d’un registre et la met dans le 3eme.
 void			ldi(t_vm *vm, t_process *process)
 {
-	t_arg_type	type_a;
-	t_arg_type	type_b;
+	t_arg_type	type[2];
 	int			a;
 	int			b;
 	int			data;
@@ -26,20 +25,20 @@ void			ldi(t_vm *vm, t_process *process)
 
 	// first test if the result register exist
 	reg = process->instruction.params[2];
-	type_a = get_param_type(process->instruction.params_types, 0);
-	type_b = get_param_type(process->instruction.params_types, 1);
+	type[0] = get_param_type(process->instruction.params_types, 0);
+	type[1] = get_param_type(process->instruction.params_types, 1);
 	if (!check_param(get_param_type(process->instruction.params_types, 2), reg)
-		|| check_param(type_a, process->instruction.params[0]) == false
-		|| check_param(type_b, process->instruction.params[1]) == false)
+		|| check_param(type[0], process->instruction.params[0]) == false
+		|| check_param(type[1], process->instruction.params[1]) == false)
 	{
 		move_pc(&process->pc, process->instruction.size);
 		return ;
 	}
 
 	// get all data: a and b
-	a = get_value(type_a, process->instruction.params[0], &vm->arena,
+	a = get_value(type[0], process->instruction.params[0], &vm->arena,
 					process->registers);
-	b = get_value(type_b, process->instruction.params[1], &vm->arena,
+	b = get_value(type[1], process->instruction.params[1], &vm->arena,
 					process->registers);
 
 	// read data from 0xb(a + b) addr
