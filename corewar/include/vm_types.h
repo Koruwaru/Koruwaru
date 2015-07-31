@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 17:53:31 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 21:25:06 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_instruction
 {
 	char		opcode;
 	t_uint		nb_params;
-	t_arg_type	params_types; // TODO rename ocp
+	t_arg_type	args_types[MAX_ARGS_NUMBER];
 	t_uint		params[MAX_ARGS_NUMBER];
 	t_uint		size;
 
