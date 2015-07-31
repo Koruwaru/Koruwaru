@@ -13,21 +13,21 @@
 #include "vm_protos.h"
 #include "libft.h"
 
-// TODO to change, don't need pc here
-void		storeg(t_register *reg, void const *data, size_t size, size_t pc)
+void		storeg(t_register *reg, void const *data, size_t size)
 {
-	size_t	pcend;
-	size_t	i;
+	char const	*tmp_data;
+	char		*tmp_reg;
+	char		*end_reg;
 
-	i = 0;
-	pcend = pc;
-	move_pc(&pcend, (int)size - 1);
+	tmp_reg = reg->data;
+	end_reg = tmp_reg + size;
+	tmp_data = (char const *)data;
 	ft_bzero(reg->data, REG_SIZE);
-	while (pc != pcend)
+	while (tmp_reg != end_reg)
 	{
-		reg->data[i] = ((char *)data)[pc];
-		move_pc(&pc, 1);
-		i++;
+		*tmp_reg = *tmp_data;
+		tmp_reg++;
+		tmp_data++;
 	}
 }
 

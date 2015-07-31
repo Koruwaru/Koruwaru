@@ -25,8 +25,7 @@ void		lldi(t_vm *vm, t_process *process)
 
 	// first test if the result register exist
 	reg = process->instruction.params[2];
-	ltob(&reg, sizeof(reg));
-	if (reg >= REG_NUMBER)
+	if (!check_param(get_param_type(process->instruction.params_types, 2), reg))
 	{
 		move_pc(&process->pc, process->instruction.size);
 		return ; // if not then abort after moving forward
@@ -53,7 +52,7 @@ void		lldi(t_vm *vm, t_process *process)
 
 	// read data from 0xb(a + b) addr)
 	addr = a + b;
-	if (addr >= MEM_SIZE)
+	if (check_param(T_REG, addr) == true)
 	{
 		process->carry = false;
 		move_pc(&process->pc, process->instruction.size);
@@ -63,7 +62,7 @@ void		lldi(t_vm *vm, t_process *process)
 	ltob(&data, REG_SIZE); // register are little endian
 
 	// store the data in the appropriate register
-	storeg(&process->registers[reg], &data, REG_SIZE, 0);
+	storeg(&process->registers[reg], &data, REG_SIZE);
 
 	// change the carry
 	process->carry = true;

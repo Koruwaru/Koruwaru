@@ -27,7 +27,7 @@ t_process	*create_process(size_t id, size_t pc)
 	}
 	ft_bzero(proc->registers, sizeof(proc->registers));
 	ltob(&id, sizeof(id));
-	storeg(&proc->registers[0], &id, sizeof(id), 0);
+	storeg(&proc->registers[0], &id, sizeof(id));
 	proc->pc = pc;
 	proc->carry = 0;
 	proc->nb_lives = 0;

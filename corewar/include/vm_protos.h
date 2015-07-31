@@ -37,7 +37,7 @@ int			get_value(t_arg_type type, t_uint value, t_arena const *a,
 
 void		load_instr(t_process *proc, t_arena const *arena);
 
-void		storeg(t_register *reg, void const *data, size_t data_s, size_t pc);
+void		storeg(t_register *reg, void const *data, size_t data_s);
 int			loadreg(t_register const *reg);
 
 void		stomem(t_arena *a, void const *data, size_t data_s, size_t pc);

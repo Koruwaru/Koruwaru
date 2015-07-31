@@ -24,8 +24,7 @@ void		lld(t_vm *vm, t_process *process)
 
 	// first test if the result register exist
 	reg = process->instruction.params[2];
-	ltob(&reg, sizeof(reg));
-	if (reg >= REG_NUMBER)
+	if (!check_param(get_param_type(process->instruction.params_types, 2), reg))
 	{
 		move_pc(&process->pc, process->instruction.size);
 		return ; // if not then abort after moving forward
@@ -55,7 +54,7 @@ void		lld(t_vm *vm, t_process *process)
 	ltob(&data, REG_SIZE); // register are little endian
 
 	// store the data in the appropriate register
-	storeg(&process->registers[reg], &data, REG_SIZE, 0);
+	storeg(&process->registers[reg], &data, REG_SIZE);
 
 	// move after execution
 	move_pc(&process->pc, process->instruction.size);

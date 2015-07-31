@@ -38,8 +38,7 @@ void		ld_tests(t_vm *vm, t_process *proc)
 	ltob(&reg, sizeof(reg));
 	ltob(&dir, sizeof(dir));
 	stomem(&vm->arena, &mem, sizeof(mem), pos);
-	dump_data(&vm->arena, MEM_SIZE, 8);
-	storeg(proc->registers + 1, &reg, sizeof(reg), 0);
+	storeg(proc->registers + 1, &reg, sizeof(reg));
 	verif(vm, proc);
 
 	printf( COM("LD %d 2\n"), pos);
