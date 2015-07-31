@@ -56,13 +56,14 @@ SRC += ltob.c
 SRC += move_pc.c
 SRC += set_pc.c
 SRC += get_param_type.c
+SRC += param_value.c
 
 SRC += fork.c
 SRC += ldi.c
 SRC += lld.c
 SRC += null.c
 SRC += sti.c
-SRC += zjump.c
+SRC += zjmp.c
 
 #VPATH=src/
 vpath %.c src/ ../common/ src/instructs

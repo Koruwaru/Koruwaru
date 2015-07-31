@@ -26,4 +26,5 @@ void	fork_(t_vm *vm, t_process *process)
 	pc = loadmem(&vm->arena, sizeof(int), process->instruction.params[0]);
 	move_pc(&new->pc, pc % IDX_MOD);
 	ft_lstadd(&vm->processes, ft_lstcreate(new, sizeof(t_process)));
+	move_pc(&process->pc, process->instruction.size);
 }

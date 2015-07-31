@@ -31,6 +31,10 @@ t_arg_type	get_param_type(char ocp, size_t param_id);
 
 t_op const	*get_op(char op_code);
 
+t_bool		check_param(t_arg_type type, t_uint value);
+int			get_value(t_arg_type type, t_uint value, t_arena const *a,
+						t_register const *regs);
+
 void		load_instr(t_process *proc, t_arena const *arena);
 
 void		storeg(t_register *reg, void const *data, size_t data_s, size_t pc);
