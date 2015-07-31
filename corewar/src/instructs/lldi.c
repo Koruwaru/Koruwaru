@@ -14,59 +14,38 @@
 
 // Pareil que ldi, mais n’applique aucun modulo aux adresses.
 // Modifiera, par contre, le carry
-void		lldi(t_vm *vm, t_process *process)
+void			lldi(t_vm *vm, t_process *proc)
 {
-	t_arg_type	type;
-	int			a;
-	int			b;
-	size_t		addr;
-	int			data;
-	size_t		reg;
+	t_instruction	*instr;
+	t_arg_type		type[2];
+	int				ops[2];
+	int				data;
+	size_t			addr;
+	size_t			reg;
 
-	// first test if the result register exist
-	reg = process->instruction.params[2];
-	if (!check_param(get_param_type(process->instruction.params_types, 2), reg))
+	instr = &proc->instruction;
+	reg = instr->params[2];
+	type[0] = get_param_type(instr->params_types, 0);
+	type[1] = get_param_type(instr->params_types, 1);
+	if (check_param(get_param_type(instr->params_types, 2), reg) == false
+		|| check_param(type[0], instr->params[0]) == false
+		|| check_param(type[1], instr->params[1]) == false)
 	{
-		move_pc(&process->pc, process->instruction.size);
-		return ; // if not then abort after moving forward
-	}
-
-	// get all data: a and b
-	type = get_param_type(process->instruction.params_types, 0);
-	if (check_param(type, process->instruction.params[0]) == false)
-	{
-		move_pc(&process->pc, process->instruction.size);
-		return ; // if not then abort after moving forward
-	}
-	a = get_value(type, process->instruction.params[0], &vm->arena,
-					process->registers);
-
-	type = get_param_type(process->instruction.params_types, 1);
-	if (check_param(type, process->instruction.params[1]) == false)
-	{
-		move_pc(&process->pc, process->instruction.size);
-		return ; // if not then abort after moving forward
-	}
-	b = get_value(type, process->instruction.params[1], &vm->arena,
-					process->registers);
-
-	// read data from 0xb(a + b) addr)
-	addr = a + b;
-	if (check_param(T_REG, addr) == true)
-	{
-		process->carry = false;
-		move_pc(&process->pc, process->instruction.size);
+		move_pc(&proc->pc, instr->size);
 		return ;
 	}
-	data = loadmem(&vm->arena, REG_SIZE, addr); // big endian
-	ltob(&data, REG_SIZE); // register are little endian
-
-	// store the data in the appropriate register
-	storeg(&process->registers[reg], &data, REG_SIZE);
-
-	// change the carry
-	process->carry = true;
-
-	// move after execution
-	move_pc(&process->pc, process->instruction.size);
+	ops[0] = get_value(type[0], instr->params[0], &vm->arena, proc->registers);
+	ops[1] = get_value(type[1], instr->params[1], &vm->arena, proc->registers);
+	addr = ops[0] + ops[1];
+	if (check_param(T_REG, addr) == true)
+	{
+		proc->carry = false;
+		move_pc(&proc->pc, proc->instruction.size);
+		return ;
+	}
+	data = loadmem(&vm->arena, REG_SIZE, addr);
+	ltob(&data, REG_SIZE);
+	storeg(&proc->registers[reg], &data, REG_SIZE);
+	proc->carry = true;
+	move_pc(&proc->pc, instr->size);
 }
