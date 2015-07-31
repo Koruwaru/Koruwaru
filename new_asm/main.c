@@ -6,13 +6,13 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:54:46 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 20:26:35 by jyim             ###   ########.fr       */
+/*   Updated: 2015/07/31 20:28:01 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int open_asm(int ac, char **av)
+int		open_asm(int ac, char **av)
 {
 	int fd;
 
@@ -23,7 +23,7 @@ int open_asm(int ac, char **av)
 	return (fd);
 }
 
-char *return_line(int fd)
+char	*return_line(int fd)
 {
 	char	*line;
 	int		ret;
@@ -36,7 +36,7 @@ char *return_line(int fd)
 	return (line);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int		fd;
 	char	*line;
