@@ -10,7 +10,7 @@ static void	verif_live(t_vm *vm, t_process *proc)
 
 	p = vm->last_living_player;
 	printf("Last living player: %s, %zu\n", p ? p->name : "NULL", p ? p->id : 0);
-	printf("Process: lives [%zu]\n", proc->nb_lives);
+	printf("Process: lives [%zu], pc [%zu]\n", proc->nb_lives, proc->pc);
 	printf("---------------------------\n");
 }
 
@@ -31,22 +31,22 @@ void		live_tests(t_vm *vm, t_process *proc)
 	verif_live(vm, proc);
 
 	printf( COM("Live [1]\n") );
-	set_instr(instr, 1, 0, ARGS(1, 0, 0));
+	set_instr(instr, 1, 1, NOPE, ARG1(1));
 	live(vm, proc);
 	verif_live(vm, proc);
 
 	printf( COM("Live [3]\n") );
-	set_instr(instr, 1, 0, ARGS(3, 0, 0));
+	set_instr(instr, 1, 1, NOPE, ARG1(3));
 	live(vm, proc);
 	verif_live(vm, proc);
 
 	printf( COM("Live [5]\n") );
-	set_instr(instr, 1, 0, ARGS(5, 0, 0));
+	set_instr(instr, 1, 1, NOPE, ARG1(5));
 	live(vm, proc);
 	verif_live(vm, proc);
 
 	printf( COM("Live [6]\n") );
-	set_instr(instr, 1, 0, ARGS(6, 0, 0));
+	set_instr(instr, 1, 1, NOPE, ARG1(6));
 	live(vm, proc);
 	verif_live(vm, proc);
 }

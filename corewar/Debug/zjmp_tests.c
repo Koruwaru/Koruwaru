@@ -26,7 +26,7 @@ static void	verif_zjmp(t_vm *vm, t_process *proc, size_t old_pc)
 	}
 	else
 	{
-		printf("error proc->pc: %zu + param: %u != %zu\n",
+		printf( ERR("error proc->pc: %zu + param: %u != %zu\n"),
 				old_pc, proc->instruction.params[0], proc->pc);
 	}
 	printf("---------------------------\n");
@@ -45,28 +45,28 @@ void		zjmp_tests(t_vm *vm, t_process *proc)
 	printf( COM("zjump carry: true to 10 %% MEM_SIZE\n") );
 	proc->carry = true;
 	old_pc = proc->pc;
-	set_instr(instr, 1, 0, ARGS(10, 0, 0));
+	set_instr(instr, 9, 0, NOPE, ARG1(10));
 	zjmp(vm, proc);
 	verif_zjmp(vm, proc, old_pc);
 
 	printf( COM("zjump carry: true to 300 %% MEM_SIZE\n") );
 	proc->carry = true;
 	old_pc = proc->pc;
-	set_instr(instr, 1, 0, ARGS(300, 0, 0));
+	set_instr(instr, 9, 0, NOPE, ARG1(300));
 	zjmp(vm, proc);
 	verif_zjmp(vm, proc, old_pc);
 
 	printf( COM("zjump carry: false to 1 %% MEM_SIZE\n") );
 	proc->carry = false;
 	old_pc = proc->pc;
-	set_instr(instr, 1, 0, ARGS(1, 0, 0));
+	set_instr(instr, 9, 0, NOPE, ARG1(1));
 	zjmp(vm, proc);
 	verif_zjmp(vm, proc, old_pc);
 
 	printf( COM("zjump carry: false to 60000 %% MEM_SIZE\n") );
 	proc->carry = false;
 	old_pc = proc->pc;
-	set_instr(instr, 1, 0, ARGS(60000, 0, 0));
+	set_instr(instr, 9, 0, NOPE, ARG1(60000));
 	zjmp(vm, proc);
 	verif_zjmp(vm, proc, old_pc);
 }

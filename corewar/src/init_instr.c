@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 19:46:06 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 16:21:24 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,17 @@ static size_t	get_param_size(char ocp, t_op const *op, int param_id)
 	param_s = 0;
 	if (op->ocp == 0)
 	{
-		param_s = op->args_types[param_id];
+		param_type = op->args_types[param_id];
 	}
-	param_type = get_param_type(ocp, param_id);
+	else
+	{
+		param_type = get_param_type(ocp, param_id);
+	}
 	if (param_type & T_REG)
 		param_s = 1;
-	else if (param_type & T_DIR)
-		param_s = 2;
 	else if (param_type & T_IND)
+		param_s = 2;
+	else if (param_type & T_DIR)
 	{
 		if (op->ind_size == 0)
 			param_s = 4;
