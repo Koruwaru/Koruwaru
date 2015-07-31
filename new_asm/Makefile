@@ -14,7 +14,7 @@ NAME = asm
 
 SRC = main.c get_next_line.c op.c ft_sp_strsplit.c utils.c list.c utils2.c \
 	print_file.c put_fd.c bytecode_create.c error1.c list_utils.c to_opcode.c \
-	fill_label.c utils3.c parser.c find_value.c error2.c err_msg.c
+	fill_label.c utils3.c parser.c find_value.c error2.c err_msg.c utils_head.c
 
 OBJ = $(SRC:.c=.o)
 

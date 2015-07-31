@@ -6,13 +6,14 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 18:25:32 by jyim              #+#    #+#             */
-/*   Updated: 2014/02/05 04:35:06 by jyim             ###   ########.fr       */
+/*   Updated: 2015/07/31 19:51:54 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "../common/libft/includes/libft.h"
 #include <stdlib.h>
+
 static int		end_of_file(char **line, char *inter, char *save_line)
 {
 	if (*line && *inter)

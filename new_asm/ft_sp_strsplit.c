@@ -6,7 +6,7 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/29 17:09:54 by jyim              #+#    #+#             */
-/*   Updated: 2014/02/02 23:14:34 by jyim             ###   ########.fr       */
+/*   Updated: 2015/07/31 19:51:38 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char				**ft_sp_strsplit(char const *s)
 	j = 0;
 	tab = NULL;
 	if (s)
-		tab = (char **) malloc(sizeof(char *) * (count_w(s) + 1));
+		tab = (char **)malloc(sizeof(char *) * (count_w(s) + 1));
 	if (tab)
 	{
 		while (j < count_w(s))
