@@ -45,4 +45,9 @@ void		ld_tests(t_vm *vm, t_process *proc)
 	set_instr(instr, 2, 2, OCP2(T_IND, T_REG), ARG2(pos, 2));
 	ld(vm, proc);
 	verif(vm, proc);
+
+	printf( COM("LD %d 3\n"), dir);
+	set_instr(instr, 2, 2, OCP2(T_DIR, T_REG), ARG2(dir, 3));
+	ld(vm, proc);
+	verif(vm, proc);
 }
