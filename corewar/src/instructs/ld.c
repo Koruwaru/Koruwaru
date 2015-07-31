@@ -6,13 +6,40 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 15:19:03 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 15:25:47 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 18:46:32 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_types.h"
+#include "vm_protos.h"
 
-void		ld(t_vm *vm, t_process *process)
+#include <stdio.h> // VIRER
+
+void		ld(t_vm *vm, t_process *p)
 {
-	
+	t_instruction	*instr;
+	t_arg_type		a1t;
+	int				val;
+	int				p0;
+
+	instr = &p->instruction;
+	p0 = instr->params[0];
+	a1t = get_param_type(instr->params_types, 0);
+	if (check_param(T_REG, instr->params[1]) == true)
+	{
+		if (a1t == T_IND)
+		{
+			p0 = (p0 % MEM_SIZE);
+			if (p0 < 0)
+			{
+				p0 += MEM_SIZE;
+			}
+		}
+		printf("%d %d %d %d %d \n", instr->params_types, a1t, p0,
+			   get_param_type(instr->params_types, 1),
+			   get_param_type(instr->params_types, 2));
+		val = get_value(a1t, p0, &vm->arena, p->registers);
+		storeg(p->registers + instr->params[1], &val, sizeof(val), 0);
+		p->carry = true;
+	}
+	move_pc(&p->pc, instr->size);
 }

@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 20:21:01 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 20:45:21 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 18:10:02 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		stomem(t_arena *a, void const *data, size_t data_s, size_t pc)
 
 	i = 0;
 	pcend = pc;
-	move_pc(&pcend, (int)data_s - 1);
+	move_pc(&pcend, (int)data_s);
 	while (pc != pcend)
 	{
 		a->mem[pc] = ((char *)data)[i];

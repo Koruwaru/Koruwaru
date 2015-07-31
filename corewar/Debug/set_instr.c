@@ -50,6 +50,8 @@ static size_t	get_instr_size(t_instruction *instr)
 	return (size);
 }
 
+#include <stdio.h>
+
 void	set_instr(t_instruction *instr, t_uint opcode, t_uint nb, t_arg_type ocp[MAX_ARGS_NUMBER],
 				  t_uint params[MAX_ARGS_NUMBER])
 {
@@ -62,7 +64,7 @@ void	set_instr(t_instruction *instr, t_uint opcode, t_uint nb, t_arg_type ocp[MA
 	ft_memcpy(instr->params, params, sizeof(instr->params));
 	while (nb > 0)
 	{
-		instr->params_types |= ocp[nb - 1] << (6 - nb * 2);
+		instr->params_types |= ocp[nb - 1] << (6 - (nb - 1) * 2);
 		nb--;
 	}
 	instr->size = get_instr_size(instr);

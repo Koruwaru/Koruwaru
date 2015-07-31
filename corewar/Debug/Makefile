@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/31 14:57:58 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/31 18:03:20 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,13 @@ LIB = $(addprefix -L, $(LIB_DIR)) $(addprefix -l, $(LIB_NAME))
 OBJ_DIR = obj/
 
 # debug
-DEBUG = -D MEM_SIZE=64
+DEBUG = -DMEM_SIZE=64
 # compiler
 CC = clang
 # file type
 FT = c
 # flags
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -Wall -Wextra -std=c99 $(DEBUG)
 #CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)
@@ -57,13 +57,16 @@ SRC += mem.c
 SRC += ltob.c
 SRC += get_param_type.c
 SRC += move_pc.c
+SRC += param_value.c
 
 SRC += set_instr.c
 SRC += get_player.c
 SRC += null.c
 SRC += live.c
+SRC += ld.c
 
 SRC += live_tests.c
+SRC += ld_tests.c
 
 #VPATH=src/
 vpath %.c ../src/ ../../common/ ../src/instructs

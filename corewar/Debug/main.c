@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 15:01:01 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 17:29:25 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int main()
 	init_vm(&vm, 0, NULL, NULL);
 
 	live_tests(&vm, proc);
+	ld_tests(&vm, proc);
 
 	return (0);
 }
