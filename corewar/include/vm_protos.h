@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/30 20:32:53 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 11:22:08 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int			loadmem(t_arena const *a, size_t size, size_t pc);
 void		ltob(void *data, size_t size);
 
 void		*get_file_data(char const *name, size_t *size);
+
+t_player const	*get_player(t_vm const *vm, size_t id);
 
 void		set_pc(size_t *pc, size_t new_pc);
 void		move_pc(size_t *pc, int steps);
