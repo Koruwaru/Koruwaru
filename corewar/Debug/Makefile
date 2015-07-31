@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/31 19:06:36 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/31 21:56:56 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,21 +62,22 @@ SRC += param_value.c
 
 SRC += set_instr.c
 SRC += get_player.c
+
 SRC += null.c
 SRC += live.c
 SRC += ld.c
-
-SRC += live_tests.c
-SRC += zjmp_tests.c
 SRC += ld_tests.c
-SRC += fork.c
-SRC += ldi.c
-SRC += lld.c
-SRC += sti.c
-SRC += zjmp.c
-SRC += lfork.c
-SRC += lldi.c
-SRC += aff.c
+SRC += live_tests.c
+
+#SRC += zjmp_tests.c
+#SRC += fork.c
+#SRC += ldi.c
+#SRC += lld.c
+#SRC += sti.c
+#SRC += zjmp.c
+#SRC += lfork.c
+#SRC += lldi.c
+#SRC += aff.c
 
 #VPATH=src/
 vpath %.c ../src/ ../../common/ ../src/instructs

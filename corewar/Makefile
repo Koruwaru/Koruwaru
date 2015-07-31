@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/07/31 00:30:49 by crenault         ###   ########.fr        #
+#    Updated: 2015/07/31 21:45:43 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,14 +59,14 @@ SRC += get_param_type.c
 SRC += param_value.c
 
 SRC += fork.c
-SRC += ldi.c
-SRC += lld.c
 SRC += null.c
 SRC += sti.c
 SRC += zjmp.c
 SRC += lfork.c
 SRC += lldi.c
 SRC += aff.c
+SRC += ldi.c
+SRC += lld.c
 
 # check in these directories for c files
 vpath %.c src/ ../common/ src/instructs
