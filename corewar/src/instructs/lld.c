@@ -54,7 +54,7 @@ void		lld(t_vm *vm, t_process *process)
 	ltob(&data, REG_SIZE); // register are little endian
 
 	// store the data in the appropriate register
-	storeg(&process->registers[reg], &data, REG_SIZE, 0);
+	storeg(&process->registers[reg], &data, REG_SIZE);
 
 	// move after execution
 	move_pc(&process->pc, process->instruction.size);

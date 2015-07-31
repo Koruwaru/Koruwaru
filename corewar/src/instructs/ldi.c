@@ -12,10 +12,10 @@
 
 #include "vm_protos.h"
 
-// ca prend 2 index
-// et 1 registre, additionne les 2 premiers, traite ca comme une adresse,
+// ca prend 2 index et 1 registre,
+// additionne les 2 premiers, traite ca comme une adresse,
 // y lit une valeur de la taille d’un registre et la met dans le 3eme.
-void		ldi(t_vm *vm, t_process *process)
+void			ldi(t_vm *vm, t_process *process)
 {
 	t_arg_type	type;
 	int			a;
@@ -55,7 +55,7 @@ void		ldi(t_vm *vm, t_process *process)
 	ltob(&data, REG_SIZE); // register are little endian
 
 	// store the data in the appropriate register
-	storeg(&process->registers[reg], &data, REG_SIZE, 0);
+	storeg(&process->registers[reg], &data, REG_SIZE);
 
 	// move after execution
 	move_pc(&process->pc, process->instruction.size);
