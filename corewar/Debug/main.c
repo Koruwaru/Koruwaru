@@ -6,10 +6,11 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 11:46:25 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 13:54:16 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "test.h"
 #include "libft.h"
 #include "vm_types.h"
 #include "vm_protos.h"
@@ -26,6 +27,8 @@ int main()
 
 	proc = create_process(2, 400);
 	init_vm(&vm, 0, NULL, NULL);
-	dump_data(vm.arena.mem, MEM_SIZE, 64);
+
+	live_tests(&vm, proc);
+
 	return (0);
 }

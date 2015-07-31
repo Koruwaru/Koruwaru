@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/31 12:02:45 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/31 13:58:58 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,15 @@ CC = clang
 FT = c
 # flags
 CFLAGS = -Wall -Wextra -std=c99
-CFLAGS += -O3
+#CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)
 BIN_FLAGS = $(CFLAGS) $(LIB)
 # executable
-NAME = corewar
+NAME = test
 
 # to compile files
-SRC = main.c
+SRC = ./main.c
 SRC += create_player.c
 SRC += create_process.c
 SRC += dump_arena.c
@@ -50,7 +50,8 @@ SRC += get_op.c
 SRC += get_program.c
 SRC += init_instr.c
 SRC += init_vm.c
-SRC += storeg.c
+SRC += reg.c
+SRC += mem.c
 SRC += ltob.c
 SRC += get_param_type.c
 SRC += move_pc.c
