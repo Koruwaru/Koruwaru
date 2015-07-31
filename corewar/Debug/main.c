@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 13:54:16 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/07/31 15:01:01 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "libft.h"
 #include "vm_types.h"
 #include "vm_protos.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 t_uint	create_ocp(t_arg_type a, t_arg_type b, t_arg_type c)
 {

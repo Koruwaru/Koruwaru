@@ -3,6 +3,9 @@
 
 # include "vm_protos.h"
 
+# define HEADER(X)	("\x1B[32m" X "\x1B[0m")
+# define COM(X)		("\x1B[34m" X "\x1B[0m")
+
 # define ARGS(A, B, C) (t_uint []){A, B, C}
 
 void	set_instr(t_instruction *instr, t_uint nb, t_arg_type ocp,

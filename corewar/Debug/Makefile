@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/07/31 13:58:58 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/07/31 14:57:58 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ LIB = $(addprefix -L, $(LIB_DIR)) $(addprefix -l, $(LIB_NAME))
 
 OBJ_DIR = obj/
 
+# debug
+DEBUG = -D MEM_SIZE=64
 # compiler
 CC = clang
 # file type
