@@ -57,4 +57,7 @@ void		ldi(t_vm *vm, t_process *process)
 
 	// store the data in the appropriate register
 	storeg(&process->registers[reg], &data, REG_SIZE, 0);
+
+	// move after execution
+	move_pc(&process->pc, process->instruction.size);
 }
