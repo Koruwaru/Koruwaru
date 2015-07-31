@@ -6,7 +6,7 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:54:46 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 19:55:14 by jyim             ###   ########.fr       */
+/*   Updated: 2015/07/31 20:26:35 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ int open_asm(int ac, char **av)
 	return (fd);
 }
 
+char *return_line(int fd)
+{
+	char	*line;
+	int		ret;
+
+	ret = get_next_line(fd, &line);
+	if (!ret)
+		return (NULL);
+	else if (ret == -1)
+		err_msg("File can't be read", 0);
+	return (line);
+}
+
 int main(int ac, char **av)
 {
 	int		fd;
@@ -32,7 +45,7 @@ int main(int ac, char **av)
 
 	fd = open_asm(ac, av);
 	init_asm(&assembleur);
-	while (get_next_line(fd, &line))
+	while ((line = return_line(fd)))
 	{
 		assembleur.line += 1;
 		line = suppr_comment(line);
