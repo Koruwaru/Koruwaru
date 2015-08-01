@@ -25,7 +25,8 @@ void		aff(t_vm *vm, t_process *process)
 
 	type = process->instruction.args_types[0];
 	param = process->instruction.params[0];
-	if (check_param(type, param) == false)
+	if (process->instruction.args_types[0] == REG_CODE
+		&& check_param(type, param) == false)
 	{
 		move_pc(&process->pc, process->instruction.size);
 		return ;
