@@ -23,7 +23,7 @@ void		ld_tests(t_vm *vm, t_process *proc)
 	int		mem = 10;
 	int		reg = 20;
 	int		dir = 30;
-	int		pos = 35;
+	int		pos = 5;
 	int		nreg = 2;
 
 	instr = &proc->instruction;
@@ -35,19 +35,22 @@ void		ld_tests(t_vm *vm, t_process *proc)
 			mem, pos, reg, nreg, dir);
 
 	ltob(&mem, sizeof(mem));
-//	ltob(&reg, sizeof(reg));
-	ltob(&dir, sizeof(dir));
 	stomem(&vm->arena, &mem, sizeof(mem), pos);
 	storeg(proc->registers + 1, &reg, sizeof(reg));
 	verif(vm, proc);
 
-	printf( COM("LD %d 2\n"), pos);
+	printf( COM("LD %d r2\n"), pos);
 	set_instr(instr, 2, 2, OCP2(T_IND, T_REG), ARG2(pos, 2));
 	ld(vm, proc);
 	verif(vm, proc);
 
-	printf( COM("LD %d 3\n"), dir);
+	printf( COM("LD %%%d r3\n"), dir);
 	set_instr(instr, 2, 2, OCP2(T_DIR, T_REG), ARG2(dir, 3));
+	ld(vm, proc);
+	verif(vm, proc);
+
+	printf( COM("LD %d r4\n"), pos + IDX_MOD);
+	set_instr(instr, 2, 2, OCP2(T_IND, T_REG), ARG2(pos + IDX_MOD, 4));
 	ld(vm, proc);
 	verif(vm, proc);
 }

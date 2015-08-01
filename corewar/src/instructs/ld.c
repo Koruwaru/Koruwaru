@@ -26,7 +26,7 @@ void		ld(t_vm *vm, t_process *p)
 	{
 		if (a0t == T_IND)
 		{
-			p0 = (p0 % MEM_SIZE);
+			p0 = p0 % MEM_SIZE;
 			if (p0 < 0)
 			{
 				p0 += MEM_SIZE;
