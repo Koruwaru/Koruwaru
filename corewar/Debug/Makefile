@@ -68,16 +68,22 @@ SRC += live.c
 SRC += ld.c
 SRC += ld_tests.c
 SRC += live_tests.c
+SRC += add.c
+SRC += and.c
+SRC += or.c
+SRC += st.c
+SRC += sub.c
+SRC += xor.c
 
-#SRC += zjmp_tests.c
-#SRC += fork.c
-#SRC += ldi.c
-#SRC += lld.c
-#SRC += sti.c
-#SRC += zjmp.c
-#SRC += lfork.c
-#SRC += lldi.c
-#SRC += aff.c
+SRC += zjmp_tests.c
+SRC += fork.c
+SRC += ldi.c
+SRC += lld.c
+SRC += sti.c
+SRC += zjmp.c
+SRC += lfork.c
+SRC += lldi.c
+SRC += aff.c
 
 #VPATH=src/
 vpath %.c ../src/ ../../common/ ../src/instructs
