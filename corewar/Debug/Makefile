@@ -33,7 +33,7 @@ CC = clang
 FT = c
 # flags
 CFLAGS = -Wall -Wextra -std=c99 $(DEBUG)
-#CFLAGS += -O3
+CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)
 BIN_FLAGS = $(CFLAGS) $(LIB)
