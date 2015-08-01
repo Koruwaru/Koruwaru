@@ -38,7 +38,6 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 		ft_memcpy(vm->arena.mem + offset * i, progs->content, size);
 		proc = create_process(vm->players[i].id, offset * i);
 		load_instr(proc, &vm->arena);
-		dump_data(&proc->instruction, sizeof(t_instruction), 16);
 		ft_lstadd(&vm->processes, ft_lstcreate(proc, sizeof(t_process)));
 		players = players->next;
 		progs = progs->next;

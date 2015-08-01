@@ -18,14 +18,13 @@
 void		sti(t_vm *vm, t_process *proc)
 {
 	t_instruction	*instr;
-	t_arg_type		type[2]; // for the two last params
+	t_arg_type		type[2];
 	int				ops[2];
 	size_t			reg;
 	int				value;
 
 	instr = &proc->instruction;
 	reg = instr->params[0];
-	// get last params types to check them
 	type[0] = instr->args_types[1];
 	type[1] = instr->args_types[2];
 	if (check_param(instr->args_types[0], reg) == false
@@ -35,12 +34,10 @@ void		sti(t_vm *vm, t_process *proc)
 		move_pc(&proc->pc, instr->size);
 		return ;
 	}
-	// get all values
 	ops[0] = get_value(type[0], instr->params[1], &vm->arena, proc->registers);
 	ops[1] = get_value(type[1], instr->params[2], &vm->arena, proc->registers);
 	value = get_value(T_REG, reg, &vm->arena, proc->registers);
 	ltob(&value, sizeof(value));
-	// copy register at pc position
 	stomem(&vm->arena, &value, REG_SIZE, ops[0] + ops[1]);
 	move_pc(&proc->pc, proc->instruction.size);
 }

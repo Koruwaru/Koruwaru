@@ -41,7 +41,7 @@ void		*get_program(char const *data, size_t data_s, size_t *size)
 	if (program == NULL)
 	{
 		perror("Malloc error");
-		return (NULL);
+		exit(1);
 	}
 	ft_memcpy(program, data + sizeof(header_t), *size);
 	return (program);

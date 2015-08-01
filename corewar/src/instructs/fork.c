@@ -18,12 +18,13 @@
 // à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).
 void	fork_(t_vm *vm, t_process *process)
 {
-	size_t		pc;
+	int			pc;
 	t_process	*new;
 
 	new = dup_process(process);
 	new->nb_lives = 0;
-	pc = loadmem(&vm->arena, sizeof(int), process->instruction.params[0]);
+	pc = loadmem(&vm->arena, sizeof(pc), process->instruction.params[0]);
+	ltob(&pc, sizeof(pc));
 	move_pc(&new->pc, pc % IDX_MOD);
 	ft_lstadd(&vm->processes, ft_lstcreate(new, sizeof(t_process)));
 	move_pc(&process->pc, process->instruction.size);

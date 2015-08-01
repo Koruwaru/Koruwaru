@@ -23,7 +23,7 @@ t_process	*create_process(size_t id, size_t pc)
 	if (proc == NULL)
 	{
 		perror("Malloc error");
-		return (NULL);
+		exit(1);
 	}
 	ft_bzero(proc->registers, sizeof(proc->registers));
 	storeg(&proc->registers[0], &id, sizeof(id));

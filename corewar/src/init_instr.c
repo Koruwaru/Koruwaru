@@ -61,7 +61,10 @@ static void		init_params(t_instruction *instr, t_op const *op,
 		ocp = a->mem[pc];
 		i = 0;
 		while (i < op->nb_params)
+		{
 			instr->args_types[i] = tab[get_param_code(ocp, i) - 1];
+			i++;
+		}
 		move_pc(&pc, 1);
 		instr->size += 1;
 	}
@@ -95,6 +98,7 @@ static t_bool	verif_ocp(t_op const *op, char ocp)
 		{
 			return (false);
 		}
+		i++;
 	}
 	return (true);
 }

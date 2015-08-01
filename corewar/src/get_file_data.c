@@ -24,7 +24,7 @@ void		*get_file_data(char const *name, size_t *size)
 	if (fd < 0)
 	{
 		perror("Bad file");
-		return (NULL);
+		exit(1);
 	}
 	*size = lseek(fd, 0, SEEK_END);
 	lseek(fd, 0, SEEK_SET);
@@ -32,13 +32,13 @@ void		*get_file_data(char const *name, size_t *size)
 	if (buff == NULL)
 	{
 		perror("Malloc error");
-		return (NULL);
+		exit(1);
 	}
 	if (read(fd, buff, *size) < 0)
 	{
 			free(buff);
 			perror("Naughty file");
-			return (NULL);
+			exit(1);
 	}
 	close(fd);
 	return (buff);

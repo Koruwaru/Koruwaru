@@ -17,19 +17,19 @@
 
 t_process	*dup_process(t_process const *src)
 {
-	t_process	*proc;
+	t_process	*new;
 
-	proc = (t_process *)malloc(sizeof(t_process));
-	if (proc == NULL)
+	new = (t_process *)malloc(sizeof(t_process));
+	if (new == NULL)
 	{
 		perror("Malloc error");
-		return (NULL);
+		exit(1);
 	}
-	ft_memcpy(proc->registers, src->registers, sizeof(src->registers));
-	proc->pc = src->pc;
-	proc->carry = src->carry;
-	proc->nb_lives = proc->nb_lives;
-	proc->remaining_cycles = src->remaining_cycles;
-	proc->instruction = src->instruction;
-	return (proc);
+	ft_memcpy(new->registers, src->registers, sizeof(src->registers));
+	new->pc = src->pc;
+	new->carry = src->carry;
+	new->nb_lives = src->nb_lives;
+	new->remaining_cycles = src->remaining_cycles;
+	new->instruction = src->instruction;
+	return (new);
 }
