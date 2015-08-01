@@ -26,14 +26,14 @@ void		lld(t_vm *vm, t_process *process)
 	instr = &process->instruction;
 	// first test if the result register exist
 	reg = instr->params[2];
-	if (!check_param(get_param_type(instr->args_types[2], 2), reg))
+	if (!check_param(instr->args_types[2], reg))
 	{
 		move_pc(&process->pc, instr->size);
 		return ; // if not then abort after moving forward
 	}
 
 	// get all data: a and b
-	type = get_param_type(instr->args_types[0], 0);
+	type = instr->args_types[0];
 	if (check_param(type, instr->params[0]) == false)
 	{
 		move_pc(&process->pc, instr->size);
@@ -42,7 +42,7 @@ void		lld(t_vm *vm, t_process *process)
 	a = get_value(type, instr->params[0], &vm->arena,
 					process->registers);
 
-	type = get_param_type(instr->args_types[1], 1);
+	type = instr->args_types[1];
 	if (check_param(type, instr->params[1]) == false)
 	{
 		move_pc(&process->pc, instr->size);

@@ -39,6 +39,7 @@ void		sti(t_vm *vm, t_process *proc)
 	ops[0] = get_value(type[0], instr->params[1], &vm->arena, proc->registers);
 	ops[1] = get_value(type[1], instr->params[2], &vm->arena, proc->registers);
 	value = get_value(T_REG, reg, &vm->arena, proc->registers);
+	ltob(&value, sizeof(value));
 	// copy register at pc position
 	stomem(&vm->arena, &value, REG_SIZE, ops[0] + ops[1]);
 	move_pc(&proc->pc, proc->instruction.size);

@@ -32,11 +32,11 @@ static size_t	get_param_size(t_arg_type param_type, t_op const *op)
 	size_t		param_s;
 
 	param_s = 0;
-	if (param_type & T_REG)
+	if (param_type == T_REG)
 		param_s = 1;
-	else if (param_type & T_IND)
+	else if (param_type == T_IND)
 		param_s = 2;
-	else if (param_type & T_DIR)
+	else if (param_type == T_DIR)
 	{
 		if (op->ind_size == 0)
 			param_s = 4;
@@ -61,7 +61,7 @@ static void		init_params(t_instruction *instr, t_op const *op,
 		ocp = a->mem[pc];
 		i = 0;
 		while (i < op->nb_params)
-			instr->args_types[i] = tab[get_param_type(ocp, i) - 1];
+			instr->args_types[i] = tab[get_param_code(ocp, i) - 1];
 		move_pc(&pc, 1);
 		instr->size += 1;
 	}
@@ -90,7 +90,7 @@ static t_bool	verif_ocp(t_op const *op, char ocp)
 	i = 0;
 	while (i < params_nb)
 	{
-		param_type = get_param_type(ocp, params_nb);
+		param_type = get_param_code(ocp, params_nb);
 		if ((param_type & op->args_types[i]) == 0)
 		{
 			return (false);
@@ -107,7 +107,7 @@ void			load_instr(t_process *proc, t_arena const *a)
 	instr = &proc->instruction;
 	instr->opcode = a->mem[proc->pc];
 	op_tmp = get_op(instr->opcode);
-	if (op_tmp == NULL || verif_ocp(op_tmp, instr->opcode))
+	if (op_tmp == NULL || verif_ocp(op_tmp, instr->opcode) == false)
 	{
 		instr->opcode = 0;
 		instr->nb_params = 0;

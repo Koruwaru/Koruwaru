@@ -33,7 +33,6 @@ void		ld(t_vm *vm, t_process *p)
 			}
 		}
 		val = get_value(a0t, p0, &vm->arena, p->registers);
-		ltob(&val, sizeof(val));
 		storeg(p->registers + instr->params[1], &val, sizeof(val));
 		p->carry = true;
 	}

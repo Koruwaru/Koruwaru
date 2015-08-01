@@ -12,7 +12,7 @@
 
 #include "vm_types.h"
 
-t_arg_type	get_param_type(char ocp, size_t param_id)
+char	get_param_code(char ocp, size_t param_id)
 {
 	return ((ocp >> (6 - param_id * 2)) & 0x03);
 }
