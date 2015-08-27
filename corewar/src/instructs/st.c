@@ -6,11 +6,13 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:08:32 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:08:32 by crenault         ###   ########.fr       */
+/*   Updated: 2015/08/27 18:04:56 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
+
+#include <stdio.h>
 
 void		st(t_vm *vm, t_process *proc)
 {
@@ -32,8 +34,7 @@ void		st(t_vm *vm, t_process *proc)
 		}
 		else
 		{
-			ltob(&p1, sizeof(val));
-			stomem(&vm->arena, &val, sizeof(val), p1);
+			stomem(&vm->arena, &val, sizeof(val), proc->pc + (p1 % IDX_MOD));
 		}
 	}
 	move_pc(&proc->pc, instr->size);

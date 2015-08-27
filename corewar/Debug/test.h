@@ -3,9 +3,12 @@
 
 # include "vm_protos.h"
 
+typedef t_bool (*test_func)(t_vm *, t_process *);
+
 # define HEADER(X)	("\x1B[32m" X "\x1B[0m")
 # define COM(X)		("\x1B[34m" X "\x1B[0m")
 # define ERR(X)		("\x1B[31m" X "\x1B[0m")
+# define GOOD(X)	("\x1B[33m" X "\x1B[0m")
 
 # define ARGS(A, B, C) (t_uint []){A, B, C}
 # define ARG1(A) ARGS(A, 0, 0)
@@ -38,5 +41,7 @@ void	lld_tests(t_vm *vm, t_process *process);
 void	lldi_tests(t_vm *vm, t_process *process);
 void	lfork_tests(t_vm *vm, t_process *process);
 void	aff_tests(t_vm *vm, t_process *process);
+
+void	unit_tests(test_func *funcs, t_vm *vm, t_process *proc, size_t funcs_nb, char const *instr_name);
 
 #endif
