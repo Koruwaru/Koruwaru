@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/08/27 16:34:36 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/08/28 16:25:09 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int main()
 	live_tests(&vm, proc);
 	ld_tests(&vm, proc);
 	st_tests(&vm, proc);
+	add_tests(&vm, proc);
+	sub_tests(&vm, proc);
+	and_tests(&vm, proc);
+	or_tests(&vm, proc);
+	xor_tests(&vm, proc);
 //	zjmp_tests(&vm, proc);
 
 	return (0);

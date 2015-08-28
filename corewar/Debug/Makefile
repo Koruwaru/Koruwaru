@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/08/27 16:43:06 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/08/28 16:26:50 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,12 @@ SRC += tests.c
 SRC += ld_tests.c
 SRC += live_tests.c
 SRC += st_tests.c
+SRC += add_tests.c
+SRC += sub_tests.c
+SRC += and_tests.c
+SRC += or_tests.c
+SRC += xor_tests.c
+
 SRC += zjmp_tests.c
 
 #VPATH=src/

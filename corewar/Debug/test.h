@@ -18,6 +18,7 @@ typedef t_bool (*test_func)(t_vm *, t_process *);
 # define OCP(A, B, C) (t_arg_type []){A, B, C}
 # define OCP1(A) OCP(A, 0, 0)
 # define OCP2(A, B) OCP(A, B, 0)
+# define OCP3(A, B, C) OCP(A, B, C)
 # define NOPE OCP(0, 0, 0)
 
 void	set_instr(t_instruction *instr, t_uint opcode, t_uint nb,

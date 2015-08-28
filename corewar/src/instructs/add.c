@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sti.c                                              :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/30 23:08:32 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:08:32 by crenault         ###   ########.fr       */
+/*   Created: 2015/08/28 14:38:06 by tmielcza          #+#    #+#             */
+/*   Updated: 2015/08/28 15:49:45 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void		add(t_vm *vm, t_process *proc)
 	{
 		res = loadreg(&proc->registers[p0]) + loadreg(&proc->registers[p1]);
 		storeg(&proc->registers[p2], &res, sizeof(res));
+		proc->carry = (res == 0);
 	}
 	move_pc(&proc->pc, instr->size);
 }
