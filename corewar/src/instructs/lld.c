@@ -6,58 +6,27 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 00:32:08 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/31 00:32:08 by crenault         ###   ########.fr       */
+/*   Updated: 2015/09/01 18:34:59 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
 
-// Signifie long-load, donc son opcode est évidemment 13. C’est la même chose
-// que ld, mais sans % IDX_MOD. Modifie le carry.
-void		lld(t_vm *vm, t_process *process)
+void		lld(t_vm *vm, t_process *p)
 {
 	t_instruction	*instr;
-	t_arg_type		type;
-	int				a;
-	int				b;
-	int				data;
-	size_t			reg;
+	t_arg_type		a0t;
+	int				val;
+	int				p0;
 
-	instr = &process->instruction;
-	// first test if the result register exist
-	reg = instr->params[2];
-	if (!check_param(instr->args_types[2], reg))
+	instr = &p->instruction;
+	p0 = instr->params[0];
+	a0t = instr->args_types[0];
+	if (check_param(T_REG, instr->params[1]) == true)
 	{
-		move_pc(&process->pc, instr->size);
-		return ; // if not then abort after moving forward
+		val = get_value(a0t, p0, &vm->arena, p->registers);
+		storeg(p->registers + instr->params[1], &val, sizeof(val));
+		p->carry = true;
 	}
-
-	// get all data: a and b
-	type = instr->args_types[0];
-	if (check_param(type, instr->params[0]) == false)
-	{
-		move_pc(&process->pc, instr->size);
-		return ; // if not then abort after moving forward
-	}
-	a = get_value(type, instr->params[0], &vm->arena,
-					process->registers);
-
-	type = instr->args_types[1];
-	if (check_param(type, instr->params[1]) == false)
-	{
-		move_pc(&process->pc, instr->size);
-		return ; // if not then abort after moving forward
-	}
-	b = get_value(type, instr->params[1], &vm->arena,
-					process->registers);
-
-	// read data from 0xb(a + b) addr
-	data = loadmem(&vm->arena, REG_SIZE, a + b); // big endian
-	ltob(&data, REG_SIZE); // register are little endian
-
-	// store the data in the appropriate register
-	storeg(&process->registers[reg], &data, REG_SIZE);
-
-	// move after execution
-	move_pc(&process->pc, instr->size);
+	move_pc(&p->pc, instr->size);
 }

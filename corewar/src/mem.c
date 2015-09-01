@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 20:21:01 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 18:10:02 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/01 19:24:57 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			loadmem(t_arena const *a, size_t size, size_t pc)
 
 	i = 0;
 	val = 0;
+	move_pc(&pc, 0);
 	while (i < size)
 	{
 		((char *)&val)[i] = a->mem[pc];

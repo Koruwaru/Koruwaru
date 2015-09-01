@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 15:19:03 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 21:59:40 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/01 18:35:37 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ void		ld(t_vm *vm, t_process *p)
 	{
 		if (a0t == T_IND)
 		{
-			p0 = p0 % MEM_SIZE;
-			if (p0 < 0)
-			{
-				p0 += MEM_SIZE;
-			}
+			p0 = p0 % IDX_MOD;
 		}
 		val = get_value(a0t, p0, &vm->arena, p->registers);
 		storeg(p->registers + instr->params[1], &val, sizeof(val));
