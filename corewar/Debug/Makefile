@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:12:09 by crenault          #+#    #+#              #
-#    Updated: 2015/08/28 16:26:50 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/09/01 16:54:54 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,8 @@ SRC += or_tests.c
 SRC += xor_tests.c
 
 SRC += zjmp_tests.c
+SRC += ldi_tests.c
+SRC += sti_tests.c
 
 #VPATH=src/
 vpath %.c ../src/ ../../common/ ../src/instructs

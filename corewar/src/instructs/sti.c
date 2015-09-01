@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:08:32 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:08:32 by crenault         ###   ########.fr       */
+/*   Updated: 2015/09/01 17:18:10 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		sti(t_vm *vm, t_process *proc)
 	t_arg_type		type[2];
 	int				ops[2];
 	size_t			reg;
-	int				value;
+	int				val;
 
 	instr = &proc->instruction;
 	reg = instr->params[0];
@@ -36,8 +36,8 @@ void		sti(t_vm *vm, t_process *proc)
 	}
 	ops[0] = get_value(type[0], instr->params[1], &vm->arena, proc->registers);
 	ops[1] = get_value(type[1], instr->params[2], &vm->arena, proc->registers);
-	value = get_value(T_REG, reg, &vm->arena, proc->registers);
-	ltob(&value, sizeof(value));
-	stomem(&vm->arena, &value, REG_SIZE, ops[0] + ops[1]);
+	val = get_value(T_REG, reg, &vm->arena, proc->registers);
+	ltob(&val, sizeof(val));
+	stomem(&vm->arena, &val, REG_SIZE, proc->pc + (ops[0] + ops[1]) % IDX_MOD);
 	move_pc(&proc->pc, proc->instruction.size);
 }
