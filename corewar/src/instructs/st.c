@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sti.c                                              :+:      :+:    :+:   */
+/*   st.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/30 23:08:32 by crenault          #+#    #+#             */
-/*   Updated: 2015/08/27 18:04:56 by tmielcza         ###   ########.fr       */
+/*   Created: 2015/09/03 00:00:53 by tmielcza          #+#    #+#             */
+/*   Updated: 2015/09/03 00:03:19 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ void		st(t_vm *vm, t_process *proc)
 	if (check_param(instr->args_types[0], p0)
 		|| check_param(instr->args_types[1], instr->params[1]))
 	{
-		val = get_value(instr->args_types[0], p0, &vm->arena, proc->registers);
+		val = get_value(instr->args_types[0], p0, &vm->arena, proc);
 		if (instr->args_types[1] == T_REG)
 		{
 			storeg(&proc->registers[p1], &val, sizeof(val));
 		}
 		else
 		{
-			stomem(&vm->arena, &val, sizeof(val), proc->pc + (p1 % IDX_MOD));
+			p1 = (p1 + 1) % IDX_MOD;
+			stomem(&vm->arena, &val, sizeof(val), proc->pc + p1);
 		}
 	}
 	move_pc(&proc->pc, instr->size);

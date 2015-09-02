@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 20:15:25 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 22:24:53 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void		init_params(t_instruction *instr, t_op const *op,
 
 	move_pc(&pc, 1);
 	instr->size = 1;
+	i = 0;
 	if (op->ocp == 1)
 	{
 		ocp = a->mem[pc];
-		i = 0;
 		while (i < op->nb_params)
 		{
 			instr->args_types[i] = tab[get_param_code(ocp, i) - 1];
@@ -68,11 +68,19 @@ static void		init_params(t_instruction *instr, t_op const *op,
 		move_pc(&pc, 1);
 		instr->size += 1;
 	}
+	else
+	{
+		while (i < op->nb_params)
+		{
+			instr->args_types[i] = op->args_types[i];
+			i++;
+		}
+	}
 	i = 0;
 	while (i < instr->nb_params)
 	{
-		param_s = get_param_size(op->args_types[i], op);
-		printf("Yay ! -> %d\n", param_s);
+		param_s = get_param_size(instr->args_types[i], op);
+		printf("Param ! -> %x %d\n", instr->args_types[i], param_s);
 		instr->size += param_s;
 		instr->params[i] = read_param(param_s, a, pc);
 		move_pc(&pc, 1);

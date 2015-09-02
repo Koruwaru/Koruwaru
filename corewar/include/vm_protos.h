@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 18:07:56 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 23:39:09 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ char			get_param_code(char ocp, size_t param_id);
 t_op const		*get_op(char op_code);
 
 t_bool			check_param(t_arg_type type, t_uint value);
+int				long_get_value(t_arg_type type, t_uint value, t_arena const *a,
+							   t_process const *proc);
 int				get_value(t_arg_type type, t_uint value, t_arena const *a,
-							t_register const *regs);
+							t_process const *proc);
 
 void			load_instr(t_process *proc, t_arena const *arena);
 

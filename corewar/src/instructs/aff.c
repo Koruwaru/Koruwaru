@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:11:27 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:11:27 by crenault         ###   ########.fr       */
+/*   Updated: 2015/09/02 23:44:26 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		aff(t_vm *vm, t_process *process)
 		move_pc(&process->pc, process->instruction.size);
 		return ;
 	}
-	value = get_value(type, param, &vm->arena, process->registers) % 256;
+	value = get_value(type, param, &vm->arena, process) % 256;
 	write(1, &value, 1);
 	move_pc(&process->pc, process->instruction.size);
 }

@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:11:27 by crenault          #+#    #+#             */
-/*   Updated: 2015/09/01 19:40:59 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 23:44:00 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void			lldi(t_vm *vm, t_process *proc)
 		move_pc(&proc->pc, instr->size);
 		return ;
 	}
-	ops[0] = get_value(type[0], instr->params[0], &vm->arena, proc->registers);
-	ops[1] = get_value(type[1], instr->params[1], &vm->arena, proc->registers);
+	ops[0] = long_get_value(type[0], instr->params[0], &vm->arena, proc);
+	ops[1] = long_get_value(type[1], instr->params[1], &vm->arena, proc);
 	addr = proc->pc + ops[0] + ops[1];
 	data = loadmem(&vm->arena, REG_SIZE, addr);
 	ltob(&data, REG_SIZE);

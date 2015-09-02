@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 00:32:08 by crenault          #+#    #+#             */
-/*   Updated: 2015/09/01 18:34:59 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 23:43:36 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		lld(t_vm *vm, t_process *p)
 	a0t = instr->args_types[0];
 	if (check_param(T_REG, instr->params[1]) == true)
 	{
-		val = get_value(a0t, p0, &vm->arena, p->registers);
+		val = long_get_value(a0t, p0, &vm->arena, p);
 		storeg(p->registers + instr->params[1], &val, sizeof(val));
 		p->carry = true;
 	}
