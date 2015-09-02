@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/07/31 21:45:43 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/09/02 18:33:23 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,16 +57,28 @@ SRC += move_pc.c
 SRC += set_pc.c
 SRC += get_param_type.c
 SRC += param_value.c
+SRC += exec_instr.c
+SRC += game.c
+SRC += get_player.c
+
+SRC += null.c
+SRC += live.c
+SRC += ld.c
+SRC += add.c
+SRC += and.c
+SRC += or.c
+SRC += st.c
+SRC += sub.c
+SRC += xor.c
 
 SRC += fork.c
-SRC += null.c
+SRC += ldi.c
+SRC += lld.c
 SRC += sti.c
 SRC += zjmp.c
 SRC += lfork.c
 SRC += lldi.c
 SRC += aff.c
-SRC += ldi.c
-SRC += lld.c
 
 # check in these directories for c files
 vpath %.c src/ ../common/ src/instructs

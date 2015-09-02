@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 15:25:37 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 18:07:56 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ t_player const	*get_player(t_vm const *vm, size_t id);
 
 void			set_pc(size_t *pc, size_t new_pc);
 void			move_pc(size_t *pc, int steps);
+
+int				vm_step(t_vm *vm);
+
+void			exec_instr(t_vm *vm, t_process *proc);
 
 void			null(t_vm *vm, t_process *process);
 void			live(t_vm *vm, t_process *process);
