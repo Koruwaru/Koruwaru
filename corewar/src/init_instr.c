@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 15:01:57 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 20:15:25 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void		init_params(t_instruction *instr, t_op const *op,
 	while (i < instr->nb_params)
 	{
 		param_s = get_param_size(op->args_types[i], op);
+		printf("Yay ! -> %d\n", param_s);
 		instr->size += param_s;
 		instr->params[i] = read_param(param_s, a, pc);
 		move_pc(&pc, 1);
@@ -111,16 +112,19 @@ void			load_instr(t_process *proc, t_arena const *a)
 	instr = &proc->instruction;
 	instr->opcode = a->mem[proc->pc];
 	op_tmp = get_op(instr->opcode);
+	printf("op = %d\n", instr->opcode);
 	if (op_tmp == NULL || verif_ocp(op_tmp, instr->opcode) == false)
 	{
 		instr->opcode = 0;
 		instr->nb_params = 0;
 		proc->remaining_cycles = 1;
+		printf("Bad!\n");
 	}
 	else
 	{
 		instr->nb_params = op_tmp->nb_params;
 		proc->remaining_cycles = op_tmp->cycles;
 		init_params(instr, op_tmp, a, proc->pc);
+		printf("Good! size -> %d\n", instr->size);
 	}
 }

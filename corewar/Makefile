@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/09/02 18:33:23 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/09/02 19:33:54 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CC = clang
 # file type
 FT = c
 # flags
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)

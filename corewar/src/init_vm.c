@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:30:20 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/08/27 17:14:07 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/02 20:05:10 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 		ft_lstadd(&vm->processes, ft_lstcreate(proc, sizeof(t_process)));
 		players = players->next;
 		progs = progs->next;
+		vm->cycles_to_die = CYCLE_TO_DIE;
+		vm->cycles = 0;
+		vm->nb_lives = 0;
+		vm->checks = 0;
 		i++;
 	}
 	vm->last_living_player = NULL;
