@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 20:08:25 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/03 19:17:05 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,21 @@ static void	vm_check(t_vm *vm)
 
 int			vm_step(t_vm *vm)
 {
-	t_list		**tmp;
+	t_list		*tmp;
 	t_process	*proc;
 
-	tmp = &vm->processes;
-	while (*tmp != NULL)
+	tmp = vm->processes;
+	//printf("--\n");
+	while (tmp != NULL)
 	{
-		proc = (*tmp)->content;
+		proc = tmp->content;
+		//printf("remaining = %d, %p\n", proc->remaining_cycles, proc);
 		if (--proc->remaining_cycles == 0)
 		{
 			exec_instr(vm, proc);
 			load_instr(proc, &vm->arena);
 		}
-//		printf("remaining = %d\n", proc->remaining_cycles);
-		tmp = &(*tmp)->next;
+		tmp = tmp->next;
 	}
 	vm_check(vm);
 	return (000);
