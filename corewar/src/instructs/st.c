@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/03 00:00:53 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 00:03:19 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/03 18:08:20 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void		st(t_vm *vm, t_process *proc)
 		}
 		else
 		{
-			p1 = (p1 + 1) % IDX_MOD;
-			stomem(&vm->arena, &val, sizeof(val), proc->pc + p1);
+			stomem(&vm->arena, &val, sizeof(val), proc->pc + (p1 % IDX_MOD));
 		}
 	}
 	move_pc(&proc->pc, instr->size);
