@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 23:45:00 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 17:54:03 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/03 21:16:55 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_bool		check_param(t_arg_type type, t_uint value)
 {
 	if (type == T_DIR || type == T_IND)
 		return (true);
-	if (type == T_REG && value < REG_NUMBER)
+	if (type == T_REG && value <= REG_NUMBER && value > 0)
 		return (true);
 	return (false);
 }

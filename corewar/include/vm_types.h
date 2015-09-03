@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 17:32:20 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/03 21:52:13 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_instruction
 
 typedef struct	s_process
 {
-	t_register		registers[REG_NUMBER];
+	t_register		registers[REG_NUMBER + 1];
 	size_t			pc;
 	t_bool			carry;
 	size_t			nb_lives;

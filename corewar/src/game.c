@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 19:17:05 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/03 22:16:20 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ int			vm_step(t_vm *vm)
 	t_process	*proc;
 
 	tmp = vm->processes;
-	//printf("--\n");
 	while (tmp != NULL)
 	{
 		proc = tmp->content;
-		//printf("remaining = %d, %p\n", proc->remaining_cycles, proc);
 		if (--proc->remaining_cycles == 0)
 		{
 			exec_instr(vm, proc);

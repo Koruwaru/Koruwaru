@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 15:19:03 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 23:41:11 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/03 21:20:56 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ld(t_vm *vm, t_process *p)
 		}
 		val = get_value(a0t, p0, &vm->arena, p);
 		storeg(p->registers + instr->params[1], &val, sizeof(val));
-		p->carry = true;
+		p->carry = val == 0;
 	}
 	move_pc(&p->pc, instr->size);
 }
