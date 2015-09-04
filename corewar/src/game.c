@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 22:16:20 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/04 15:56:07 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static void	vm_check(t_vm *vm)
 	t_process	*proc;
 
 	++vm->cycles;
+//	printf("%d %d \n", vm->cycles, vm->cycles_to_die);
 	if (vm->cycles >= vm->cycles_to_die)
 	{
+		printf("Coucou! --------------------------- \n");
 		vm->cycles = 0;
 		if (vm->nb_lives >= NBR_LIVE || vm->checks >= MAX_CHECKS)
 			vm->cycles_to_die -= CYCLE_DELTA;
@@ -31,11 +33,17 @@ static void	vm_check(t_vm *vm)
 		while (*tmp != NULL)
 		{
 			proc = (*tmp)->content;
+//			printf("lives: %d\n", proc->nb_lives);
 			if (proc->nb_lives == 0)
+			{
+				printf("He died! %d \n", vm->cycles_to_die);
 				ft_lstpop(tmp, ft_lstfree);
-			proc->nb_lives = 0;
-			if (*tmp != NULL)
+			}
+			else
+			{
+				proc->nb_lives = 0;
 				tmp = &(*tmp)->next;
+			}
 		}
 	}
 }
@@ -57,5 +65,10 @@ int			vm_step(t_vm *vm)
 		tmp = tmp->next;
 	}
 	vm_check(vm);
-	return (000);
+	if (vm->processes == NULL)
+	{
+		printf("Finito !\n");
+		exit(0);
+	}
+	return (0);
 }

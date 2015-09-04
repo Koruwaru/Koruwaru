@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 21:52:13 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/04 15:28:58 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct	s_vm
 	t_list			*processes;
 	t_arena			arena;
 	size_t			nb_lives;
-	size_t			cycles;
-	size_t			cycles_to_die;
+	int				cycles;
+	int				cycles_to_die;
 	size_t			checks;
 
 }				t_vm;
