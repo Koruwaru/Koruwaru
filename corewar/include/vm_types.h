@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/04 15:28:58 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/06 17:56:30 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ typedef struct	s_instruction
 
 typedef struct	s_process
 {
+	size_t			id;
 	t_register		registers[REG_NUMBER + 1];
 	size_t			pc;
 	t_bool			carry;
-	size_t			nb_lives;
+	int				cycles_since_live;
 	size_t			remaining_cycles;
 	t_instruction	instruction;
 
@@ -68,6 +69,7 @@ typedef struct	s_arena
 
 typedef struct	s_vm
 {
+	size_t			next_proc_id;
 	size_t			nb_players;
 	t_player		players[MAX_PLAYERS];
 	t_player const	*last_living_player;

@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/04 15:56:07 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/06 19:34:09 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,26 @@ static void	vm_check(t_vm *vm)
 //	printf("%d %d \n", vm->cycles, vm->cycles_to_die);
 	if (vm->cycles >= vm->cycles_to_die)
 	{
-		printf("Coucou! --------------------------- \n");
-		vm->cycles = 0;
-		if (vm->nb_lives >= NBR_LIVE || vm->checks >= MAX_CHECKS)
-			vm->cycles_to_die -= CYCLE_DELTA;
-		vm->nb_lives = 0;
+//		printf("Coucou! --------------------------- \n");
 		tmp = &vm->processes;
 		while (*tmp != NULL)
 		{
 			proc = (*tmp)->content;
-//			printf("lives: %d\n", proc->nb_lives);
-			if (proc->nb_lives == 0)
+//			printf("(%d) cycles_since_live: %d <%d>\n", proc->id, proc->cycles_since_live, vm->cycles_to_die);
+			if (proc->cycles_since_live >= vm->cycles_to_die)
 			{
-				printf("He died! %d \n", vm->cycles_to_die);
+//				printf("(%d) died! %d <%d> \n", proc->id, proc->cycles_since_live, vm->cycles_to_die);
 				ft_lstpop(tmp, ft_lstfree);
 			}
 			else
 			{
-				proc->nb_lives = 0;
 				tmp = &(*tmp)->next;
 			}
 		}
+		if (vm->nb_lives >= NBR_LIVE || vm->checks >= MAX_CHECKS)
+			vm->cycles_to_die -= CYCLE_DELTA;
+		vm->cycles = 0;
+		vm->nb_lives = 0;
 	}
 }
 
@@ -57,6 +56,7 @@ int			vm_step(t_vm *vm)
 	while (tmp != NULL)
 	{
 		proc = tmp->content;
+		proc->cycles_since_live++;
 		if (--proc->remaining_cycles == 0)
 		{
 			exec_instr(vm, proc);
@@ -67,7 +67,7 @@ int			vm_step(t_vm *vm)
 	vm_check(vm);
 	if (vm->processes == NULL)
 	{
-		printf("Finito !\n");
+//		printf("Finito !\n");
 		exit(0);
 	}
 	return (0);

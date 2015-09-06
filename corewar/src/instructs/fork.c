@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 00:28:23 by crenault          #+#    #+#             */
-/*   Updated: 2015/09/04 15:56:49 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/06 18:00:35 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	fork_(t_vm *vm, t_process *process)
 
 	instr = &process->instruction;
 	new = dup_process(process);
-	new->nb_lives = 0;
+	new->cycles_since_live = 0;
+	new->id = vm->next_proc_id++;
 	p1 = get_value(instr->args_types[0], instr->params[0], &vm->arena, process);
 	move_pc(&new->pc, p1 % IDX_MOD);
 	load_instr(new, &vm->arena);

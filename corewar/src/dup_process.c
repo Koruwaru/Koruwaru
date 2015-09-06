@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:22:25 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 16:49:38 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/06 18:05:33 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ t_process	*dup_process(t_process const *src)
 		exit(1);
 	}
 	ft_memcpy(new->registers, src->registers, sizeof(src->registers));
+	new->id = src->id;
 	new->pc = src->pc;
 	new->carry = src->carry;
-	new->nb_lives = src->nb_lives;
+	new->cycles_since_live = src->cycles_since_live;
 	new->remaining_cycles = src->remaining_cycles;
 	new->instruction = src->instruction;
 	return (new);

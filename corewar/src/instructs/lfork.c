@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:11:27 by crenault          #+#    #+#             */
-/*   Updated: 2015/07/30 23:11:27 by crenault         ###   ########.fr       */
+/*   Updated: 2015/09/06 17:38:47 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		lfork(t_vm *vm, t_process *process)
 	t_process	*new;
 
 	new = dup_process(process);
-	new->nb_lives = 0;
+	new->cycles_since_live = 0;
 	pc = loadmem(&vm->arena, sizeof(pc), process->instruction.params[0]);
 	ltob(&pc, sizeof(pc));
 	move_pc(&new->pc, pc);
