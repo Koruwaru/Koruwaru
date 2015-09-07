@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/03 00:00:53 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 18:08:20 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/07 19:23:57 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		st(t_vm *vm, t_process *proc)
 	p0 = instr->params[0];
 	p1 = instr->params[1];
 	if (check_param(instr->args_types[0], p0)
-		|| check_param(instr->args_types[1], instr->params[1]))
+		&& check_param(instr->args_types[1], p1))
 	{
 		val = get_value(instr->args_types[0], p0, &vm->arena, proc);
 		if (instr->args_types[1] == T_REG)
@@ -34,6 +34,7 @@ void		st(t_vm *vm, t_process *proc)
 		}
 		else
 		{
+			ltob(&val, sizeof(val));
 			stomem(&vm->arena, &val, sizeof(val), proc->pc + (p1 % IDX_MOD));
 		}
 	}
