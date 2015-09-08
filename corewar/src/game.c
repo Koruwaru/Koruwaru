@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/07 18:59:28 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/08 19:14:20 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,23 @@ int			vm_step(t_vm *vm)
 	t_list		*tmp;
 	t_process	*proc;
 
+	vm->actual_cycle++;
+	printf("Now cycle: %zu --------------------------------------\n", vm->actual_cycle);
 	tmp = vm->processes;
 	while (tmp != NULL)
 	{
 		proc = tmp->content;
 		proc->cycles_since_live++;
 		if (--proc->remaining_cycles == 0)
-		{
 			exec_instr(vm, proc);
+		tmp = tmp->next;
+	}
+	tmp = vm->processes;
+	while (tmp != NULL)
+	{
+		proc = tmp->content;
+		if (proc->remaining_cycles == 0)
 			load_instr(proc, &vm->arena);
-		}
 		tmp = tmp->next;
 	}
 	vm_check(vm);

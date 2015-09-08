@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:30:20 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/06 18:04:24 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/08 16:53:39 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 		vm->cycles = 0;
 		vm->nb_lives = 0;
 		vm->checks = 0;
+		vm->actual_cycle = 0;
 		i++;
 	}
 	vm->last_living_player = NULL;

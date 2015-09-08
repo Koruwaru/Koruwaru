@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 23:39:09 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/08 15:42:40 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int				long_get_value(t_arg_type type, t_uint value, t_arena const *a,
 int				get_value(t_arg_type type, t_uint value, t_arena const *a,
 							t_process const *proc);
 
+void			init_params(t_instruction *instr, t_op const *op,
+							t_arena const *a, size_t pc);
 void			load_instr(t_process *proc, t_arena const *arena);
 
 void			storeg(t_register *reg, void const *data, size_t data_s);

@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 18:06:12 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/08 19:05:05 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static int	read_param(size_t size, t_arena const *a, size_t pc)
 		move_pc(&pc, 1);
 		tmp++;
 	}
-//	for (int i = 0; i < size; i++) printf("-%d-", data[i]);
-//	printf("\n");
 	ltob(data, size);
 	if (size == 2)
 		return (short_indirect);
@@ -62,7 +60,7 @@ static size_t	get_param_size(t_arg_type param_type, t_op const *op)
 	return (param_s);
 }
 
-static void		init_params(t_instruction *instr, t_op const *op,
+void			init_params(t_instruction *instr, t_op const *op,
 							t_arena const *a, size_t pc)
 {
 	size_t				i;
@@ -96,10 +94,8 @@ static void		init_params(t_instruction *instr, t_op const *op,
 	while (i < instr->nb_params)
 	{
 		param_s = get_param_size(instr->args_types[i], op);
-//		printf("Param ! -> %x %d\n", instr->args_types[i], param_s);
 		instr->size += param_s;
 		instr->params[i] = read_param(param_s, a, pc);
-//		printf("A param: %d\n", instr->params[i]);
 		move_pc(&pc, param_s);
 		i++;
 	}
@@ -140,12 +136,14 @@ void			load_instr(t_process *proc, t_arena const *a)
 	pc = proc->pc;
 	instr = &proc->instruction;
 	instr->opcode = a->mem[pc];
+//	dump_data(&a->mem[pc], 10, 16);
 	op_tmp = get_op(instr->opcode);
 	move_pc(&pc, 1);
 	ocp = a->mem[pc];
 //	printf("op = %d, tmp = %p\n", instr->opcode, op_tmp);
 	if (op_tmp == NULL || verif_ocp(op_tmp, ocp) == false)
 	{
+//		printf("Bad: %x %p pc : %x\n", instr->opcode, op_tmp, pc);
 		instr->opcode = 0;
 		instr->nb_params = 0;
 		instr->size = 1;

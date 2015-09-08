@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/07 19:06:12 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/08 16:53:43 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct	s_vm
 	int				cycles;
 	int				cycles_to_die;
 	size_t			checks;
+	size_t			actual_cycle;
 
 }				t_vm;
 

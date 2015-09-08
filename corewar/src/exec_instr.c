@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 15:02:59 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/07 22:21:02 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/08 19:10:48 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ void		exec_instr(t_vm *vm, t_process *proc)
 	t_instruction *i = &proc->instruction;
 	opcode = proc->instruction.opcode;
 	if (opcode != 0)
-		load_instr(proc, &vm->arena);
+	{
+		init_params(&proc->instruction, op, &vm->arena, proc->pc);
+//		load_instr(proc, &vm->arena);
+	}
 	proc->instruction.opcode = opcode;
-	printf("(%d) do instr %s|%d| - %d %d %d <%d> [:%d/%x]\n", proc->id, name, proc->instruction.opcode, i->params[0], i->params[1], i->params[2], proc->carry, proc->pc, proc->pc);
+	printf("(%d) do instr %s|%d| - %d %d %d <%d> [:%d/%x]\n", proc->id, name, \
+		proc->instruction.opcode, i->params[0], i->params[1], i->params[2],\
+		proc->carry, proc->pc, proc->pc);
 	tabs[(int)proc->instruction.opcode](vm, proc);
 }
