@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/28 14:38:06 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/08/28 15:49:45 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/09 18:39:13 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		add(t_vm *vm, t_process *proc)
 	p1 = instr->params[1];
 	p2 = instr->params[2];
 	if (check_param(instr->args_types[0], p0)
-		|| check_param(instr->args_types[1], p1)
-		|| check_param(instr->args_types[2], p2))
+		&& check_param(instr->args_types[1], p1)
+		&& check_param(instr->args_types[2], p2))
 	{
 		res = loadreg(&proc->registers[p0]) + loadreg(&proc->registers[p1]);
 		storeg(&proc->registers[p2], &res, sizeof(res));

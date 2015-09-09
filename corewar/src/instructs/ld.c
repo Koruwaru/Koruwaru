@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 15:19:03 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 21:20:56 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/09 18:58:27 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@ void		ld(t_vm *vm, t_process *p)
 	a0t = instr->args_types[0];
 	if (check_param(T_REG, instr->params[1]) == true)
 	{
-		if (a0t == T_IND)
-		{
-			p0 = p0 % IDX_MOD;
-		}
 		val = get_value(a0t, p0, &vm->arena, p);
 		storeg(p->registers + instr->params[1], &val, sizeof(val));
-		p->carry = val == 0;
+		p->carry = (val == 0);
 	}
 	move_pc(&p->pc, instr->size);
 }

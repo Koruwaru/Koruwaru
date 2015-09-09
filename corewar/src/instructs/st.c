@@ -6,13 +6,11 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/03 00:00:53 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/08 22:35:06 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/09 19:08:46 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
-
-#include <stdio.h>
 
 void		st(t_vm *vm, t_process *proc)
 {
@@ -35,13 +33,6 @@ void		st(t_vm *vm, t_process *proc)
 		else
 		{
 			ltob(&val, sizeof(val));
-
-			//TODO: VIrer
-			size_t t = proc->pc;
-			move_pc(&t, (p1 % IDX_MOD));
-//			printf("STORE: %zx (%zu)\n", t, t);
-//			dump_data(&val, 4, 14);
-			
 			stomem(&vm->arena, &val, sizeof(val), proc->pc + (p1 % IDX_MOD));
 		}
 	}

@@ -6,16 +6,13 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:11:27 by crenault          #+#    #+#             */
-/*   Updated: 2015/09/06 17:38:47 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/09 18:59:40 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
 #include "libft.h"
 
-// Ca signifie long-fork, pour pouvoir fourcher de la paille à une distance
-// de 15 mètres, exactement comme son opcode. Pareil qu’un fork sans modulo à
-// l’adresse.
 void		lfork(t_vm *vm, t_process *process)
 {
 	int			pc;

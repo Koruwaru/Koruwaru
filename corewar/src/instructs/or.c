@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:08:32 by crenault          #+#    #+#             */
-/*   Updated: 2015/09/02 23:42:21 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/09 19:03:46 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		or_(t_vm *vm, t_process *proc)
 	p1 = instr->params[1];
 	p2 = instr->params[2];
 	if (check_param(instr->args_types[0], p0)
-		|| check_param(instr->args_types[1], p1)
-		|| check_param(instr->args_types[2], p2))
+		&& check_param(instr->args_types[1], p1)
+		&& check_param(instr->args_types[2], p2))
 	{
 		res = get_value(instr->args_types[0], p0, &vm->arena, proc);
 		res |= get_value(instr->args_types[1], p1, &vm->arena, proc);
