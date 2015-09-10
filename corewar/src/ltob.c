@@ -6,11 +6,12 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/29 15:20:22 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/29 16:42:50 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/10 19:54:39 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "vm_protos.h"
 
 void		ltob(void *data, size_t size)
 {

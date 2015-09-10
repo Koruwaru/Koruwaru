@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/09/02 19:33:54 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/09/10 20:03:38 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ CC = clang
 # file type
 FT = c
 # flags
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -Weverything -pedantic-errors -Wno-padded -Wno-sign-conversion -Wno-shorten-64-to-32
 CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)
@@ -49,6 +50,7 @@ SRC += op.c
 SRC += get_op.c
 SRC += get_program.c
 SRC += init_instr.c
+SRC += init_params.c
 SRC += init_vm.c
 SRC += reg.c
 SRC += mem.c

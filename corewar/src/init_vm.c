@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:30:20 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/08 16:53:39 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/10 19:24:37 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 	size_t		size;
 	t_process	*proc;
 
+	ft_bzero(vm, sizeof(*vm));
 	offset = nb_players ? MEM_SIZE / nb_players : 0;
 	vm->nb_players = nb_players;
 	vm->next_proc_id = 1;
-	vm->processes = NULL;
 	i = 0;
-	ft_bzero(vm->arena.mem, MEM_SIZE);
+	ft_bzero(vm->arena.mem, sizeof(vm->arena.mem));
 	while (players != NULL && progs != NULL)
 	{
 		vm->players[i] = *(t_player *)players->content;
@@ -44,11 +44,6 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 		players = players->next;
 		progs = progs->next;
 		vm->cycles_to_die = CYCLE_TO_DIE;
-		vm->cycles = 0;
-		vm->nb_lives = 0;
-		vm->checks = 0;
-		vm->actual_cycle = 0;
 		i++;
 	}
-	vm->last_living_player = NULL;
 }

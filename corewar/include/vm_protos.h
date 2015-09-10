@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/08 15:42:40 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/10 19:58:04 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 
 t_player		*create_player(size_t id, char const *name);
 
-void			*get_program(char const *data, size_t data_s, size_t *size);
+void			*get_program(void const *data, size_t data_s, size_t *size);
 
 t_process		*create_process(size_t id, size_t pc);
 t_process		*dup_process(t_process const *src);
@@ -33,7 +33,7 @@ t_op const		*get_op(char op_code);
 
 t_bool			check_param(t_arg_type type, t_uint value);
 int				long_get_value(t_arg_type type, t_uint value, t_arena const *a,
-							   t_process const *proc);
+							t_process const *proc);
 int				get_value(t_arg_type type, t_uint value, t_arena const *a,
 							t_process const *proc);
 

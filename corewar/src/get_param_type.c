@@ -6,11 +6,11 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/02 22:11:55 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/10 19:55:01 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm_types.h"
+#include "vm_protos.h"
 
 char	get_param_code(char ocp, size_t param_id)
 {
