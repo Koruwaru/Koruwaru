@@ -6,11 +6,10 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/10 19:32:24 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/22 17:11:12 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "vm_protos.h"
 #include "libft.h"
 
@@ -67,6 +66,6 @@ int			vm_step(t_vm *vm)
 	}
 	vm_check(vm);
 	if (vm->processes == NULL)
-		exit(0);
+		return (1);
 	return (0);
 }

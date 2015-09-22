@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/10 19:30:08 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/22 17:14:56 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,15 @@ int main(int ac, char **av)
 
 	while (i++ != max)
 	{
-		vm_step(&vm);
+		if (vm_step(&vm) == 1)
+		{
+			ft_putstr("le joueur ");
+			ft_putnbr(vm.last_living_player->id);
+			ft_putstr("(");
+			ft_putstr(vm.last_living_player->name);
+			ft_putstr(") a gagne\n");
+			return (0);
+		}
 	}
 	dump_data(vm.arena.mem, sizeof(vm.arena), 64);
 	return (0);
