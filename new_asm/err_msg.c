@@ -6,13 +6,13 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:48:05 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 19:48:09 by jyim             ###   ########.fr       */
+/*   Updated: 2015/09/29 20:06:54 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void err_msg(char *msg, int l)
+void	err_msg(char *msg, int l)
 {
 	ft_putstr(msg);
 	ft_putstr(" on line ");

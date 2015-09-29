@@ -6,13 +6,13 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 20:06:19 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 20:06:26 by jyim             ###   ########.fr       */
+/*   Updated: 2015/09/29 20:09:09 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int to_opcode(int *tab)
+int		to_opcode(int *tab)
 {
 	int ret;
 	int i;

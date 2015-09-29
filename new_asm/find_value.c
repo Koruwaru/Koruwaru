@@ -6,13 +6,13 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:51:07 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 19:51:09 by jyim             ###   ########.fr       */
+/*   Updated: 2015/09/29 20:08:02 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void reg_find(char *s, t_inst *maillon, int c)
+void	reg_find(char *s, t_inst *maillon, int c)
 {
 	s++;
 	str_digit(s, c);
@@ -21,7 +21,7 @@ void reg_find(char *s, t_inst *maillon, int c)
 	maillon->size = 1;
 }
 
-void dir_found(char *s, t_inst *maillon, t_inst *head, int c)
+void	dir_found(char *s, t_inst *maillon, t_inst *head, int c)
 {
 	maillon->type = T_DIR;
 	maillon->size = find_dir(head->value);
@@ -39,7 +39,7 @@ void dir_found(char *s, t_inst *maillon, t_inst *head, int c)
 	}
 }
 
-void indir_found(char *s, t_inst *maillon, int c)
+void	indir_found(char *s, t_inst *maillon, int c)
 {
 	maillon->type = T_IND;
 	maillon->size = 2;
@@ -55,7 +55,7 @@ void indir_found(char *s, t_inst *maillon, int c)
 	}
 }
 
-void find_value(char *s, t_inst *maillon, t_inst *head, int c)
+void	find_value(char *s, t_inst *maillon, t_inst *head, int c)
 {
 	if (s[0] == 'r')
 		reg_find(s, maillon, c);
