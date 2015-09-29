@@ -6,13 +6,13 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:58:55 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 20:06:54 by jyim             ###   ########.fr       */
+/*   Updated: 2015/09/29 20:08:19 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void check_name_comment(t_asm *assembleur)
+void	check_name_comment(t_asm *assembleur)
 {
 	if (!assembleur->name)
 		err_msg("Name missing", assembleur->line);
@@ -20,14 +20,14 @@ void check_name_comment(t_asm *assembleur)
 		err_msg("Comment missing", assembleur->line);
 }
 
-char **init_parsering(int *i, int *bol, char *l)
+char	**init_parsering(int *i, int *bol, char *l)
 {
 	*i = 0;
 	*bol = 0;
 	return (ft_sp_strsplit(l));
 }
 
-void parse_file(char *l, t_asm *assembleur)
+void	parse_file(char *l, t_asm *assembleur)
 {
 	char	**tab;
 	int		bol;

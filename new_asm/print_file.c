@@ -6,13 +6,13 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 20:02:37 by jyim              #+#    #+#             */
-/*   Updated: 2015/07/31 20:03:35 by jyim             ###   ########.fr       */
+/*   Updated: 2015/09/29 20:08:51 by jyim             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void put_octet(int value, int size, int fd)
+void	put_octet(int value, int size, int fd)
 {
 	if (size == 1)
 		put_one(value, fd);
@@ -23,7 +23,7 @@ void put_octet(int value, int size, int fd)
 	return ;
 }
 
-void put_head(char *s, int len, int fd)
+void	put_head(char *s, int len, int fd)
 {
 	int i;
 	int c;
@@ -38,7 +38,7 @@ void put_head(char *s, int len, int fd)
 	}
 }
 
-void put_magic(int magic, int fd)
+void	put_magic(int magic, int fd)
 {
 	ft_put_fd(fd, magic >> 24);
 	ft_put_fd(fd, magic >> 16);
@@ -46,12 +46,12 @@ void put_magic(int magic, int fd)
 	ft_put_fd(fd, magic);
 }
 
-void put_count(int magic, int fd)
+void	put_count(int magic, int fd)
 {
 	ft_put_fd(fd, magic);
 }
 
-void put_to_file(char *name, t_bytecode *list, t_asm assembleur)
+void	put_to_file(char *name, t_bytecode *list, t_asm assembleur)
 {
 	int		fd;
 	t_inst	*tmp;
