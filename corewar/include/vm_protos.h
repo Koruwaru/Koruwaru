@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/10 19:58:04 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/29 21:41:01 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void			move_pc(size_t *pc, int steps);
 int				vm_step(t_vm *vm);
 
 void			exec_instr(t_vm *vm, t_process *proc);
+
+t_bool			param_vm(t_args_data *data, int ac, char const **av);
 
 void			null(t_vm *vm, t_process *process);
 void			live(t_vm *vm, t_process *process);

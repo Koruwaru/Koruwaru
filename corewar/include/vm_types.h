@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/10 19:37:52 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/29 21:34:20 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct	s_process
 typedef struct	s_player
 {
 	char const	*name;
-	size_t		id;
+	int			id;
 
 }				t_player;
 
@@ -66,6 +66,15 @@ typedef struct	s_arena
 	char		mem[MEM_SIZE];
 
 }				t_arena;
+
+typedef struct	s_args_data
+{
+	int			dump_cycles;
+	t_list		*players_data;
+	int			players_nb;
+	int			next_player;
+
+}				t_args_data;
 
 typedef struct	s_vm
 {
@@ -80,8 +89,16 @@ typedef struct	s_vm
 	int				cycles;
 	int				cycles_to_die;
 	t_arena			arena;
+	int				dump_cycles;
 
 }				t_vm;
+
+typedef struct	s_player_data
+{
+	char const	*filename;
+	int const	id;
+
+}				t_player_data;
 
 typedef void	(*t_instrf)(t_vm *vm, t_process *process);
 
