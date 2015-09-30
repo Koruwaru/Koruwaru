@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/09/29 21:40:07 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/09/30 17:09:56 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ FT = c
 # flags
 CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -Weverything -pedantic-errors -Wno-padded -Wno-sign-conversion -Wno-shorten-64-to-32
-CFLAGS += -O3
+# CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)
 BIN_FLAGS = $(CFLAGS) $(LIB)

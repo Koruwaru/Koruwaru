@@ -6,16 +6,17 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 18:32:46 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/29 21:34:43 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/30 16:57:41 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "vm_protos.h"
 #include "libft.h"
 
 static int		cmp_player(t_list *_1, t_list *_2)
 {
-	return (_1->id - _2->id);
+	return (((t_player *)_1->content)->id - ((t_player *)_2->content)->id);
 }
 
 static t_bool	add_sorted_player(t_list **players, int id, char const *name)
@@ -30,26 +31,27 @@ static t_bool	add_sorted_player(t_list **players, int id, char const *name)
 	return (ft_lst_addsort(players, elem, 1, cmp_player));
 }
 
-t_bool			arg_dump(t_args_data *data, int *i, int ac, char const **av)
+static t_bool	arg_dump(t_args_data *data, int *i, int ac, char const * const *av)
 {
 	(*i)++;
-	if (ft_is_number(av[*i]))
+	if (ft_is_number(av[*i]) && *i < ac)
 	{
-		if ((data->dump_cycles = ft_atoi(av[*i]) < 0))
+		if ((data->dump_cycles = ft_atoi(av[*i])) < 0)
 		{
-			ft_putstr_fd(2, "Can't dump at negative cycle.");
+			ft_putstr_fd("Can't dump at negative cycle.\n", 2);
 			return (false);
 		}
 	}
 	else
 	{
-		ft_putstr_fd(2, "-dump needs a number.");
+		ft_putstr_fd("-dump needs a number.\n", 2);
 		return (false);
 	}
+	(*i)++;
 	return (true);
 }
 
-t_bool			arg_player(t_args_data *data, int *i, int ac, char const **av)
+static t_bool	arg_player(t_args_data *data, int *i, int ac, char const * const *av)
 {
 	int		pid;
 
@@ -58,39 +60,38 @@ t_bool			arg_player(t_args_data *data, int *i, int ac, char const **av)
 		(*i)++;
 		if (*i >= ac)
 		{
-			ft_putstr_fd(2, "-n must be followed by some integer.");
+			ft_putstr_fd("-n must be followed by some integer.\n", 2);
 			return (false);
 		}
 		if (!ft_is_number(av[*i]))
 		{
-			ft_putstr_fd(2, "Number no is number.");
+			ft_putstr_fd("Number no is number.\n", 2);
 			return (false);
 		}
 		pid = ft_atoi(av[*i]);
-		if (pid > data->next_player)
+		if (pid >= data->next_player)
 			data->next_player = pid + 1;
 		(*i)++;
 	}
 	else
 		pid = data->next_player++;
-	if (!add_sorted_player(&players, pid, av[*i]))
+	if (!add_sorted_player(&data->players_data, pid, av[*i]))
 	{
-		ft_putstr_fd(2, "Two player have the same id.");
+		ft_putstr_fd("Two player have the same id.\n", 2);
 		return (false);
 	}
 	data->players_nb++;
+	(*i)++;
 	return (true);
 }
 
-t_bool			param_vm(t_args_data *data, int ac, char const **av)
+t_bool			param_vm(t_args_data *data, int ac, char const * const *av)
 {
-	t_list		*players_data;
 	int			i;
 	int			nbr;
-	int			get_nbr;
 
 	nbr = 0;
-	args->dump_cycles = -1;
+	data->dump_cycles = -1;
 	i = 1;
 	while (i < ac)
 	{

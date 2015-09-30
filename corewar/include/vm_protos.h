@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/29 21:41:01 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/30 17:17:38 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ char			get_param_code(char ocp, size_t param_id);
 
 t_op const		*get_op(char op_code);
 
-t_bool			check_param(t_arg_type type, t_uint value);
-int				long_get_value(t_arg_type type, t_uint value, t_arena const *a,
+t_bool			check_param(t_arg_type type, int value);
+int				long_get_value(t_arg_type type, int value, t_arena const *a,
 							t_process const *proc);
-int				get_value(t_arg_type type, t_uint value, t_arena const *a,
+int				get_value(t_arg_type type, int value, t_arena const *a,
 							t_process const *proc);
 
 void			init_params(t_instruction *instr, t_op const *op,
@@ -60,7 +60,7 @@ int				vm_step(t_vm *vm);
 
 void			exec_instr(t_vm *vm, t_process *proc);
 
-t_bool			param_vm(t_args_data *data, int ac, char const **av);
+t_bool			param_vm(t_args_data *data, int ac, char const * const *av);
 
 void			null(t_vm *vm, t_process *process);
 void			live(t_vm *vm, t_process *process);

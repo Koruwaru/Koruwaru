@@ -6,13 +6,13 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 23:45:00 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/07 19:20:09 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/30 17:16:41 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
 
-t_bool		check_param(t_arg_type type, t_uint value)
+t_bool		check_param(t_arg_type type, int value)
 {
 	if (type == T_DIR || type == T_IND)
 		return (true);
@@ -21,7 +21,7 @@ t_bool		check_param(t_arg_type type, t_uint value)
 	return (false);
 }
 
-int			long_get_value(t_arg_type type, t_uint value, t_arena const *a,
+int			long_get_value(t_arg_type type, int value, t_arena const *a,
 					t_process const *proc)
 {
 	int		val;
@@ -37,7 +37,7 @@ int			long_get_value(t_arg_type type, t_uint value, t_arena const *a,
 	return (loadreg(&proc->registers[value]));
 }
 
-int			get_value(t_arg_type type, t_uint value, t_arena const *a,
+int			get_value(t_arg_type type, int value, t_arena const *a,
 					t_process const *proc)
 {
 	int		val;

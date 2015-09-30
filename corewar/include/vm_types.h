@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/29 21:34:20 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/09/30 14:56:10 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct	s_vm
 typedef struct	s_player_data
 {
 	char const	*filename;
-	int const	id;
+	int			id;
 
 }				t_player_data;
 
