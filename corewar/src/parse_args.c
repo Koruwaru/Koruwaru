@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 18:32:46 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 16:57:41 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/01 18:39:35 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,17 @@ static t_bool	arg_player(t_args_data *data, int *i, int ac, char const * const *
 		if (pid >= data->next_player)
 			data->next_player = pid + 1;
 		(*i)++;
+		if (*i >= ac)
+		{
+			ft_putstr_fd("Where is player?\n", 2);
+			return (false);
+		}
 	}
 	else
 		pid = data->next_player++;
 	if (!add_sorted_player(&data->players_data, pid, av[*i]))
 	{
-		ft_putstr_fd("Two player have the same id.\n", 2);
+		ft_putstr_fd("Two players have the same id.\n", 2);
 		return (false);
 	}
 	data->players_nb++;

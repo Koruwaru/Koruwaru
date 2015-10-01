@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:30:20 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 17:02:02 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/01 19:01:01 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 		proc = create_process(vm->players[i].id, offset * i);
 		proc->id = vm->next_proc_id++;
 		load_instr(proc, &vm->arena);
+		// Push front
 		ft_lstadd(&vm->processes, ft_lstcreate(proc, sizeof(t_process)));
 		players = players->next;
 		progs = progs->next;

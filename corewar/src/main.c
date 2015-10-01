@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 18:09:19 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/01 18:32:40 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			main(int ac, char const **av)
 	players_data = NULL;
 	ft_bzero(&args, sizeof(args));
 	i = 0;
-	if (!param_vm(&args, ac, av))
+	if (!param_vm(&args, ac, av) || args.players_nb == 0)
 		return (1);
 	if (args.players_nb > MAX_PLAYERS)
 	{
