@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 17:17:38 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/05 21:04:47 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				vm_step(t_vm *vm);
 
 void			exec_instr(t_vm *vm, t_process *proc);
 
-t_bool			param_vm(t_args_data *data, int ac, char const * const *av);
+t_bool			param_vm(t_args_data *data, int ac, char const *const *av);
 
 void			null(t_vm *vm, t_process *process);
 void			live(t_vm *vm, t_process *process);

@@ -6,11 +6,9 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 18:09:19 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/05 20:19:36 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h> // A virer
 
 #include "libft.h"
 #include "vm_types.h"
@@ -38,6 +36,15 @@ static void	load_players(t_list const *p_d, t_list **players, t_list **progs)
 	}
 }
 
+static void	print_victory(t_vm const *vm)
+{
+	ft_putstr("le joueur ");
+	ft_putnbr(vm->last_living_player->id);
+	ft_putstr("(");
+	ft_putstr(vm->last_living_player->name);
+	ft_putstr(") a gagne\n");
+}
+
 int			main(int ac, char const **av)
 {
 	t_args_data	args;
@@ -45,36 +52,24 @@ int			main(int ac, char const **av)
 	t_list		*players_data;
 	t_list		*players;
 	t_list		*programs;
-	int			i;
 
 	players = NULL;
 	programs = NULL;
 	players_data = NULL;
 	ft_bzero(&args, sizeof(args));
-	i = 0;
-	if (!param_vm(&args, ac, av))
+	if (!param_vm(&args, ac, av) || args.players_nb == 0)
 		return (1);
 	if (args.players_nb > MAX_PLAYERS)
-	{
-		ft_putstr_fd("Too much of the players.\n", 2);
-		return (1);
-	}
-	vm.dump_cycles = args.dump_cycles;
+		return (ft_putstr_fd("Too much of the players.\n", 2), 1);
 	players_data = args.players_data;
 	load_players(players_data, &players, &programs);
 	init_vm(&vm, args.players_nb, players, programs);
-	while (i++ != args.dump_cycles)
-	{
-		if (vm_step(&vm) == 1)
-		{
-			ft_putstr("le joueur ");
-			ft_putnbr(vm.last_living_player->id);
-			ft_putstr("(");
-			ft_putstr(vm.last_living_player->name);
-			ft_putstr(") a gagne\n");
-			return (0);
-		}
-	}
-	dump_data(vm.arena.mem, sizeof(vm.arena), 64);
+	vm.dump_cycles = args.dump_cycles;
+	while (!vm_step(&vm))
+		;
+	if (vm.dump_cycles > 0 && vm.dump_cycles <= vm.vm_cycles)
+		dump_data(vm.arena.mem, sizeof(vm.arena), 64);
+	else
+		print_victory(&vm);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/22 17:11:12 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/05 20:12:51 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	vm_check(t_vm *vm)
 	t_process	*proc;
 
 	++vm->cycles;
+	++vm->vm_cycles;
 	if (vm->cycles >= vm->cycles_to_die)
 	{
 		tmp = &vm->processes;

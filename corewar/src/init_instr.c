@@ -6,15 +6,13 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:24:57 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 21:24:45 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/05 19:13:02 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm_protos.h"
 #include "libft.h"
 #include "op.h"
-
-#include <stdio.h> // CACA
 
 static char		flag_from_code(char code)
 {
@@ -37,7 +35,6 @@ static t_bool	verif_ocp(t_op const *op, char ocp)
 	i = 0;
 	while (i < params_nb)
 	{
-//		printf("REF: %x - ITS: %x\n", op->args_types[i], get_param_code(ocp, i));
 		param_type = flag_from_code(get_param_code(ocp, i));
 		if ((param_type & op->args_types[i]) == 0)
 		{
@@ -92,7 +89,6 @@ void			load_instr(t_process *proc, t_arena const *a)
 	ocp = a->mem[pc];
 	if (op_tmp == NULL || verif_ocp(op_tmp, ocp) == false)
 	{
-//		printf("Fils de pute %x\n", instr->opcode);
 		instr->opcode = 0;
 		instr->nb_params = 0;
 		instr->size = 1;
@@ -102,7 +98,6 @@ void			load_instr(t_process *proc, t_arena const *a)
 	{
 		instr->nb_params = op_tmp->nb_params;
 		init_args_types(instr, op_tmp, a, &pc);
-		printf("INSTR %s %x %x %x\n", op_tmp->name, instr->args_types[0], instr->args_types[1], instr->args_types[2]);
 		proc->remaining_cycles = op_tmp->cycles;
 	}
 }

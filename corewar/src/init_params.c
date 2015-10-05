@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/10 19:11:06 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 21:03:26 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/05 19:14:04 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,39 +59,6 @@ static size_t	get_param_size(t_arg_type param_type, t_op const *op)
 	return (param_s);
 }
 
-#include <stdio.h>
-
-/*
-static void		init_args_types(t_instruction *instr, t_op const *op,
-							t_arena const *a, size_t *pc)
-{
-	char				ocp;
-	size_t				i;
-	static t_arg_type	tab[] = {T_REG, T_DIR, T_IND};
-
-	i = 0;
-	if (op->ocp == 1)
-	{
-		ocp = a->mem[*pc];
-		while (i < op->nb_params)
-		{
-			instr->args_types[i] = tab[get_param_code(ocp, i) - 1];
-			i++;
-		}
-		move_pc(pc, 1);
-		instr->size += 1;
-	}
-	else
-	{
-		while (i < op->nb_params)
-		{
-			instr->args_types[i] = op->args_types[i];
-			i++;
-		}
-	}
-}
-*/
-
 void			init_params(t_instruction *instr, t_op const *op,
 							t_arena const *a, size_t pc)
 {
@@ -105,7 +72,6 @@ void			init_params(t_instruction *instr, t_op const *op,
 		move_pc(&pc, 1);
 		instr->size += 1;
 	}
-//	init_args_types(instr, op, a, &pc);
 	i = 0;
 	while (i < instr->nb_params)
 	{

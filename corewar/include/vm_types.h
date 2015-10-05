@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/30 14:56:10 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/05 20:16:38 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct	s_vm
 	t_player const	*last_living_player;
 	t_list			*processes;
 	int				cycles;
+	int				vm_cycles;
 	int				cycles_to_die;
 	t_arena			arena;
 	int				dump_cycles;
