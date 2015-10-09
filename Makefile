@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:11:10 by crenault          #+#    #+#              #
-#    Updated: 2015/07/26 17:11:13 by crenault         ###   ########.fr        #
+#    Updated: 2015/10/06 15:20:45 by crenault         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,16 @@ SUBMODULES = $(FT_CHECK)
 # libraries
 LIBRARIES = $(FT_LIB)
 
-# sub makefile
-FOLDER_ASM = asm
-FOLDER_COREWAR = corewar
-
-# all sub makefile
+# sub folders
 COREWAR_FOLDER = corewar
 ASM_FOLDER = asm
 
+# check sub makefiles
+COREWAR = $(COREWAR_FOLDER)/corewar
+ASM = $(ASM_FOLDER)/asm
+
 # main rule
-all: $(COREWAR_FOLDER) $(ASM_FOLDER) $(SUBMODULES) $(LIBRARIES)
+all: $(SUBMODULES) $(LIBRARIES) $(COREWAR) $(ASM)
 
 # rebuild your bin
 re: fclean all
@@ -39,12 +39,12 @@ re: fclean all
 # reclone submodule and rebuild
 rere: ffclean all
 
-$(COREWAR_FOLDER):
-	@make -C $@
+$(COREWAR): $(COREWAR_FOLDER)
+	@make -C $<
 	@echo $@ "updated!"
 
-$(ASM_FOLDER):
-	@make -C $@
+$(ASM): $(ASM_FOLDER)
+	@make -C $<
 	@echo $@ "updated!"
 
 # submodules

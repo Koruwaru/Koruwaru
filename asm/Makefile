@@ -3,81 +3,34 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
+#    By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/07/26 17:11:32 by crenault          #+#    #+#              #
-#    Updated: 2015/07/26 17:13:51 by crenault         ###   ########.fr        #
+#    Created: 2014/02/02 23:05:59 by jyim              #+#    #+#              #
+#    Updated: 2014/02/02 23:28:21 by jyim             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# submodules
-SUBMODULES =
-
-# libraries
-LIBRARIES =
-
-# compiler
-CC = clang
-# file type
-FT = c
-# flags
-FLAGS = -Wall -Wextra -Werror
-FLAGS += -O3
-FLAGS += -g
-# binary flags (add libraries)
-BIN_FLAGS = $(FLAGS)
-# executable
 NAME = asm
 
-# to compile files
-#SRC = src/main.c
-#SRC += src/genv.c
+SRC = main.c get_next_line.c op.c ft_sp_strsplit.c utils.c list.c utils2.c \
+	print_file.c put_fd.c bytecode_create.c error1.c list_utils.c to_opcode.c \
+	fill_label.c utils3.c parser.c find_value.c error2.c err_msg.c utils_head.c
 
-# header files
-#HDR = include/helpers.h
-#HDR += include/genv.h
+OBJ = $(SRC:.c=.o)
 
-# objects files
-OBJS = $(SRC:.$(FT)=.o)
-
-# main rule
 all: $(NAME)
 
-# rebuild your bin
-re: fclean $(NAME)
+$(NAME): $(OBJ)
+	gcc -o asm $(OBJ) -L ../common/libft/ -lft
 
-# reclone submodule and rebuild
-rere: ffclean $(NAME)
+%.o: %.c
+	gcc -Wall -Werror -Wextra -c -I libft/ $<
 
-$(NAME): $(SUBMODULES) $(LIBRARIES) $(OBJS)
-	@$(CC) -o $@ $(OBJS) $(BIN_FLAGS)
-	@echo $@ "updated!"
-
-# making o files
-%.o: %.$(FT) $(HDR)
-	@$(CC) -o $@ -c $< $(FLAGS)
-	@echo $< "updated!"
-
-# submodules
-$(SUBMODULES):
-	@git submodule init
-	@git submodule update
-	@echo $@ "updated!"
-
-#
-.PHONY: all re rere clean fclean ffclean cleansubs
-
-# clean o files
 clean:
-	@rm -rf $(OBJS)
+	/bin/rm $(OBJ)
 
-# clean submodules
-cleansubs:
-	@rm -rf $(PI_RESS_LOCAL_DIR)
+fclean:
+	/bin/rm -f $(OBJ)
+	/bin/rm -f $(NAME)
 
-# clean exec file and library
-fclean: clean
-	@rm -rf $(NAME)
-
-# get empty and clean repo (without libs)
-ffclean: fclean cleansubs
+re: fclean all
