@@ -6,10 +6,11 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/05 20:19:36 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/09 18:16:41 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 #include "vm_types.h"
 #include "vm_protos.h"
@@ -20,18 +21,20 @@ static void	load_players(t_list const *p_d, t_list **players, t_list **progs)
 	size_t			fsize;
 	size_t			progsize;
 	t_player_data	*player;
-	char			*prog_name;
+	void			*tmp;
 
 	while (p_d != NULL)
 	{
 		player = (t_player_data *)(p_d->content);
 		data = get_file_data(player->filename, &fsize);
-		prog_name = ((t_header *)data)->prog_name;
-		ft_lstadd(players,
-				ft_lstnew(create_player(player->id, prog_name),
-						sizeof(t_player)));
-		ft_lstadd(progs,
-				ft_lstnew(get_program(data, fsize, &progsize), progsize));
+		tmp = create_player(player->id, ((t_header *)data)->prog_name);
+		if (!tmp)
+			exit(1);
+		ft_lstadd(players, ft_lstnew(tmp, sizeof(t_player)));
+		tmp = get_program(data, fsize, &progsize);
+		if (!tmp)
+			exit(1);
+		ft_lstadd(progs, ft_lstnew(tmp, progsize));
 		p_d = p_d->next;
 	}
 }
@@ -67,8 +70,8 @@ int			main(int ac, char const **av)
 	vm.dump_cycles = args.dump_cycles;
 	while (!vm_step(&vm))
 		;
-	if (vm.dump_cycles > 0 && vm.dump_cycles <= vm.vm_cycles)
-		dump_data(vm.arena.mem, sizeof(vm.arena), 64);
+	if (vm.dump_cycles >= 0 && vm.dump_cycles <= vm.vm_cycles)
+		dump_data(&vm, sizeof(vm.arena), 64, args.color);
 	else
 		print_victory(&vm);
 	return (0);

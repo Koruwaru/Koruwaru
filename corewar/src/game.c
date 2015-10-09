@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/05 20:12:51 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/09 17:23:17 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			vm_step(t_vm *vm)
 		tmp = tmp->next;
 	}
 	vm_check(vm);
-	if (vm->processes == NULL)
+	if (vm->processes == NULL || vm->dump_cycles <= vm->vm_cycles)
 		return (1);
 	return (0);
 }

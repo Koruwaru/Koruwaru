@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/05 20:16:38 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/09 17:51:03 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct	s_args_data
 	t_list		*players_data;
 	int			players_nb;
 	int			next_player;
+	t_bool		color;
 
 }				t_args_data;
 

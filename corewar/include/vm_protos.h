@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/05 21:04:47 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/09 18:16:26 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			*get_program(void const *data, size_t data_s, size_t *size);
 t_process		*create_process(size_t id, size_t pc);
 t_process		*dup_process(t_process const *src);
 
-void			dump_data(void const *a, size_t size, size_t line_s);
+void			dump_data(t_vm const *vm, size_t size, size_t l_s, t_bool c);
 
 char			get_param_code(char ocp, size_t param_id);
 

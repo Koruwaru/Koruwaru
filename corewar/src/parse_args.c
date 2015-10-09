@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 18:32:46 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/05 19:38:08 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/09 19:28:53 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,26 +80,39 @@ static t_bool	arg_player(t_args_data *data, int *i, int ac,
 	return (true);
 }
 
+static t_bool	arg_color(t_args_data *data, int *i, int ac,
+						char const *const *av)
+{
+	(void)ac;
+	(void)av;
+	(*i)++;
+	data->color = true;
+	return (true);
+}
+
 t_bool			param_vm(t_args_data *data, int ac, char const *const *av)
 {
-	int			i;
-	int			nbr;
+	int				i;
+	int				nbr;
+	int				j;
+	static t_bool	(*handlers[])(t_args_data *, int *,
+									int, char const *const *) = {
+		arg_dump, arg_color, NULL, arg_player
+	};
+	static char		options[][10] = {
+		"-dump", "-color", "-peek", ""
+	};
 
 	nbr = 0;
 	data->dump_cycles = -1;
 	i = 1;
 	while (i < ac)
 	{
-		if (ft_strcmp(av[i], "-dump") == 0)
-		{
-			if (!arg_dump(data, &i, ac, av))
-				return (false);
-		}
-		else
-		{
-			if (!arg_player(data, &i, ac, av))
-				return (false);
-		}
+		j = 0;
+		while (j < 3 && ft_strcmp(av[i], options[j]) != 0)
+			j++;
+		if (!handlers[j](data, &i, ac, av))
+			return (false);
 	}
 	return (true);
 }

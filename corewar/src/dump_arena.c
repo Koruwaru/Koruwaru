@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/29 13:40:17 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/09/03 15:38:47 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/09 18:49:24 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,44 @@ static void	addr(unsigned int addr, char ret[9])
 	ret[8] = ' ';
 }
 
-void		dump_data(void const *d, size_t size, size_t line_s)
+static void	print_byte(t_vm const *vm, char const *b, int pos, t_bool col)
 {
-	char		buff[2];
+	t_list				*processes;
+	char				buff[2];
+	char				proc_col[] = "\033[44m";
+	char				reset_col[] = "\033[0m";
+	char				code_col[] = "\033[1;31m";
+
+	processes = vm->processes;
+	if (col)
+	{
+		if (*b != 0)
+			write(1, code_col, sizeof(code_col));
+		while (processes)
+		{
+			if (((t_process *)processes->content)->pc == (size_t)pos)
+			{
+				write(1, proc_col, sizeof(proc_col));
+				break ;
+			}
+			processes = processes->next;
+		}
+	}
+	ctoah(*b, buff);
+	write(1, buff, sizeof(buff));
+	ft_putstr(" ");
+	write(1, reset_col, sizeof(reset_col));
+}
+
+void		dump_data(t_vm const *vm, size_t size, size_t line_s, t_bool col)
+{
 	char		a[9];
 	char const	*tmp;
 	size_t		i;
 	size_t		j;
 
 	i = 0;
-	tmp = d;
+	tmp = vm->arena.mem;
 	while (i < size)
 	{
 		j = 0;
@@ -53,9 +81,7 @@ void		dump_data(void const *d, size_t size, size_t line_s)
 		write(1, a, sizeof(a));
 		while (j != line_s && i + j != size)
 		{
-			ctoah(*tmp, buff);
-			write(1, buff, sizeof(buff));
-			ft_putstr(" ");
+			print_byte(vm, tmp, i + j, col);
 			j++;
 			tmp++;
 		}
