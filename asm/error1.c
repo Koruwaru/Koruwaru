@@ -6,7 +6,7 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:48:35 by jyim              #+#    #+#             */
-/*   Updated: 2015/09/29 20:07:25 by jyim             ###   ########.fr       */
+/*   Updated: 2015/10/11 20:09:30 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	bad_argument(void)
 {
-	ft_putendl("Not enough | Too much argument/s");
+	ft_putendl_fd("Not enough | Too much argument/s", 2);
 	exit(0);
 }
 
 void	open_fail(void)
 {
-	ft_putendl("Error while trying to open asm file");
+	ft_putendl_fd("Error while trying to open asm file", 2);
 	exit(0);
 }
 

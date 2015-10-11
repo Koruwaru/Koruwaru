@@ -6,7 +6,7 @@
 /*   By: jyim <jyim@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/31 19:48:05 by jyim              #+#    #+#             */
-/*   Updated: 2015/09/29 20:06:54 by jyim             ###   ########.fr       */
+/*   Updated: 2015/10/11 20:10:18 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	err_msg(char *msg, int l)
 {
-	ft_putstr(msg);
-	ft_putstr(" on line ");
-	ft_putnbr(l);
-	ft_putchar('\n');
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(" on line ", 2);
+	ft_putnbr_fd(l, 2);
+	ft_putchar_fd('\n', 2);
 	exit(0);
 }
