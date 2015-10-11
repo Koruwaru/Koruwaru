@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/09 18:16:26 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/11 18:48:19 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,15 @@ int				vm_step(t_vm *vm);
 
 void			exec_instr(t_vm *vm, t_process *proc);
 
-t_bool			param_vm(t_args_data *data, int ac, char const *const *av);
+t_bool			param_vm(t_args_data *a, int b, char const *const *c,
+
+						t_opt_handler apprendez_a_faire_une_norminette_putain);
+t_bool			add_sorted_player(t_list **players, int id, char const *name);
+
+t_bool			arg_color(t_args_data *d, int *i, int a, char const *const *b);
+t_bool			arg_peek(t_args_data *d, int *i, int a, char const *const *b);
+t_bool			arg_player(t_args_data *d, int *i, int a, char const *const *b);
+t_bool			arg_dump(t_args_data *d, int *i, int a, char const *const *b);
 
 void			null(t_vm *vm, t_process *process);
 void			live(t_vm *vm, t_process *process);

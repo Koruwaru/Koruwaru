@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/09 18:16:41 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/11 18:39:14 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,22 @@ int			main(int ac, char const **av)
 {
 	t_args_data	args;
 	t_vm		vm;
-	t_list		*players_data;
 	t_list		*players;
 	t_list		*programs;
 
 	players = NULL;
 	programs = NULL;
-	players_data = NULL;
 	ft_bzero(&args, sizeof(args));
-	if (!param_vm(&args, ac, av) || args.players_nb == 0)
+	if (!param_vm(&args, ac, av, 0) || args.players_nb == 0)
 		return (1);
 	if (args.players_nb > MAX_PLAYERS)
 		return (ft_putstr_fd("Too much of the players.\n", 2), 1);
-	players_data = args.players_data;
-	load_players(players_data, &players, &programs);
+	load_players(args.players_data, &players, &programs);
 	init_vm(&vm, args.players_nb, players, programs);
 	vm.dump_cycles = args.dump_cycles;
 	while (!vm_step(&vm))
-		;
+		if (args.peek > 0 && vm.vm_cycles % args.peek == 0)
+			dump_data(&vm, sizeof(vm.arena), 64, args.color);
 	if (vm.dump_cycles >= 0 && vm.dump_cycles <= vm.vm_cycles)
 		dump_data(&vm, sizeof(vm.arena), 64, args.color);
 	else

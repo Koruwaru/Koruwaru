@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/29 13:40:17 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/09 18:49:24 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/11 18:40:17 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void	print_byte(t_vm const *vm, char const *b, int pos, t_bool col)
 {
 	t_list				*processes;
 	char				buff[2];
-	char				proc_col[] = "\033[44m";
-	char				reset_col[] = "\033[0m";
-	char				code_col[] = "\033[1;31m";
+	char const			proc_col[] = "\033[44m";
+	char const			reset_col[] = "\033[0m";
+	char const			code_col[] = "\033[1;31m";
 
 	processes = vm->processes;
 	if (col)
@@ -74,6 +74,7 @@ void		dump_data(t_vm const *vm, size_t size, size_t line_s, t_bool col)
 
 	i = 0;
 	tmp = vm->arena.mem;
+	ft_putstr("\033[1;1H\033[2J");
 	while (i < size)
 	{
 		j = 0;

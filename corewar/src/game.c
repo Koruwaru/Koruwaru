@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/02 14:45:41 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/09 17:23:17 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/11 19:17:38 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ static void	vm_check(t_vm *vm)
 	++vm->vm_cycles;
 	if (vm->cycles >= vm->cycles_to_die)
 	{
+		vm->checks++;
 		tmp = &vm->processes;
 		while (*tmp != NULL)
 		{
 			proc = (*tmp)->content;
 			if (proc->cycles_since_live >= vm->cycles_to_die)
-			{
 				ft_lstpop(tmp, ft_lstfree);
-			}
 			else
-			{
 				tmp = &(*tmp)->next;
-			}
 		}
 		if (vm->nb_lives >= NBR_LIVE || vm->checks >= MAX_CHECKS)
+		{
 			vm->cycles_to_die -= CYCLE_DELTA;
+			vm->checks = 0;
+		}
 		vm->cycles = 0;
 		vm->nb_lives = 0;
 	}
@@ -66,7 +66,6 @@ int			vm_step(t_vm *vm)
 		tmp = tmp->next;
 	}
 	vm_check(vm);
-	if (vm->processes == NULL || vm->dump_cycles <= vm->vm_cycles)
-		return (1);
-	return (0);
+	return (vm->processes == NULL ||
+			(vm->dump_cycles >= 0 && vm->dump_cycles <= vm->vm_cycles) ? 1 : 0);
 }

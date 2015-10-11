@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 18:11:24 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/09 17:51:03 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/11 18:05:07 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct	s_args_data
 	int			players_nb;
 	int			next_player;
 	t_bool		color;
+	int			peek;
 
 }				t_args_data;
 
@@ -103,5 +104,7 @@ typedef struct	s_player_data
 }				t_player_data;
 
 typedef void	(*t_instrf)(t_vm *vm, t_process *process);
+typedef t_bool	(*t_opt_handler)(t_args_data *, int *, int,
+								char const *const *);
 
 #endif

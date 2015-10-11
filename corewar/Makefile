@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/10/06 15:37:16 by crenault         ###   ########.fr        #
+#    Updated: 2015/10/11 18:48:40 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ FT = c
 CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -Weverything -pedantic-errors -Wno-padded -Wno-sign-conversion -Wno-shorten-64-to-32
 # CFLAGS += -O3
-# CFLAGS += -g
+CFLAGS += -g
 # binary flags (add libraries)
 BIN_FLAGS = $(CFLAGS) $(LIB)
 # executable
@@ -63,6 +63,7 @@ SRC += exec_instr.c
 SRC += game.c
 SRC += get_player.c
 SRC += parse_args.c
+SRC += args_handlers.c
 
 SRC += null.c
 SRC += live.c
