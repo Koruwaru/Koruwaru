@@ -7,7 +7,6 @@ corewar/obj
 *.txt
 
 # Asm files
-*.s
 *.cor
 
 # Object files
