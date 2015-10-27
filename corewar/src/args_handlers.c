@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 18:41:07 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/11 18:48:54 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/27 19:09:28 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ t_bool	arg_player(t_args_data *data, int *i, int ac, char const *const *av)
 	{
 		(*i)++;
 		if (*i >= ac)
-			return (ft_putstr_fd("-n must be followed by 1 int.\n", 2), false);
+			return (print_error("-n must be followed by 1 int.\n"));
 		if (!ft_is_number(av[*i]))
-			return (ft_putstr_fd("Number no is number.\n", 2), false);
+			return (print_error("Number no is number.\n"));
 		pid = ft_atoi(av[*i]);
 		if (pid >= data->next_player)
 			data->next_player = pid + 1;
 		(*i)++;
 		if (*i >= ac)
-			return (ft_putstr_fd("Where is player?\n", 2), false);
+			return (print_error("Where is player?\n"));
 	}
 	else
 		pid = data->next_player++;
 	if (!add_sorted_player(&data->players_data, pid, av[*i]))
-		return (ft_putstr_fd("Two players have the same id.\n", 2), false);
+		return (print_error("Two players have the same id.\n"));
 	data->players_nb++;
 	(*i)++;
 	return (true);
@@ -66,9 +66,15 @@ t_bool	arg_peek(t_args_data *data, int *i, int ac, char const *const *av)
 
 	(*i)++;
 	if (*i >= ac)
-		return (ft_putstr_fd("-peek require the Int.\n", 2), false);
+	{
+		ft_putstr_fd("-peek require the Int.\n", 2);
+		return (false);
+	}
 	if (!ft_is_number(av[*i]))
-		return (ft_putstr_fd("THIS IS NO NUMBER\n", 2), false);
+	{
+		ft_putstr_fd("THIS IS NO NUMBER\n", 2);
+		return (false);
+	}
 	num = ft_atoi(av[*i]);
 	data->peek = num;
 	(*i)++;

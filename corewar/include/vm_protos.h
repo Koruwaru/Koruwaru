@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 15:37:15 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/11 18:48:19 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/27 18:51:54 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_bool			arg_color(t_args_data *d, int *i, int a, char const *const *b);
 t_bool			arg_peek(t_args_data *d, int *i, int a, char const *const *b);
 t_bool			arg_player(t_args_data *d, int *i, int a, char const *const *b);
 t_bool			arg_dump(t_args_data *d, int *i, int a, char const *const *b);
+
+t_bool			print_error(char const *str);
 
 void			null(t_vm *vm, t_process *process);
 void			live(t_vm *vm, t_process *process);

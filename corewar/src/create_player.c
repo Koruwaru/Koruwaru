@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 16:59:17 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/07/31 14:25:38 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/27 19:02:45 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_player		*create_player(size_t id, char const *name)
 {
 	t_player	*tmp;
 	size_t		size;
+	char		*newname;
 
 	tmp = (t_player *)malloc(sizeof(t_player));
 	if (tmp == NULL)
@@ -40,13 +41,14 @@ t_player		*create_player(size_t id, char const *name)
 		exit(1);
 	}
 	size = ft_strlen_limit(name, PROG_NAME_LENGTH);
-	tmp->name = ft_strnew(size);
-	if (tmp->name == NULL)
+	newname = ft_strnew(size);
+	if (newname == NULL)
 	{
 		perror("Malloc error");
 		exit(1);
 	}
-	ft_memcpy((char *)tmp->name, name, size);
+	ft_memcpy(newname, name, size);
+	tmp->name = newname;
 	tmp->id = id;
 	return (tmp);
 }

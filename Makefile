@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/26 17:11:10 by crenault          #+#    #+#              #
-#    Updated: 2015/10/06 15:20:45 by crenault         ###   ########.fr        #
+#    Updated: 2015/10/27 18:37:09 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ COREWAR_FOLDER = corewar
 ASM_FOLDER = asm
 
 # check sub makefiles
-COREWAR = $(COREWAR_FOLDER)/corewar
-ASM = $(ASM_FOLDER)/asm
+COREWAR = corewar_
+ASM = asm_
 
 # main rule
 all: $(SUBMODULES) $(LIBRARIES) $(COREWAR) $(ASM)

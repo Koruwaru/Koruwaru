@@ -6,7 +6,7 @@
 #    By: crenault <crenault@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/31 00:30:49 by crenault          #+#    #+#              #
-#    Updated: 2015/10/11 18:48:40 by tmielcza         ###   ########.fr        #
+#    Updated: 2015/10/27 18:51:24 by tmielcza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRC += game.c
 SRC += get_player.c
 SRC += parse_args.c
 SRC += args_handlers.c
+SRC += print_error.c
 
 SRC += null.c
 SRC += live.c

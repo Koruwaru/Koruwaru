@@ -6,7 +6,7 @@
 /*   By: crenault <crenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/30 23:31:38 by crenault          #+#    #+#             */
-/*   Updated: 2015/09/10 20:02:04 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/27 18:54:41 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void		storeg(t_register *reg, void const *data, size_t size)
 
 int			loadreg(t_register const *reg)
 {
-	return (*(int *)(void *)reg->data);
+	return (*(int const *)(void const *)reg->data);
 }

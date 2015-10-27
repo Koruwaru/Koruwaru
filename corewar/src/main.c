@@ -6,7 +6,7 @@
 /*   By: tmielcza <tmielcza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/27 17:23:10 by tmielcza          #+#    #+#             */
-/*   Updated: 2015/10/11 18:39:14 by tmielcza         ###   ########.fr       */
+/*   Updated: 2015/10/27 19:11:19 by tmielcza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(int ac, char const **av)
 	if (!param_vm(&args, ac, av, 0) || args.players_nb == 0)
 		return (1);
 	if (args.players_nb > MAX_PLAYERS)
-		return (ft_putstr_fd("Too much of the players.\n", 2), 1);
+		return (!print_error("Too much of the players.\n"));
 	load_players(args.players_data, &players, &programs);
 	init_vm(&vm, args.players_nb, players, programs);
 	vm.dump_cycles = args.dump_cycles;
