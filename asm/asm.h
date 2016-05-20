@@ -14,9 +14,8 @@
 # define ASM_H
 
 # include "op.h"
-# include "../common/libft/includes/libft.h"
+# include "../common/libft/include/libft.h"
 # include <fcntl.h>
-# include "get_next_line.h"
 # include <stdlib.h>
 
 typedef struct			s_inst

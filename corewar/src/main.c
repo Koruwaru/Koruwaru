@@ -15,7 +15,7 @@
 #include "vm_types.h"
 #include "vm_protos.h"
 
-static void	load_players(t_list const *p_d, t_list **players, t_list **progs)
+static void	load_players(t_node const *p_d, t_node **players, t_node **progs)
 {
 	void			*data;
 	size_t			fsize;
@@ -52,8 +52,8 @@ int			main(int ac, char const **av)
 {
 	t_args_data	args;
 	t_vm		vm;
-	t_list		*players;
-	t_list		*programs;
+	t_node		*players;
+	t_node		*programs;
 
 	players = NULL;
 	programs = NULL;

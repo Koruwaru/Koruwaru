@@ -18,8 +18,8 @@ static size_t	min(size_t a, size_t b)
 	return (a < b ? a : b);
 }
 
-void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
-					t_list const *progs)
+void			init_vm(t_vm *vm, size_t nb_players, t_node const *players,
+					t_node const *progs)
 {
 	size_t		i;
 	size_t		offset;
@@ -35,7 +35,7 @@ void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
 	while (players != NULL && progs != NULL)
 	{
 		vm->players[i] = *(t_player *)players->content;
-		size = min(progs->content_size, offset);
+		size = min(progs->size, offset);
 		ft_memcpy(vm->arena.mem + offset * i, progs->content, size);
 		proc = create_process(vm->players[i].id, offset * i);
 		proc->id = vm->next_proc_id++;

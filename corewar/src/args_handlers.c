@@ -16,7 +16,7 @@
 t_bool	arg_dump(t_args_data *d, int *i, int ac, char const *const *av)
 {
 	(*i)++;
-	if (ft_is_number(av[*i]) && *i < ac)
+	if (ft_isnumber(av[*i]) && *i < ac)
 	{
 		if ((d->dump_cycles = ft_atoi(av[*i])) < 0)
 		{
@@ -42,7 +42,7 @@ t_bool	arg_player(t_args_data *data, int *i, int ac, char const *const *av)
 		(*i)++;
 		if (*i >= ac)
 			return (print_error("-n must be followed by 1 int.\n"));
-		if (!ft_is_number(av[*i]))
+		if (!ft_isnumber(av[*i]))
 			return (print_error("Number no is number.\n"));
 		pid = ft_atoi(av[*i]);
 		if (pid >= data->next_player)
@@ -70,7 +70,7 @@ t_bool	arg_peek(t_args_data *data, int *i, int ac, char const *const *av)
 		ft_putstr_fd("-peek require the Int.\n", 2);
 		return (false);
 	}
-	if (!ft_is_number(av[*i]))
+	if (!ft_isnumber(av[*i]))
 	{
 		ft_putstr_fd("THIS IS NO NUMBER\n", 2);
 		return (false);

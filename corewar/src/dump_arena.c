@@ -38,7 +38,7 @@ static void	addr(unsigned int addr, char ret[9])
 
 static void	print_byte(t_vm const *vm, char const *b, int pos, t_bool col)
 {
-	t_list				*processes;
+	t_node				*processes;
 	char				buff[2];
 	char const			proc_col[] = "\033[44m";
 	char const			reset_col[] = "\033[0m";

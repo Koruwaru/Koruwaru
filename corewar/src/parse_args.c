@@ -14,14 +14,14 @@
 #include "vm_protos.h"
 #include "libft.h"
 
-static int		cmp_player(t_list *a, t_list *b)
+static int		cmp_player(t_node *a, t_node *b)
 {
 	return (((t_player *)a->content)->id - ((t_player *)b->content)->id);
 }
 
-t_bool			add_sorted_player(t_list **players, int id, char const *name)
+t_bool			add_sorted_player(t_node **players, int id, char const *name)
 {
-	t_list			*elem;
+	t_node			*elem;
 	t_player_data	*new_player;
 
 	new_player = (t_player_data *)malloc(sizeof(*new_player));
@@ -32,7 +32,6 @@ t_bool			add_sorted_player(t_list **players, int id, char const *name)
 }
 
 t_bool			param_vm(t_args_data *data, int ac, char const *const *av,
-
 						t_opt_handler norme)
 {
 	int						i;

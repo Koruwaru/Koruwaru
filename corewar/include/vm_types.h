@@ -70,7 +70,7 @@ typedef struct	s_arena
 typedef struct	s_args_data
 {
 	int			dump_cycles;
-	t_list		*players_data;
+	t_node		*players_data;
 	int			players_nb;
 	int			next_player;
 	t_bool		color;
@@ -87,7 +87,7 @@ typedef struct	s_vm
 	size_t			actual_cycle;
 	t_player		players[MAX_PLAYERS];
 	t_player const	*last_living_player;
-	t_list			*processes;
+	t_node			*processes;
 	int				cycles;
 	int				vm_cycles;
 	int				cycles_to_die;

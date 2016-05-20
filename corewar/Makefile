@@ -16,7 +16,7 @@ SUBMODULES =
 # libraries
 LIBRARIES =
 
-INCLUDE_DIR = include/ ../common/libft/includes/ ../common/
+INCLUDE_DIR = include/ ../common/libft/include/ ../common/
 INCLUDE = $(addprefix -I, $(INCLUDE_DIR))
 
 LIB_DIR = ../common/libft
@@ -31,8 +31,9 @@ CC = clang
 FT = c
 # flags
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -Weverything -pedantic-errors -Wno-padded -Wno-sign-conversion -Wno-shorten-64-to-32
-# CFLAGS += -O3
+CFLAGS += -Weverything -pedantic-errors
+CFLAGS += -Wno-padded -Wno-sign-conversion -Wno-shorten-64-to-32
+CFLAGS += -O3
 CFLAGS += -g
 # binary flags (add libraries)
 BIN_FLAGS = $(CFLAGS) $(LIB)

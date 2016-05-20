@@ -15,7 +15,7 @@
 
 static void	vm_check(t_vm *vm)
 {
-	t_list		**tmp;
+	t_node		**tmp;
 	t_process	*proc;
 
 	++vm->cycles;
@@ -44,7 +44,7 @@ static void	vm_check(t_vm *vm)
 
 int			vm_step(t_vm *vm)
 {
-	t_list		*tmp;
+	t_node		*tmp;
 	t_process	*proc;
 
 	vm->actual_cycle++;

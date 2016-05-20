@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "../common/libft/include/get_next_line.h"
 
 int		open_asm(int ac, char **av)
 {

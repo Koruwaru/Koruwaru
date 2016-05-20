@@ -15,8 +15,8 @@
 
 # include "vm_types.h"
 
-void			init_vm(t_vm *vm, size_t nb_players, t_list const *players,
-						t_list const *programs);
+void			init_vm(t_vm *vm, size_t nb_players, t_node const *players,
+						t_node const *programs);
 
 t_player		*create_player(size_t id, char const *name);
 
@@ -63,7 +63,7 @@ void			exec_instr(t_vm *vm, t_process *proc);
 t_bool			param_vm(t_args_data *a, int b, char const *const *c,
 
 						t_opt_handler apprendez_a_faire_une_norminette_putain);
-t_bool			add_sorted_player(t_list **players, int id, char const *name);
+t_bool			add_sorted_player(t_node **players, int id, char const *name);
 
 t_bool			arg_color(t_args_data *d, int *i, int a, char const *const *b);
 t_bool			arg_peek(t_args_data *d, int *i, int a, char const *const *b);
